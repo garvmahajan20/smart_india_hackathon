@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gem-compliance.sih26100.gov.in/contracts/verification_result.schema.json",
+  "title": "VerificationResult",
+  "description": "Represents the deterministic compliance evaluation result of a bidder fact against a tender requirement.",
+  "type": "object",
+  "required": [
+    "verification_id",
+    "requirement_id",
+    "bid_id",
+    "status",
+    "severity",
+    "expected",
+    "actual",
+    "operator_used",
+    "reason",
+    "evidence",
+    "requires_human_review"
+  ],
+  "properties": {
+    "verification_id": {
+      "type": "string",
+      "description": "Unique evaluation run identifier (e.g., VERIF-BID001-REQ001)."
+    },
+    "requirement_id": {
+      "type": "string",
+      "description": "Identifier of the tender requirement being evaluated."
+    },
+    "bid_id": {
+      "type": "string",
+      "description": "Identifier of the bid under evaluation."
+    },
+    "fact_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Identifier of the specific bidder fact evaluated (null if fact was missing)."
+    },
+    "status": {
+      "type": "string",
+      "description": "Deterministic compliance outcome for the requirement.",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "PARTIAL",
+        "MISSING",
+        "N/A",
+        "REVIEW"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "description": "Impact of a failure on overall tender compliance.",
+      "enum": [
+        "CRITICAL",
+        "MAJOR",
+        "MINOR",
+        "INFO"
+      ]
+    },
+    "expected": {
+      "description": "Human-readable or structured summary of the requirement threshold (e.g. '>= 10.00 INR crore')."
+    },
+    "actual": {
+      "description": "Human-readable or structured summary of the bidder's submitted fact (e.g. '9.00 INR crore')."
+    },
+    "operator_used": {
+      "type": "string",
+      "description": "Deterministic operator executed during comparison (e.g. '>=', '==', 'IN', 'VALID_ON')."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Evidence-backed explanatory rationale detailing why the rule passed, failed, or requires review."
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Visual and textual proof pointing to the exact locations in submitted documents.",
+      "items": {
+        "type": "object",
+        "required": [
+          "document",
+          "page"
+        ],
+        "properties": {
+          "document": {
+            "type": "string",
+            "description": "Document filename or identifier."
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "1-indexed page number."
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "Bounding box coordinates [ymin, xmin, ymax, xmax] or [x0, y0, x1, y1]."
+          },
+          "snippet": {
+            "type": "string",
+            "description": "Explanatory text excerpt."
+          },
+          "source_type": {
+            "type": "string",
+            "description": "Type of evidence (e.g. BIDDER_SUBMISSION, TENDER_CLAUSE, REGISTRY_LOOKUP)."
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "anomaly_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "References to any correlated integrity anomaly IDs (e.g., ['ANOM-0000001'])."
+    },
+    "requires_human_review": {
+      "type": "boolean",
+      "description": "Flag indicating that officer intervention / confirmation is recommended or mandated."
+    },
+    "officer_override": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Optional human-in-the-loop decision record if the procurement officer overrides the result.",
+      "properties": {
+        "officer_id": {
+          "type": "string"
+        },
+        "officer_name": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "ACCEPTED",
+            "REJECTED",
+            "WAIVED",
+            "CLARIFICATION_REQUESTED"
+          ]
+        },
+        "justification": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "officer_id",
+        "decision",
+        "justification",
+        "timestamp"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+{
+  "test_timestamp": "2026-09-04T16:21:43.761306Z",
+  "pdf_path": "D:\\smart_india_hackathon\\project\\data\\external\\blind_test\\GEM_2026_B_7379634.pdf",
+  "pdf_sha256": "19cba7d3131541087eade4425636f5ffdd00e7a1960fe3553ccc8d8bd5611f8f",
+  "pdf_size_bytes": 83542,
+  "pdf_page_count": 4,
+  "pdf_metadata": {
+    "format": "PDF 1.4",
+    "title": "",
+    "author": "",
+    "subject": "",
+    "keywords": "",
+    "creator": "wkhtmltopdf 0.12.5",
+    "producer": "Qt 4.8.7",
+    "creationDate": "D:20260320173729+05'30'",
+    "modDate": "",
+    "trapped": "",
+    "encryption": null
+  },
+  "model_used": "gemini-3.5-flash",
+  "gemini_latency_ms": 22799.12,
+  "total_runtime_seconds": 22.89,
+  "gemini_call_count": 1,
+  "external_api_call_count": 0,
+  "government_api_call_count": 0,
+  "raw_candidate_count": 12,
+  "grounded_candidate_count": 12,
+  "rejected_candidate_count": 0,
+  "compliance_counts": {
+    "MISSING": 12
+  },
+  "overall_status": "REVIEW",
+  "replay_status": "COMPLETE_MATCH"
+}

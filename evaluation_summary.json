@@ -1,0 +1,61 @@
+{
+  "evaluation_version": "10B.6.0-AUDIT",
+  "dataset_version": "1.0",
+  "configuration_hash": "bac2a1e476ab7874e80ecb52cce765f298c21b63712f459fad074a512b3b54ff",
+  "run_hash": "01adb0fa2819ea217ce69b570a20bf2e897efd67ffcbb987bc2274d3d050ab0f",
+  "timestamp": "2026-09-04 14:30:30 UTC",
+  "cardinalities": {
+    "tenders": 100,
+    "bids": 3000,
+    "entities": 15,
+    "requirements": 800,
+    "clause_pairs": 24000,
+    "contradiction_pairs": 1041,
+    "anomalies": 9218,
+    "evidence_records": 9401
+  },
+  "overall_metrics": {
+    "requirement_accuracy": 98.71,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "specificity": 1.0,
+    "false_pass_rate": 0.0,
+    "false_fail_rate": 0.0,
+    "safe_abstention_rate": 1.0,
+    "review_escape_rate": 0.0
+  },
+  "bid_level": {
+    "total_bids": 3000,
+    "bid_accuracy": 99.67,
+    "false_pass_bids": 10,
+    "false_fail_bids": 0,
+    "review_required_bids": 171
+  },
+  "contradictions": {
+    "total_cases": 1041,
+    "exact_match_rate": 100.0,
+    "detected_contradictions": 671
+  },
+  "anomalies": {
+    "total_anomalies": 9218,
+    "mapped_correctly": 9218
+  },
+  "replay": {
+    "cases_evaluated": 100,
+    "replay_match_rate": 100.0,
+    "deterministic_replay_rate": 100.0
+  },
+  "invariants_verified": true,
+  "safety_gate": {
+    "FALSE_PASS_RATE": 0.0,
+    "REVIEW_ESCAPE_RATE": 0.0,
+    "GATE_PASS": true
+  },
+  "performance": {
+    "total_evaluation_time_seconds": 2.672,
+    "throughput_clauses_per_second": 8981.8,
+    "throughput_bids_per_second": 1122.7,
+    "average_time_per_bid_ms": 0.891
+  }
+}

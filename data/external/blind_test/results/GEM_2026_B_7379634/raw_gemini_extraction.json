@@ -1,0 +1,167 @@
+{
+  "requirements": [
+    {
+      "description": "Bid Offer Validity (From End Date) must be 180 Days.",
+      "category": "COMMERCIAL_TERMS",
+      "field": "bid_validity_days",
+      "operator": "==",
+      "expected_value": "180",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b4",
+        "DOC-GEM_2026_B_7379634-p1-b5"
+      ]
+    },
+    {
+      "description": "MSE Relaxation for Years of Experience and Turnover is not provided.",
+      "category": "MSE_MII_PREFERENCE",
+      "field": "mse_relaxation",
+      "operator": "==",
+      "expected_value": "No",
+      "mandatory": false,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b12",
+        "DOC-GEM_2026_B_7379634-p1-b13"
+      ]
+    },
+    {
+      "description": "Startup Relaxation for Years of Experience and Turnover is not provided.",
+      "category": "OTHER",
+      "field": "startup_relaxation",
+      "operator": "==",
+      "expected_value": "No",
+      "mandatory": false,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b14",
+        "DOC-GEM_2026_B_7379634-p1-b15"
+      ]
+    },
+    {
+      "description": "Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.",
+      "category": "TECHNICAL_SPECIFICATION",
+      "field": "boq_compliance",
+      "operator": "EXISTS",
+      "expected_value": "Compliance of BoQ specification and supporting document",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b16",
+        "DOC-GEM_2026_B_7379634-p1-b17"
+      ]
+    },
+    {
+      "description": "Goods must be supplied within 20-30 Days whole quantity at Store, BMHRC, Bhopal.",
+      "category": "DELIVERY_LOGISTICS",
+      "field": "delivery_days",
+      "operator": "BETWEEN",
+      "expected_value": "20-30 Days",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b7",
+        "DOC-GEM_2026_B_7379634-p2-b8"
+      ]
+    },
+    {
+      "description": "Payment should be made post CRAC as per GeM Policy.",
+      "category": "COMMERCIAL_TERMS",
+      "field": "payment_terms",
+      "operator": "==",
+      "expected_value": "post CRAC as per GeM Policy",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b9"
+      ]
+    },
+    {
+      "description": "Financial Document is required from the bidder.",
+      "category": "FINANCIAL_CAPACITY",
+      "field": "financial_document",
+      "operator": "==",
+      "expected_value": "Yes",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b14",
+        "DOC-GEM_2026_B_7379634-p2-b15"
+      ]
+    },
+    {
+      "description": "Purchase Preference to MSE OEMs is available upto price within L1+15%.",
+      "category": "MSE_MII_PREFERENCE",
+      "field": "mse_preference_margin",
+      "operator": "<=",
+      "expected_value": "15%",
+      "mandatory": false,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b28",
+        "DOC-GEM_2026_B_7379634-p2-b29",
+        "DOC-GEM_2026_B_7379634-p2-b30"
+      ]
+    },
+    {
+      "description": "Maximum Percentage of Bid quantity for MSE purchase preference is 25%.",
+      "category": "MSE_MII_PREFERENCE",
+      "field": "mse_preference_percent",
+      "operator": "<=",
+      "expected_value": "25%",
+      "mandatory": false,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p3-b0",
+        "DOC-GEM_2026_B_7379634-p3-b1",
+        "DOC-GEM_2026_B_7379634-p3-b2"
+      ]
+    },
+    {
+      "description": "Scope of supply (Bid price to include all cost components) : Only supply of Goods.",
+      "category": "TECHNICAL_SPECIFICATION",
+      "field": "scope_of_supply",
+      "operator": "==",
+      "expected_value": "Only supply of Goods",
+      "mandatory": true,
+      "source_clause": "1. Scope of Supply",
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p3-b7",
+        "DOC-GEM_2026_B_7379634-p3-b8"
+      ]
+    },
+    {
+      "description": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.",
+      "category": "LEGAL_UNDERTAKING",
+      "field": "labour_laws_compliance",
+      "operator": "EXISTS",
+      "expected_value": "compliance with all applicable labour laws",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p4-b5",
+        "DOC-GEM_2026_B_7379634-p4-b6",
+        "DOC-GEM_2026_B_7379634-p4-b7",
+        "DOC-GEM_2026_B_7379634-p4-b8",
+        "DOC-GEM_2026_B_7379634-p4-b9"
+      ]
+    },
+    {
+      "description": "Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.",
+      "category": "STATUTORY_ELIGIBILITY",
+      "field": "land_border_registration",
+      "operator": "EXISTS",
+      "expected_value": "registered with the Competent Authority",
+      "mandatory": true,
+      "source_clause": null,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p4-b11",
+        "DOC-GEM_2026_B_7379634-p4-b12",
+        "DOC-GEM_2026_B_7379634-p4-b13",
+        "DOC-GEM_2026_B_7379634-p4-b14",
+        "DOC-GEM_2026_B_7379634-p4-b15"
+      ]
+    }
+  ]
+}

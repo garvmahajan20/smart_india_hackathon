@@ -1,0 +1,891 @@
+{
+  "metadata": {
+    "audit_target": "GEM_2026_B_7379634.pdf",
+    "pdf_sha256": "19cba7d3131541087eade4425636f5ffdd00e7a1960fe3553ccc8d8bd5611f8f",
+    "evaluation_type": "INDEPENDENT_GOLD_STANDARD_AUDIT",
+    "total_pages": 4,
+    "total_text_blocks": 105
+  },
+  "metrics": {
+    "total_gold_requirements": 40,
+    "total_production_candidates": 12,
+    "correctly_extracted": 12,
+    "missed": 28,
+    "partially_extracted": 0,
+    "wrong_value": 0,
+    "wrong_conditionality": 0,
+    "wrong_field": 0,
+    "hallucinated": 0,
+    "duplicate": 0,
+    "overall_requirement_discovery_recall_percent": 30.0,
+    "bidder_compliance_recall_percent": 60.0,
+    "requirement_discovery_precision_percent": 100.0,
+    "exact_extraction_accuracy_percent": 100.0,
+    "value_accuracy_percent": 100.0,
+    "conditionality_accuracy_percent": 100.0,
+    "evidence_grounding_accuracy_percent": 100.0,
+    "canonical_field_accuracy_percent": 100.0
+  },
+  "gold_requirements_audit": [
+    {
+      "gold_id": "GOLD-001",
+      "category": "PROCESS_CONDITION",
+      "field_name": "bid_end_date_time",
+      "requirement_text": "Bid submission deadline: 27-03-2026 14:00:00",
+      "page": 1,
+      "mandatory": true,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Bid submission deadline treated as process header metadata rather than compliance rule.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-002",
+      "category": "PROCESS_CONDITION",
+      "field_name": "bid_opening_date_time",
+      "requirement_text": "Bid opening date/time: 27-03-2026 14:30:00",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Bid opening timestamp is procedural milestone without bidder obligation.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-003",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "bid_offer_validity_days",
+      "requirement_text": "Bid offer validity must be at least 180 Days from bid end date.",
+      "page": 1,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 1,
+        "raw_field": "bid_validity_days",
+        "raw_expected_value": "180",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p1-b4",
+          "DOC-GEM_2026_B_7379634-p1-b5"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-004",
+      "category": "INFORMATIONAL",
+      "field_name": "ministry_name",
+      "requirement_text": "Procuring Ministry: Ministry Of Health And Family Welfare",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Administrative buyer metadata omitted by prompt instruction.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-005",
+      "category": "INFORMATIONAL",
+      "field_name": "department_name",
+      "requirement_text": "Procuring Department: Department Of Health Research",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Administrative buyer metadata omitted by prompt instruction.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-006",
+      "category": "INFORMATIONAL",
+      "field_name": "office_name",
+      "requirement_text": "Procuring Office: Bhopal Memorial Hospital & Research Centre Bhopal",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Administrative buyer metadata omitted by prompt instruction.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-007",
+      "category": "INFORMATIONAL",
+      "field_name": "item_category",
+      "requirement_text": "Item Category: GlobalTenderCategory (Q3)",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Catalog categorization metadata omitted by prompt instruction.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-008",
+      "category": "INFORMATIONAL",
+      "field_name": "global_tender_title",
+      "requirement_text": "Global Tender Title: SUTURE TUNGSTEN RHENIUM ALLOY NEEDLE",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Product title metadata omitted by prompt instruction.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-009",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "mse_relaxation_experience_turnover",
+      "requirement_text": "MSE Relaxation for Years of Experience and Turnover is not provided (No).",
+      "page": 1,
+      "mandatory": false,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 2,
+        "raw_field": "mse_relaxation",
+        "raw_expected_value": "No",
+        "mandatory": false,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p1-b12",
+          "DOC-GEM_2026_B_7379634-p1-b13"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-010",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "startup_relaxation_experience_turnover",
+      "requirement_text": "Startup Relaxation for Years of Experience and Turnover is not provided (No).",
+      "page": 1,
+      "mandatory": false,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 3,
+        "raw_field": "startup_relaxation",
+        "raw_expected_value": "No",
+        "mandatory": false,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p1-b14",
+          "DOC-GEM_2026_B_7379634-p1-b15"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-011",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "document_required_boq_compliance",
+      "requirement_text": "Document required from seller: Compliance of BoQ specification and supporting document.",
+      "page": 1,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 4,
+        "raw_field": "boq_compliance",
+        "raw_expected_value": "Compliance of BoQ specification and supporting document",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p1-b16",
+          "DOC-GEM_2026_B_7379634-p1-b17"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-012",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "exemption_supporting_documents",
+      "requirement_text": "In case any bidder is seeking exemption from Experience / Turnover Criteria, supporting documents to prove eligibility for exemption must be uploaded for evaluation by the buyer.",
+      "page": 1,
+      "mandatory": true,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "CONDITIONAL_CLAUSE_LOSS",
+      "root_cause_explanation": "Sub-clause in footnote asterisk (*In case any bidder is seeking exemption...) collapsed into main BoQ document block.",
+      "false_pass_risk": "MEDIUM RISK"
+    },
+    {
+      "gold_id": "GOLD-013",
+      "category": "PROCESS_CONDITION",
+      "field_name": "show_uploaded_documents_to_all_bidders",
+      "requirement_text": "Show documents uploaded by bidders to all participated bidders: Yes (including clarifications/representations after login).",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Buyer preference setting on competitor document disclosure omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-014",
+      "category": "PROCESS_CONDITION",
+      "field_name": "min_bids_disable_auto_extension",
+      "requirement_text": "Minimum number of bids required to disable automatic bid extension: 1",
+      "page": 1,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "System automation threshold for bid extension omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-015",
+      "category": "PROCESS_CONDITION",
+      "field_name": "auto_extension_days",
+      "requirement_text": "Number of days for which Bid would be auto-extended: 3",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "System auto-extension duration omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-016",
+      "category": "PROCESS_CONDITION",
+      "field_name": "auto_extension_count",
+      "requirement_text": "Number of Auto Extension count: 1",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "System auto-extension count parameter omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-017",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "delivery_terms",
+      "requirement_text": "Allowed terms of delivery: to be supply within 20-30 Days whole quantity at Store, BMHRC, Bhopal",
+      "page": 2,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 5,
+        "raw_field": "delivery_days",
+        "raw_expected_value": "20-30 Days",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p2-b7",
+          "DOC-GEM_2026_B_7379634-p2-b8"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-018",
+      "category": "PROCESS_CONDITION",
+      "field_name": "payment_terms",
+      "requirement_text": "Payment terms: Payment should be made post CRAC as per GeM Policy",
+      "page": 2,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 6,
+        "raw_field": "payment_terms",
+        "raw_expected_value": "post CRAC as per GeM Policy",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p2-b9"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-019",
+      "category": "PROCESS_CONDITION",
+      "field_name": "technical_clarification_time_days",
+      "requirement_text": "Time allowed for Technical Clarifications during technical evaluation: 2 Days",
+      "page": 2,
+      "mandatory": true,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Turnaround window for evaluation clarifications omitted.",
+      "false_pass_risk": "MEDIUM RISK"
+    },
+    {
+      "gold_id": "GOLD-020",
+      "category": "PROCESS_CONDITION",
+      "field_name": "evaluation_method",
+      "requirement_text": "Evaluation Method: Total value wise evaluation",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Package evaluation method omitted.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-021",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "financial_document_required",
+      "requirement_text": "Financial Document Required: Yes",
+      "page": 2,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 7,
+        "raw_field": "financial_document",
+        "raw_expected_value": "Yes",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p2-b14",
+          "DOC-GEM_2026_B_7379634-p2-b15"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-022",
+      "category": "PROCESS_CONDITION",
+      "field_name": "arbitration_clause",
+      "requirement_text": "Arbitration Clause: No",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Negative legal clause (Arbitration: No) omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-023",
+      "category": "PROCESS_CONDITION",
+      "field_name": "mediation_clause",
+      "requirement_text": "Mediation Clause: No",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Negative legal clause (Mediation: No) omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-024",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "emd_required",
+      "requirement_text": "EMD Detail: Required: No",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Exemption parameter (EMD: No) omitted because model focuses on affirmative requirements.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-025",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "epbg_required",
+      "requirement_text": "ePBG Detail: Required: No",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Exemption parameter (ePBG: No) omitted because model focuses on affirmative requirements.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-026",
+      "category": "PROCESS_CONDITION",
+      "field_name": "bid_splitting_applied",
+      "requirement_text": "Bid splitting not applied.",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Process parameter (Bid splitting not applied) omitted.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-027",
+      "category": "PROCESS_CONDITION",
+      "field_name": "mii_purchase_preference",
+      "requirement_text": "MII Purchase Preference: No",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Negative preference parameter (MII: No) omitted.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-028",
+      "category": "PROCESS_CONDITION",
+      "field_name": "mse_purchase_preference",
+      "requirement_text": "MSE Purchase Preference: Yes",
+      "page": 2,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Boolean parent flag (MSE Preference: Yes) omitted in favor of numerical sub-parameters (15%, 25%).",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-029",
+      "category": "PROCESS_CONDITION",
+      "field_name": "mse_preference_margin_percent",
+      "requirement_text": "Purchase Preference to MSE OEMs available upto price within L1+X%: 15%",
+      "page": 2,
+      "mandatory": false,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 8,
+        "raw_field": "mse_preference_margin",
+        "raw_expected_value": "15%",
+        "mandatory": false,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p2-b28",
+          "DOC-GEM_2026_B_7379634-p2-b29",
+          "DOC-GEM_2026_B_7379634-p2-b30"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-030",
+      "category": "PROCESS_CONDITION",
+      "field_name": "mse_preference_quantity_percent",
+      "requirement_text": "Maximum Percentage of Bid quantity for MSE purchase preference: 25%",
+      "page": 3,
+      "mandatory": false,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 9,
+        "raw_field": "mse_preference_percent",
+        "raw_expected_value": "25%",
+        "mandatory": false,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p3-b0",
+          "DOC-GEM_2026_B_7379634-p3-b1",
+          "DOC-GEM_2026_B_7379634-p3-b2"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-031",
+      "category": "INFORMATIONAL",
+      "field_name": "short_duration_bid_justification",
+      "requirement_text": "Short Duration Bid published with approval of Competent authority due to Emergency procurement of critical products/services.",
+      "page": 3,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Buyer emergency justification disclaimer omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-032",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "scope_of_supply",
+      "requirement_text": "Scope of supply (Bid price to include all cost components) : Only supply of Goods",
+      "page": 3,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 10,
+        "raw_field": "scope_of_supply",
+        "raw_expected_value": "Only supply of Goods",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p3-b7",
+          "DOC-GEM_2026_B_7379634-p3-b8"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-033",
+      "category": "GENERAL_POLICY",
+      "field_name": "prohibited_buyer_atc_clauses",
+      "requirement_text": "Buyer Added ATC Disclaimer: 16 prohibited clauses that invalidate bid/contract if incorporated by Buyer.",
+      "page": 3,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "POLICY_CLAUSE_OMISSION",
+      "root_cause_explanation": "Lengthy 16-clause ATC negative disclaimer treated as platform boiler-plate.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-034",
+      "category": "PROCESS_CONDITION",
+      "field_name": "seller_representation_window_days",
+      "requirement_text": "Seller Representation window provided in Seller dashboard within 4 days of bid publication on GeM.",
+      "page": 4,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "NOT_IN_MODEL_EXTRACTION",
+      "root_cause_explanation": "Pre-bid grievance representation timeline omitted.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-035",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "labour_codes_compliance",
+      "requirement_text": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the four Labour Codes (Code on Wages 2019, Industrial Relations Code 2020, OSH&WC Code 2020, Code on Social Security 2020).",
+      "page": 4,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 11,
+        "raw_field": "labour_laws_compliance",
+        "raw_expected_value": "compliance with all applicable labour laws",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p4-b5",
+          "DOC-GEM_2026_B_7379634-p4-b6",
+          "DOC-GEM_2026_B_7379634-p4-b7",
+          "DOC-GEM_2026_B_7379634-p4-b8",
+          "DOC-GEM_2026_B_7379634-p4-b9"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-036",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "pre_existing_labour_laws_compliance",
+      "requirement_text": "Compliance with pre-existing labour enactments (Minimum Wages Act 1948, Payment of Wages Act 1936, Payment of Bonus Act 1965, Equal Remuneration Act 1976, Payment of Gratuity Act 1972, etc.) pending operationalisation of new codes.",
+      "page": 4,
+      "mandatory": true,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "MULTI_BLOCK_CLAUSE",
+      "root_cause_explanation": "Follow-up paragraph on pre-existing labour enactments collapsed into general labour code requirement.",
+      "false_pass_risk": "MEDIUM RISK"
+    },
+    {
+      "gold_id": "GOLD-037",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "wages_safety_social_security_obligations",
+      "requirement_text": "All obligations relating to wages, social security, safety, working conditions, industrial relations etc. shall be strictly met; non-compliance constitutes breach of contract.",
+      "page": 4,
+      "mandatory": true,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "MULTI_BLOCK_CLAUSE",
+      "root_cause_explanation": "Breach consequence paragraph collapsed into general labour code requirement.",
+      "false_pass_risk": "LOW RISK"
+    },
+    {
+      "gold_id": "GOLD-038",
+      "category": "GENERAL_POLICY",
+      "field_name": "gem_gtc_governed",
+      "requirement_text": "This Bid is also governed by the General Terms and Conditions of GeM.",
+      "page": 4,
+      "mandatory": false,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "POLICY_CLAUSE_OMISSION",
+      "root_cause_explanation": "Platform framework GTC reference omitted.",
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-039",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "land_border_registration",
+      "requirement_text": "In terms of GeM GTC clause 26, any bidder from a country which shares a land border with India will be eligible to bid only if registered with the Competent Authority.",
+      "page": 4,
+      "mandatory": true,
+      "classification": "CORRECTLY_EXTRACTED",
+      "matched_production_candidate": {
+        "prod_index": 12,
+        "raw_field": "land_border_registration",
+        "raw_expected_value": "registered with the Competent Authority",
+        "mandatory": true,
+        "evidence_block_ids": [
+          "DOC-GEM_2026_B_7379634-p4-b11",
+          "DOC-GEM_2026_B_7379634-p4-b12",
+          "DOC-GEM_2026_B_7379634-p4-b13",
+          "DOC-GEM_2026_B_7379634-p4-b14",
+          "DOC-GEM_2026_B_7379634-p4-b15"
+        ],
+        "is_valid": true
+      },
+      "root_cause": null,
+      "root_cause_explanation": null,
+      "false_pass_risk": "NO COMPLIANCE IMPACT"
+    },
+    {
+      "gold_id": "GOLD-040",
+      "category": "BIDDER_COMPLIANCE",
+      "field_name": "land_border_compliance_undertaking",
+      "requirement_text": "While participating in bid, Bidder has to undertake compliance of land border restriction; any false declaration is ground for immediate contract termination and legal action.",
+      "page": 4,
+      "mandatory": true,
+      "classification": "MISSED",
+      "matched_production_candidate": null,
+      "root_cause": "CONDITIONAL_CLAUSE_LOSS",
+      "root_cause_explanation": "Specific bidder undertaking mandate & false declaration termination liability collapsed into registration clause.",
+      "false_pass_risk": "HIGH RISK"
+    }
+  ],
+  "production_candidates_audit": [
+    {
+      "production_index": 1,
+      "raw_field": "bid_validity_days",
+      "raw_expected_value": "180",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b4",
+        "DOC-GEM_2026_B_7379634-p1-b5"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-003",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 2,
+      "raw_field": "mse_relaxation",
+      "raw_expected_value": "No",
+      "mandatory": false,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b12",
+        "DOC-GEM_2026_B_7379634-p1-b13"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-009",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 3,
+      "raw_field": "startup_relaxation",
+      "raw_expected_value": "No",
+      "mandatory": false,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b14",
+        "DOC-GEM_2026_B_7379634-p1-b15"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-010",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 4,
+      "raw_field": "boq_compliance",
+      "raw_expected_value": "Compliance of BoQ specification and supporting document",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p1-b16",
+        "DOC-GEM_2026_B_7379634-p1-b17"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-011",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 5,
+      "raw_field": "delivery_days",
+      "raw_expected_value": "20-30 Days",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b7",
+        "DOC-GEM_2026_B_7379634-p2-b8"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-017",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 6,
+      "raw_field": "payment_terms",
+      "raw_expected_value": "post CRAC as per GeM Policy",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b9"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-018",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 7,
+      "raw_field": "financial_document",
+      "raw_expected_value": "Yes",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b14",
+        "DOC-GEM_2026_B_7379634-p2-b15"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-021",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 8,
+      "raw_field": "mse_preference_margin",
+      "raw_expected_value": "15%",
+      "mandatory": false,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p2-b28",
+        "DOC-GEM_2026_B_7379634-p2-b29",
+        "DOC-GEM_2026_B_7379634-p2-b30"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-029",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 9,
+      "raw_field": "mse_preference_percent",
+      "raw_expected_value": "25%",
+      "mandatory": false,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p3-b0",
+        "DOC-GEM_2026_B_7379634-p3-b1",
+        "DOC-GEM_2026_B_7379634-p3-b2"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-030",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 10,
+      "raw_field": "scope_of_supply",
+      "raw_expected_value": "Only supply of Goods",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p3-b7",
+        "DOC-GEM_2026_B_7379634-p3-b8"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-032",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 11,
+      "raw_field": "labour_laws_compliance",
+      "raw_expected_value": "compliance with all applicable labour laws",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p4-b5",
+        "DOC-GEM_2026_B_7379634-p4-b6",
+        "DOC-GEM_2026_B_7379634-p4-b7",
+        "DOC-GEM_2026_B_7379634-p4-b8",
+        "DOC-GEM_2026_B_7379634-p4-b9"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-035",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    },
+    {
+      "production_index": 12,
+      "raw_field": "land_border_registration",
+      "raw_expected_value": "registered with the Competent Authority",
+      "mandatory": true,
+      "evidence_block_ids": [
+        "DOC-GEM_2026_B_7379634-p4-b11",
+        "DOC-GEM_2026_B_7379634-p4-b12",
+        "DOC-GEM_2026_B_7379634-p4-b13",
+        "DOC-GEM_2026_B_7379634-p4-b14",
+        "DOC-GEM_2026_B_7379634-p4-b15"
+      ],
+      "grounding_status": "ACCEPTED",
+      "classification": "VALID_GOLD_MATCH",
+      "matched_gold_id": "GOLD-039",
+      "value_accurate": true,
+      "conditionality_accurate": true,
+      "evidence_accurate": true,
+      "notes": "Accurately matches gold standard item and physical bounding boxes."
+    }
+  ]
+}

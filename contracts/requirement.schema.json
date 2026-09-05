@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gem-compliance.sih26100.gov.in/contracts/requirement.schema.json",
+  "title": "TenderRequirement",
+  "description": "Represents an individual procurement requirement/clause extracted from a GeM tender document with provenance and precedence.",
+  "type": "object",
+  "required": [
+    "requirement_id",
+    "tender_id",
+    "category",
+    "description",
+    "operator",
+    "mandatory",
+    "source_type",
+    "source_priority"
+  ],
+  "properties": {
+    "requirement_id": {
+      "type": "string",
+      "description": "Unique identifier for the requirement (e.g., REQ-FIN-001, TENDER-0002/TC-01)."
+    },
+    "tender_id": {
+      "type": "string",
+      "description": "Identifier of the tender this requirement originates from."
+    },
+    "category": {
+      "type": "string",
+      "description": "Procurement domain classification of the requirement.",
+      "enum": [
+        "FINANCIAL_CAPACITY",
+        "TECHNICAL_SPECIFICATION",
+        "EXPERIENCE_PAST_PERFORMANCE",
+        "CERTIFICATION",
+        "STATUTORY_ELIGIBILITY",
+        "LEGAL_UNDERTAKING",
+        "COMMERCIAL_TERMS",
+        "DELIVERY_LOGISTICS",
+        "MSE_MII_PREFERENCE",
+        "OTHER"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Full text or human-readable description of the clause requirement."
+    },
+    "field": {
+      "type": "string",
+      "description": "Normalized target parameter key (e.g., turnover_cr, warranty_years, iso_cert, gstin, delivery_days)."
+    },
+    "operator": {
+      "type": "string",
+      "description": "Deterministic comparison operator to evaluate against bidder facts.",
+      "enum": [
+        ">=",
+        "<=",
+        ">",
+        "<",
+        "==",
+        "!=",
+        "IN",
+        "NOT_IN",
+        "CONTAINS",
+        "MATCHES",
+        "EXISTS",
+        "VALID_ON",
+        "BEFORE",
+        "AFTER",
+        "BETWEEN"
+      ]
+    },
+    "expected_value": {
+      "description": "Expected threshold or target value in its raw representation (number, string, boolean, array, object)."
+    },
+    "normalized_expected_value": {
+      "description": "Normalized threshold converted into standard base units (e.g. INR number, ISO date string, integer days/years)."
+    },
+    "unit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Standardized unit of measurement (e.g., INR, INR_CRORE, INR_LAKH, YEARS, MONTHS, DAYS, PERCENT, COUNT, BOOLEAN)."
+    },
+    "mandatory": {
+      "type": "boolean",
+      "description": "Whether failure of this requirement constitutes a non-negotiable tender disqualification."
+    },
+    "source_type": {
+      "type": "string",
+      "description": "Hierarchy level and type of the clause origin.",
+      "enum": [
+        "GTC",
+        "STC",
+        "ATC",
+        "BUYER_ADDED_SPECIFIC",
+        "CORRIGENDUM",
+        "CUSTOM",
+        "INFERRED",
+        "UNSPECIFIED",
+        "UNKNOWN"
+      ]
+    },
+    "source_clause": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Specific clause or section reference (e.g., '7.2', 'Clause 3.1.4', 'ATC-01')."
+    },
+    "source_page": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "description": "Page number in the tender PDF where the requirement is specified."
+    },
+    "source_priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Precedence integer where higher numbers override lower numbers (GTC=1, STC=2, ATC=3, CORRIGENDUM=4; 0 indicates UNRANKED / UNSPECIFIED / UNKNOWN provenance)."
+    },
+    "applicability": {
+      "type": "object",
+      "description": "Exemption and special eligibility rules governing when this requirement applies.",
+      "properties": {
+        "mse_exemption_allowed": {
+          "type": "boolean",
+          "default": false
+        },
+        "startup_exemption_allowed": {
+          "type": "boolean",
+          "default": false
+        },
+        "mii_local_content_min_percent": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "conditions_text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Snippet or coordinates from the tender PDF proving the clause provenance.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "[ymin, xmin, ymax, xmax] or [x0, y0, x1, y1]"
+          },
+          "snippet": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page"
+        ]
+      }
+    },
+    "extraction_confidence": {
+      "type": "string",
+      "description": "AI extraction confidence score.",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "default": "HIGH"
+    },
+    "canonical_field": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Deterministic canonical ontology field identifier (e.g., ANNUAL_TURNOVER, WARRANTY_DURATION)."
+    },
+    "field_resolution": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Traceable resolution metadata from the deterministic canonical field ontology.",
+      "properties": {
+        "raw_field": {
+          "type": "string"
+        },
+        "canonical_field_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolution_method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolution_status": {
+          "type": "string"
+        },
+        "contradiction_eligible": {
+          "type": "boolean"
+        },
+        "family": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "raw_field",
+        "resolution_status"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

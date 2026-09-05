@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gem-compliance.sih26100.gov.in/contracts/bidder_fact.schema.json",
+  "title": "BidderFact",
+  "description": "Represents an individual verifiable parameter or claim extracted from a bidder's submission.",
+  "type": "object",
+  "required": [
+    "fact_id",
+    "bid_id",
+    "field",
+    "value",
+    "source_document",
+    "page",
+    "extraction_confidence"
+  ],
+  "properties": {
+    "fact_id": {
+      "type": "string",
+      "description": "Unique identifier for the extracted fact (e.g., FACT-BID001-TURNOVER-01)."
+    },
+    "bid_id": {
+      "type": "string",
+      "description": "Identifier of the bid this fact belongs to."
+    },
+    "bidder_id": {
+      "type": "string",
+      "description": "Identifier of the bidder / submitting company (e.g., company name or entity code)."
+    },
+    "field": {
+      "type": "string",
+      "description": "Normalized parameter name (e.g., average_annual_turnover, warranty_years, delivery_days, iso_14001_cert, gstin, pan, local_support)."
+    },
+    "value": {
+      "description": "Raw extracted value (can be numeric, string, boolean, date object, array, or dictionary)."
+    },
+    "normalized_value": {
+      "description": "Standardized canonical value for deterministic evaluation (e.g. numeric INR, integer count, boolean, uppercase string)."
+    },
+    "unit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Unit associated with the value (e.g., INR, INR_CRORE, YEARS, DAYS, PERCENT, COUNT, BOOLEAN)."
+    },
+    "source_document": {
+      "type": "string",
+      "description": "Filename or document identifier from which the fact was extracted (e.g., BID-00001.pdf, balance_sheet.pdf)."
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "1-indexed page number in the source document where the fact appears."
+    },
+    "bbox": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4,
+      "description": "Bounding box coordinates of the extracted snippet [ymin, xmin, ymax, xmax] or [x0, y0, x1, y1]."
+    },
+    "raw_text_snippet": {
+      "type": "string",
+      "description": "Exact text excerpt surrounding the extracted fact for audit trail."
+    },
+    "extraction_confidence": {
+      "type": "string",
+      "description": "Confidence level of the extraction model.",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "default": "HIGH"
+    },
+    "extraction_method": {
+      "type": "string",
+      "description": "Pipeline component or method responsible for extraction.",
+      "enum": [
+        "LLM_STRUCTURED_EXTRACTION",
+        "NATIVE_PDF_PARSING",
+        "OCR_TEXT_EXTRACTION",
+        "TABLE_EXTRACTION",
+        "RULE_BASED_REGEX",
+        "MOCK_GROUND_TRUTH"
+      ],
+      "default": "LLM_STRUCTURED_EXTRACTION"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional domain-specific attributes (e.g. issuing CA name, certificate number, expiry date).",
+      "additionalProperties": true
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Visual and textual proof pointing to all physical source blocks in submitted documents.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "description": "Physical block identifier from Step 6 segmentation."
+          },
+          "document": {
+            "type": "string",
+            "description": "Document filename or identifier."
+          },
+          "document_id": {
+            "type": "string",
+            "description": "Unique container document ID."
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "1-indexed page number."
+          },
+          "bbox": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "Bounding box coordinates [ymin, xmin, ymax, xmax]."
+          },
+          "snippet": {
+            "type": "string",
+            "description": "Text content excerpt of the physical block."
+          },
+          "source_type": {
+            "type": "string",
+            "description": "Type of evidence source (e.g. BIDDER_SUBMISSION)."
+          }
+        },
+        "required": [
+          "page"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "canonical_field": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Deterministic canonical ontology field identifier (e.g., ANNUAL_TURNOVER, WARRANTY_DURATION)."
+    },
+    "field_resolution": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Traceable resolution metadata from the deterministic canonical field ontology.",
+      "properties": {
+        "raw_field": {
+          "type": "string"
+        },
+        "canonical_field_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolution_method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolution_status": {
+          "type": "string"
+        },
+        "contradiction_eligible": {
+          "type": "boolean"
+        },
+        "family": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "raw_field",
+        "resolution_status"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

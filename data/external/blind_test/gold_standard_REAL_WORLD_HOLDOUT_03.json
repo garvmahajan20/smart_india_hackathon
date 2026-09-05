@@ -1,0 +1,1023 @@
+[
+  {
+    "gold_id": "GOLD-001",
+    "category": "PROCESS_CONDITION",
+    "field_name": "bid_end_date_time",
+    "value": "15-09-2026 18:00:00",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b1"
+    ],
+    "description": "Bid submission end date and time: 15-09-2026 18:00:00"
+  },
+  {
+    "gold_id": "GOLD-002",
+    "category": "PROCESS_CONDITION",
+    "field_name": "bid_opening_date_time",
+    "value": "15-09-2026 18:30:00",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b2",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b3"
+    ],
+    "description": "Bid opening date and time: 15-09-2026 18:30:00"
+  },
+  {
+    "gold_id": "GOLD-003",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "bid_offer_validity_days",
+    "value": "180",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b4",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b5"
+    ],
+    "description": "Bid offer validity must be at least 180 days from bid end date"
+  },
+  {
+    "gold_id": "GOLD-004",
+    "category": "INFORMATIONAL",
+    "field_name": "ministry_name",
+    "value": "Ministry Of Communications",
+    "mandatory": false,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b6"
+    ],
+    "description": "Ministry Name: Ministry Of Communications"
+  },
+  {
+    "gold_id": "GOLD-005",
+    "category": "INFORMATIONAL",
+    "field_name": "department_name",
+    "value": "Department Of Posts",
+    "mandatory": false,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b7",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b8"
+    ],
+    "description": "Department / Organisation Name: Department Of Posts"
+  },
+  {
+    "gold_id": "GOLD-006",
+    "category": "INFORMATIONAL",
+    "field_name": "office_name",
+    "value": "Parcel Directorate",
+    "mandatory": false,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b9"
+    ],
+    "description": "Buyer Office Name: Parcel Directorate"
+  },
+  {
+    "gold_id": "GOLD-007",
+    "category": "INFORMATIONAL",
+    "field_name": "grievance_redressal_contacts",
+    "value": "HOD Email: parceldirectorate@indiapost.gov.in, Buyer Email: ashwini.tomar@gov.in",
+    "mandatory": false,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b10",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b11"
+    ],
+    "description": "Contact details of Grievance redressal: HOD parceldirectorate@indiapost.gov.in, Buyer ashwini.tomar@gov.in"
+  },
+  {
+    "gold_id": "GOLD-008",
+    "category": "COMMERCIAL_TERMS",
+    "field_name": "total_quantity",
+    "value": "500",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b12"
+    ],
+    "description": "Total quantity required: 500 units"
+  },
+  {
+    "gold_id": "GOLD-009",
+    "category": "TECHNICAL_SPECIFICATION",
+    "field_name": "item_category",
+    "value": "Mobile Handheld Rugged Device",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b13"
+    ],
+    "description": "Item Category: Mobile Handheld Rugged Device"
+  },
+  {
+    "gold_id": "GOLD-010",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "bidder_min_average_annual_turnover_lakh",
+    "value": "100 Lakh (s)",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b20",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b21"
+    ],
+    "description": "Minimum Average Annual Turnover of the bidder (For 3 Years): 100 Lakh (s)"
+  },
+  {
+    "gold_id": "GOLD-011",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "oem_average_turnover_lakh",
+    "value": "800 Lakh (s)",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b22",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b23",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b24"
+    ],
+    "description": "OEM Average Turnover (Last 3 Years): 800 Lakh (s)"
+  },
+  {
+    "gold_id": "GOLD-012",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "experience_with_gov_required",
+    "value": "3 Year (s)",
+    "mandatory": true,
+    "page": 1,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b25",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b26",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b27"
+    ],
+    "description": "Years of Past Experience required with Government: 3 Years"
+  },
+  {
+    "gold_id": "GOLD-013",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "past_performance_percentage",
+    "value": "80 %",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b21"
+    ],
+    "description": "Past performance required with Government: 80%"
+  },
+  {
+    "gold_id": "GOLD-014",
+    "category": "PROCESS_CONDITION",
+    "field_name": "bid_to_ra_enabled",
+    "value": "No",
+    "mandatory": false,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b22"
+    ],
+    "description": "Bid to Reverse Auction (RA) enabled: No"
+  },
+  {
+    "gold_id": "GOLD-015",
+    "category": "PROCESS_CONDITION",
+    "field_name": "type_of_bid",
+    "value": "Two Packet Bid",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b23"
+    ],
+    "description": "Type of Bid: Two Packet Bid"
+  },
+  {
+    "gold_id": "GOLD-016",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "technical_clarification_time_days",
+    "value": "2 Days",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b24",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b25",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b26"
+    ],
+    "description": "Time allowed for seller to submit Technical Clarifications: 2 Days"
+  },
+  {
+    "gold_id": "GOLD-017",
+    "category": "PROCESS_CONDITION",
+    "field_name": "inspection_required",
+    "value": "No",
+    "mandatory": false,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b27",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b28"
+    ],
+    "description": "Pre-dispatch Inspection required by empanelled authority: No"
+  },
+  {
+    "gold_id": "GOLD-018",
+    "category": "COMMERCIAL_TERMS",
+    "field_name": "estimated_bid_value",
+    "value": "20000000",
+    "mandatory": false,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b29"
+    ],
+    "description": "Estimated Bid Value: INR 2,00,00,000 (2 Crore)"
+  },
+  {
+    "gold_id": "GOLD-019",
+    "category": "PROCESS_CONDITION",
+    "field_name": "evaluation_method",
+    "value": "Total value wise evaluation",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b30"
+    ],
+    "description": "Evaluation Method: Total value wise evaluation"
+  },
+  {
+    "gold_id": "GOLD-020",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "mse_relaxation_experience_turnover",
+    "value": "No",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b1",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b2"
+    ],
+    "description": "MSE relaxation for years of experience and turnover: No (not granted)"
+  },
+  {
+    "gold_id": "GOLD-021",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "startup_relaxation_experience_turnover",
+    "value": "No",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b4"
+    ],
+    "description": "Startup relaxation for years of experience and turnover: No (not granted)"
+  },
+  {
+    "gold_id": "GOLD-022",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_experience_criteria",
+    "value": "Experience Criteria",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload document proving Experience Criteria"
+  },
+  {
+    "gold_id": "GOLD-023",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_past_performance",
+    "value": "Past Performance",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload document proving Past Performance"
+  },
+  {
+    "gold_id": "GOLD-024",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_bidder_turnover",
+    "value": "Bidder Turnover",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload document proving Bidder Turnover"
+  },
+  {
+    "gold_id": "GOLD-025",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_certificate_requested_in_atc",
+    "value": "Certificate (Requested in ATC)",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload Certificate requested in ATC"
+  },
+  {
+    "gold_id": "GOLD-026",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_oem_authorization",
+    "value": "OEM Authorization Certificate",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload OEM Authorization Certificate"
+  },
+  {
+    "gold_id": "GOLD-027",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_oem_annual_turnover",
+    "value": "OEM Annual Turnover",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload document proving OEM Annual Turnover"
+  },
+  {
+    "gold_id": "GOLD-028",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_additional_doc_1",
+    "value": "Additional Doc 1 (Requested in ATC)",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload Additional Doc 1 (Requested in ATC)"
+  },
+  {
+    "gold_id": "GOLD-029",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_additional_doc_2",
+    "value": "Additional Doc 2 (Requested in ATC)",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload Additional Doc 2 (Requested in ATC)"
+  },
+  {
+    "gold_id": "GOLD-030",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_additional_doc_3",
+    "value": "Additional Doc 3 (Requested in ATC)",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload Additional Doc 3 (Requested in ATC)"
+  },
+  {
+    "gold_id": "GOLD-031",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "document_required_additional_doc_4",
+    "value": "Additional Doc 4 (Requested in ATC)",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload Additional Doc 4 (Requested in ATC)"
+  },
+  {
+    "gold_id": "GOLD-032",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "compliance_boq_specification_document",
+    "value": "Compliance of BoQ specification and supporting document",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Seller must upload Compliance of BoQ specification and supporting document"
+  },
+  {
+    "gold_id": "GOLD-033",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "exemption_supporting_documents",
+    "value": "Supporting documents to prove eligibility for exemption must be uploaded",
+    "mandatory": true,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "description": "Bidders seeking exemption from Experience / Turnover must upload supporting documents"
+  },
+  {
+    "gold_id": "GOLD-034",
+    "category": "PROCESS_CONDITION",
+    "field_name": "auto_extension_disable_threshold",
+    "value": "3",
+    "mandatory": false,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b13"
+    ],
+    "description": "Minimum number of bids required to disable automatic bid extension: 3"
+  },
+  {
+    "gold_id": "GOLD-035",
+    "category": "PROCESS_CONDITION",
+    "field_name": "auto_extension_days",
+    "value": "3",
+    "mandatory": false,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b15",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b17"
+    ],
+    "description": "Number of days for which bid would be auto-extended: 3"
+  },
+  {
+    "gold_id": "GOLD-036",
+    "category": "PROCESS_CONDITION",
+    "field_name": "auto_extension_count",
+    "value": "1",
+    "mandatory": false,
+    "page": 2,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b20"
+    ],
+    "description": "Maximum number of auto extensions: 1"
+  },
+  {
+    "gold_id": "GOLD-037",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "emd_advisory_bank",
+    "value": "State Bank of India",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b4"
+    ],
+    "description": "EMD Advisory Bank: State Bank of India"
+  },
+  {
+    "gold_id": "GOLD-038",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "emd_amount",
+    "value": "600000",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b5"
+    ],
+    "description": "Earnest Money Deposit (EMD) Amount: INR 6,00,000"
+  },
+  {
+    "gold_id": "GOLD-039",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "epbg_advisory_bank",
+    "value": "State Bank of India",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b6",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b7"
+    ],
+    "description": "ePBG Advisory Bank: State Bank of India"
+  },
+  {
+    "gold_id": "GOLD-040",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "epbg_percentage",
+    "value": "3.00",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b6",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b8"
+    ],
+    "description": "Performance Security / ePBG Percentage: 3.00%"
+  },
+  {
+    "gold_id": "GOLD-041",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "epbg_duration_months",
+    "value": "36",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b6",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b9",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b10"
+    ],
+    "description": "Duration of ePBG required: 36 Months"
+  },
+  {
+    "gold_id": "GOLD-042",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "emd_exemption_supporting_document",
+    "value": "Valid supporting document for relevant category under GeM GTC",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b11"
+    ],
+    "description": "Bidder seeking EMD exemption must submit valid supporting document; MSE only for manufacturers/service providers, traders excluded"
+  },
+  {
+    "gold_id": "GOLD-043",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "security_deposit_beneficiary",
+    "value": "Sr Postmaster, Sansad Marg Head Post office",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b14"
+    ],
+    "description": "EMD & Performance Security must be in favour of: Sr Postmaster, Sansad Marg Head Post office"
+  },
+  {
+    "gold_id": "GOLD-044",
+    "category": "COMMERCIAL_TERMS",
+    "field_name": "emd_surety_bond_accepted",
+    "value": "Yes",
+    "mandatory": false,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b13"
+    ],
+    "description": "EMD accepted in the form of surety bond: Yes"
+  },
+  {
+    "gold_id": "GOLD-045",
+    "category": "COMMERCIAL_TERMS",
+    "field_name": "bid_splitting_applied",
+    "value": "No",
+    "mandatory": false,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b15"
+    ],
+    "description": "Bid splitting applied: No"
+  },
+  {
+    "gold_id": "GOLD-046",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "mii_purchase_preference_enabled",
+    "value": "Yes",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b17"
+    ],
+    "description": "Make in India (MII) Purchase Preference enabled: Yes"
+  },
+  {
+    "gold_id": "GOLD-047",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "mii_margin_of_purchase_preference_percentage",
+    "value": "20",
+    "mandatory": true,
+    "page": 3,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b20"
+    ],
+    "description": "Purchase Preference to MII sellers available up to price within L1 + 20%"
+  },
+  {
+    "gold_id": "GOLD-048",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "mse_purchase_preference_enabled",
+    "value": "Yes",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b9",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b10"
+    ],
+    "description": "MSE Purchase Preference enabled: Yes"
+  },
+  {
+    "gold_id": "GOLD-049",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "mse_margin_of_purchase_preference_percentage",
+    "value": "15",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b12"
+    ],
+    "description": "Purchase preference to MSE sellers available within L1 + 15%"
+  },
+  {
+    "gold_id": "GOLD-050",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "mse_quantity_allocation_percentage",
+    "value": "25",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b15",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b16"
+    ],
+    "description": "Percentage of Bid quantity for MSE OEMs / Service Provider Purchase Preference: 25%"
+  },
+  {
+    "gold_id": "GOLD-051",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "bidder_financial_turnover_ca_certified",
+    "value": "Audited Balance Sheets or CA/Cost Accountant certificate",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "description": "Bidder turnover proof: certified Audited Balance Sheets or CA / Cost Accountant certificate uploaded with bid"
+  },
+  {
+    "gold_id": "GOLD-052",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "experience_contract_copies_crac_required",
+    "value": "Copies of relevant contracts and delivery acceptance certificates like CRAC",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "description": "Bidder must submit copies of relevant contracts and delivery acceptance certificates like CRAC to Central/State Govt/PSU"
+  },
+  {
+    "gold_id": "GOLD-053",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "oem_financial_turnover_ca_certified",
+    "value": "Audited Balance Sheets or CA/Cost Accountant certificate",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "description": "OEM turnover proof: certified Audited Balance Sheets or CA / Cost Accountant certificate uploaded with bid"
+  },
+  {
+    "gold_id": "GOLD-054",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "mii_local_supplier_preference_order",
+    "value": "Class 1 local supplier preference under MII Order 2017",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "description": "Preference shall be given to Class 1 local supplier under Public Procurement MII Order 2017"
+  },
+  {
+    "gold_id": "GOLD-055",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "mii_local_content_oem_certificate",
+    "value": "OEM certificate indicating percentage of local content and locations of local value addition",
+    "mandatory": true,
+    "page": 4,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "description": "Bidder seeking MII preference must upload OEM certificate regarding local content % and locations of local value addition"
+  },
+  {
+    "gold_id": "GOLD-056",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field_name": "mii_supplier_eligibility",
+    "value": "Only Class-I and Class-II Local suppliers eligible; Non-Local suppliers not eligible",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0"
+    ],
+    "description": "Only Class-I and Class-II Local suppliers eligible to participate; Non-Local suppliers are not eligible"
+  },
+  {
+    "gold_id": "GOLD-057",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "mse_udyam_certificate_and_online_validation",
+    "value": "Valid Udyam Certificate validated online on GeM and approved by Buyer",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0",
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "description": "MSE benefits require valid Udyam certificate, online validation in GeM profile, and approval by Buyer"
+  },
+  {
+    "gold_id": "GOLD-058",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "mse_manufacturer_requirement",
+    "value": "Bidder must be the manufacturer / OEM of offered product (traders/resellers excluded)",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "description": "To avail MSE purchase preference, bidder must be the OEM/manufacturer; traders and resellers are excluded"
+  },
+  {
+    "gold_id": "GOLD-059",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "past_performance_contract_copies_required",
+    "value": "Copies of relevant contracts proving supply of 80% bid quantity in any one of last 3 FYs",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "description": "Bidder must upload copies of relevant contracts proving supply of 80% quantity in one of last 3 FYs to Central/State Govt/PSU"
+  },
+  {
+    "gold_id": "GOLD-060",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "minimum_local_content_class_1",
+    "value": "50%",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b3"
+    ],
+    "description": "Minimum 50% Local Content required for qualifying as Class 1 Local Supplier"
+  },
+  {
+    "gold_id": "GOLD-061",
+    "category": "MSE_MII_PREFERENCE",
+    "field_name": "minimum_local_content_class_2",
+    "value": "20%",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b3"
+    ],
+    "description": "Minimum 20% Local Content required for qualifying as Class 2 Local Supplier"
+  },
+  {
+    "gold_id": "GOLD-062",
+    "category": "COMMERCIAL_TERMS",
+    "field_name": "product_cost_payable_on_delivery_percentage",
+    "value": "80%",
+    "mandatory": true,
+    "page": 5,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b7",
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b8"
+    ],
+    "description": "Installation, Commissioning and Testing (ICT): 80% of Product Cost Payable on Product Delivery"
+  },
+  {
+    "gold_id": "GOLD-063",
+    "category": "COMMERCIAL_TERMS",
+    "field_name": "ict_min_cost_allocation_percentage",
+    "value": "20%",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b0"
+    ],
+    "description": "Minimum Cost Allocation for ICT as a percentage of product cost: 20%"
+  },
+  {
+    "gold_id": "GOLD-064",
+    "category": "DELIVERY_LOGISTICS",
+    "field_name": "ict_completion_days_after_readiness",
+    "value": "60 Days",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b1"
+    ],
+    "description": "Number of days allowed for ICT after site readiness communication to seller: 60 Days"
+  },
+  {
+    "gold_id": "GOLD-065",
+    "category": "DELIVERY_LOGISTICS",
+    "field_name": "consignee_delivery_destination_delhi",
+    "value": "Ashwini Tomar, PARCEL DIRECTORATE, MALCHA MARG POST OFFICE COMPLEX, CHANAKYAPURI, NEW DELHI-110021",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b10",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b11"
+    ],
+    "description": "Consignee: Ashwini Tomar, PARCEL DIRECTORATE, NEW DELHI-110021"
+  },
+  {
+    "gold_id": "GOLD-066",
+    "category": "DELIVERY_LOGISTICS",
+    "field_name": "consignee_quantity",
+    "value": "500",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b12"
+    ],
+    "description": "Consignee delivery quantity: 500 units"
+  },
+  {
+    "gold_id": "GOLD-067",
+    "category": "DELIVERY_LOGISTICS",
+    "field_name": "consignee_delivery_period_days",
+    "value": "60",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b12"
+    ],
+    "description": "Delivery period for consignee: 60 Days"
+  },
+  {
+    "gold_id": "GOLD-068",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "option_clause_quantity_variation_percentage",
+    "value": "25",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b15"
+    ],
+    "description": "Option Clause: Purchaser reserves right to increase/decrease quantity up to 25% at contract placement and during currency of contract"
+  },
+  {
+    "gold_id": "GOLD-069",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "option_clause_delivery_time_minimum",
+    "value": "30 days",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b15"
+    ],
+    "description": "Option clause additional delivery time calculation subject to minimum 30 days; bidders must comply"
+  },
+  {
+    "gold_id": "GOLD-070",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "buyer_uploaded_atc_document_compliance",
+    "value": "Buyer uploaded ATC document",
+    "mandatory": true,
+    "page": 6,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b17"
+    ],
+    "description": "Buyer Added Bid Specific ATC: Buyer uploaded ATC document"
+  },
+  {
+    "gold_id": "GOLD-071",
+    "category": "PROCESS_CONDITION",
+    "field_name": "seller_representation_window",
+    "value": "Representation window provided in Seller dashboard",
+    "mandatory": false,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b10"
+    ],
+    "description": "Sellers can raise representation/grievance against ATC clauses via Representation window; Buyer duty bound to reply"
+  },
+  {
+    "gold_id": "GOLD-072",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "labour_code_on_wages_compliance",
+    "value": "Code on Wages, 2019",
+    "mandatory": true,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "description": "Seller must ensure full compliance with the Code on Wages, 2019"
+  },
+  {
+    "gold_id": "GOLD-073",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "labour_industrial_relations_code_compliance",
+    "value": "Industrial Relations Code, 2020",
+    "mandatory": true,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "description": "Seller must ensure full compliance with the Industrial Relations Code, 2020"
+  },
+  {
+    "gold_id": "GOLD-074",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "labour_oshwc_code_compliance",
+    "value": "Occupational Safety, Health and Working Conditions Code, 2020",
+    "mandatory": true,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "description": "Seller must ensure full compliance with Occupational Safety, Health and Working Conditions Code, 2020"
+  },
+  {
+    "gold_id": "GOLD-075",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "labour_social_security_code_compliance",
+    "value": "Code on Social Security, 2020",
+    "mandatory": true,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "description": "Seller must ensure full compliance with the Code on Social Security, 2020"
+  },
+  {
+    "gold_id": "GOLD-076",
+    "category": "BIDDER_COMPLIANCE",
+    "field_name": "erstwhile_labour_laws_continuity_compliance",
+    "value": "Minimum Wages Act 1948, Payment of Wages 1936, Bonus 1965, Equal Remuneration 1976, Gratuity 1972",
+    "mandatory": true,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "description": "Seller responsible for compliance under pre-existing labour laws (Minimum Wages 1948, Payment of Wages 1936, Bonus 1965, Gratuity 1972)"
+  },
+  {
+    "gold_id": "GOLD-077",
+    "category": "GENERAL_POLICY",
+    "field_name": "gem_gtc_sla_governance",
+    "value": "General Terms and Conditions (GTC) and Service Level Agreement (SLA)",
+    "mandatory": true,
+    "page": 7,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b17",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b18"
+    ],
+    "description": "Bid is governed by GeM General Terms and Conditions and Service Level Agreement"
+  },
+  {
+    "gold_id": "GOLD-078",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field_name": "land_border_sharing_competent_authority_registration",
+    "value": "Registered with Competent Authority",
+    "mandatory": true,
+    "page": 8,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b0",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b1",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b2",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b4"
+    ],
+    "description": "Bidders sharing land border with India eligible only if registered with Competent Authority (DPIIT) under GeM GTC Clause 26"
+  },
+  {
+    "gold_id": "GOLD-079",
+    "category": "LEGAL_UNDERTAKING",
+    "field_name": "land_border_declaration_compliance",
+    "value": "Compliance required; false declaration grounds for immediate termination and legal action",
+    "mandatory": true,
+    "page": 8,
+    "blocks": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b2",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b4"
+    ],
+    "description": "Bidder must comply with land border clause; false declaration is grounds for contract termination and legal action"
+  }
+]

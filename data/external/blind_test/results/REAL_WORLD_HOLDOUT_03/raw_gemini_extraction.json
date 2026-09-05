@@ -1,0 +1,2270 @@
+[
+  {
+    "description": "Bid End Date/Time",
+    "category": "COMMERCIAL_TERMS",
+    "field": "bid_end_date_time",
+    "operator": "==",
+    "expected_value": "15-09-2026 18:00:00",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b1"
+    ],
+    "source_clause": "Bid End Date/Time",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid Opening Date/Time",
+    "category": "COMMERCIAL_TERMS",
+    "field": "bid_opening_date_time",
+    "operator": "==",
+    "expected_value": "15-09-2026 18:30:00",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b2",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b3"
+    ],
+    "source_clause": "Bid Opening Date/Time",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid Offer Validity (From End Date)",
+    "category": "COMMERCIAL_TERMS",
+    "field": "bid_offer_validity_days",
+    "operator": ">=",
+    "expected_value": "180 Days",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b4",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b5"
+    ],
+    "source_clause": "Bid Offer Validity (From End Date)",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Ministry Name",
+    "category": "OTHER",
+    "field": "ministry_name",
+    "operator": "==",
+    "expected_value": "Ministry Of Communications",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b6"
+    ],
+    "source_clause": "Ministry/State Name",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Department Name",
+    "category": "OTHER",
+    "field": "department_name",
+    "operator": "==",
+    "expected_value": "Department Of Posts",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b7"
+    ],
+    "source_clause": "Department Name",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Organisation Name",
+    "category": "OTHER",
+    "field": "organisation_name",
+    "operator": "==",
+    "expected_value": "Department Of Posts",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b8"
+    ],
+    "source_clause": "Organisation Name",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Office Name",
+    "category": "OTHER",
+    "field": "office_name",
+    "operator": "==",
+    "expected_value": "Parcel Directorate",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b9"
+    ],
+    "source_clause": "Office Name",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Grievance redressal contact details",
+    "category": "OTHER",
+    "field": "grievance_contact_details",
+    "operator": "EXISTS",
+    "expected_value": "HOD Email id :parceldirectorate@indiapost.gov.in, Buyer Email id: ashwini.tomar@gov.in",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b10",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b11"
+    ],
+    "source_clause": "Contact details of Grievance redressal",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Total Quantity",
+    "category": "DELIVERY_LOGISTICS",
+    "field": "total_quantity",
+    "operator": "==",
+    "expected_value": "500",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b12"
+    ],
+    "source_clause": "Total Quantity",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Item Category",
+    "category": "TECHNICAL_SPECIFICATION",
+    "field": "item_category",
+    "operator": "==",
+    "expected_value": "Mobile Handheld Rugged Device",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b13"
+    ],
+    "source_clause": "Item Category",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Minimum Average Annual Turnover of the bidder (For 3 Years)",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "min_average_annual_turnover_bidder",
+    "operator": ">=",
+    "expected_value": "100 Lakh (s)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b20",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b21"
+    ],
+    "source_clause": "Minimum Average Annual Turnover of the bidder (For 3 Years)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "OEM Average Turnover (Last 3 Years)",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "oem_average_turnover",
+    "operator": ">=",
+    "expected_value": "800 Lakh (s)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b22",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b23",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b24"
+    ],
+    "source_clause": "OEM Average Turnover (Last 3 Years)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Years of Past Experience Required for same/similar service",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_experience_years",
+    "operator": ">=",
+    "expected_value": "3 Year (s)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b25",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b26",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b27"
+    ],
+    "source_clause": "Years of Past Experience Required for same/similar service",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid Number",
+    "category": "OTHER",
+    "field": "bid_number",
+    "operator": "==",
+    "expected_value": "GEM/2026/B/7959150",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b29"
+    ],
+    "source_clause": "Bid Number",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid Dated",
+    "category": "OTHER",
+    "field": "bid_date",
+    "operator": "==",
+    "expected_value": "25-08-2026",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b30"
+    ],
+    "source_clause": "Dated",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Turnover eligibility criteria to be verified by the buyer at the time of technical evaluation",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "turnover_eligibility_verification",
+    "operator": "EXISTS",
+    "expected_value": "To be verified by the buyer at the time of technical evaluation",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b0"
+    ],
+    "source_clause": "Turnover eligibility criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "MSE Relaxation for Years of Experience and Turnover",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_relaxation_experience_turnover",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b1",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b2"
+    ],
+    "source_clause": "MSE Relaxation for Years of Experience and Turnover",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Startup Relaxation for Years of Experience and Turnover",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "startup_relaxation_experience_turnover",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b4"
+    ],
+    "source_clause": "Startup Relaxation for Years of Experience and Turnover",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Experience Criteria document required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_experience_criteria",
+    "operator": "EXISTS",
+    "expected_value": "Experience Criteria",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Past Performance document required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_past_performance",
+    "operator": "EXISTS",
+    "expected_value": "Past Performance",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bidder Turnover document required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_bidder_turnover",
+    "operator": "EXISTS",
+    "expected_value": "Bidder Turnover",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Certificate (Requested in ATC) document required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_certificate_atc",
+    "operator": "EXISTS",
+    "expected_value": "Certificate (Requested in ATC)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "OEM Authorization Certificate required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_oem_authorization",
+    "operator": "EXISTS",
+    "expected_value": "OEM Authorization Certificate",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "OEM Annual Turnover document required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_oem_annual_turnover",
+    "operator": "EXISTS",
+    "expected_value": "OEM Annual Turnover",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Additional Doc 1 (Requested in ATC) required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_additional_doc_1",
+    "operator": "EXISTS",
+    "expected_value": "Additional Doc 1 (Requested in ATC)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Additional Doc 2 (Requested in ATC) required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_additional_doc_2",
+    "operator": "EXISTS",
+    "expected_value": "Additional Doc 2 (Requested in ATC)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Additional Doc 3 (Requested in ATC) required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_additional_doc_3",
+    "operator": "EXISTS",
+    "expected_value": "Additional Doc 3 (Requested in ATC)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Additional Doc 4 (Requested in ATC) required from seller",
+    "category": "CERTIFICATION",
+    "field": "seller_document_additional_doc_4",
+    "operator": "EXISTS",
+    "expected_value": "Additional Doc 4 (Requested in ATC)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Compliance of BoQ specification and supporting document required from seller",
+    "category": "TECHNICAL_SPECIFICATION",
+    "field": "seller_document_boq_compliance",
+    "operator": "EXISTS",
+    "expected_value": "Compliance of BoQ specification and supporting document",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Supporting documents to prove eligibility for exemption from Experience / Turnover Criteria must be uploaded for evaluation by the buyer if any bidder is seeking exemption",
+    "category": "CERTIFICATION",
+    "field": "exemption_supporting_documents",
+    "operator": "EXISTS",
+    "expected_value": "Upload supporting documents for exemption",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "In case any bidder is seeking exemption from Experience / Turnover Criteria...",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Show documents uploaded by bidders to all participating bidders",
+    "category": "OTHER",
+    "field": "show_uploaded_documents_to_all_bidders",
+    "operator": "==",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b7",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b8",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b9",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b10"
+    ],
+    "source_clause": "Do you want to show documents uploaded by bidders to all bidders participated in bid?",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Minimum number of bids required to disable automatic bid extension",
+    "category": "OTHER",
+    "field": "min_bids_disable_auto_extension",
+    "operator": ">=",
+    "expected_value": "3",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b13"
+    ],
+    "source_clause": "Minimum number of bids required to disable automatic bid extension",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Number of days for which Bid would be auto-extended",
+    "category": "OTHER",
+    "field": "auto_extension_days",
+    "operator": "==",
+    "expected_value": "3 Days",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b15",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b17"
+    ],
+    "source_clause": "Number of days for which Bid would be auto-extended",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Number of Auto Extension count",
+    "category": "OTHER",
+    "field": "auto_extension_count",
+    "operator": "<=",
+    "expected_value": "1",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b20"
+    ],
+    "source_clause": "Number of Auto Extension count",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Past Performance percentage requirement",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_performance_percentage",
+    "operator": ">=",
+    "expected_value": "80 %",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b21"
+    ],
+    "source_clause": "Past Performance",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid to Reverse Auction (RA) enabled",
+    "category": "OTHER",
+    "field": "bid_to_ra_enabled",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b22"
+    ],
+    "source_clause": "Bid to RA enabled",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Type of Bid",
+    "category": "OTHER",
+    "field": "type_of_bid",
+    "operator": "==",
+    "expected_value": "Two Packet Bid",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b23"
+    ],
+    "source_clause": "Type of Bid",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Time allowed for Technical Clarifications during technical evaluation",
+    "category": "OTHER",
+    "field": "technical_clarification_time_days",
+    "operator": "<=",
+    "expected_value": "2 Days",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b24",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b25",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b26"
+    ],
+    "source_clause": "Time allowed for Technical Clarifications during technical evaluation",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Inspection Required by Empanelled Inspection Authority / Agencies pre-registered with GeM",
+    "category": "COMMERCIAL_TERMS",
+    "field": "inspection_required",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b27",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b28"
+    ],
+    "source_clause": "Inspection Required",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Estimated Bid Value",
+    "category": "COMMERCIAL_TERMS",
+    "field": "estimated_bid_value",
+    "operator": "==",
+    "expected_value": "20000000",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b29"
+    ],
+    "source_clause": "Estimated Bid Value",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Evaluation Method",
+    "category": "OTHER",
+    "field": "evaluation_method",
+    "operator": "==",
+    "expected_value": "Total value wise evaluation",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b30"
+    ],
+    "source_clause": "Evaluation Method",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Arbitration Clause is not applicable",
+    "category": "COMMERCIAL_TERMS",
+    "field": "arbitration_clause",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b0"
+    ],
+    "source_clause": "म^य'थता खंड/Arbitration Clause",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Mediation Clause is not applicable",
+    "category": "COMMERCIAL_TERMS",
+    "field": "mediation_clause",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b1"
+    ],
+    "source_clause": "सुलह खंड/Mediation Clause",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Advisory Bank for EMD",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "emd_advisory_bank",
+    "operator": "==",
+    "expected_value": "State Bank of India",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b4"
+    ],
+    "source_clause": "एडवाईजर बPक/Advisory Bank",
+    "applicability": null,
+    "requirement_type": "COMMERCIAL_TERMS",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Provide EMD amount of 600000 in favour of Sr Postmaster, Sansad Marg Head Post office.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "emd_amount",
+    "operator": ">=",
+    "expected_value": "600000",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b14"
+    ],
+    "source_clause": "ईएमड रािश/EMD Amount",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Advisory Bank for ePBG",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "epbg_advisory_bank",
+    "operator": "==",
+    "expected_value": "State Bank of India",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b7"
+    ],
+    "source_clause": "एडवाइजर बPक/Advisory Bank",
+    "applicability": null,
+    "requirement_type": "COMMERCIAL_TERMS",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "ePBG Percentage (%) required",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "epbg_percentage",
+    "operator": ">=",
+    "expected_value": "3.00",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b8"
+    ],
+    "source_clause": "ईपीबीजी 5ितशत (%)/ePBG Percentage(%)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Duration of ePBG required in months",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "epbg_duration_months",
+    "operator": ">=",
+    "expected_value": "36",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b9",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b10"
+    ],
+    "source_clause": "ईपीबीजी क  आवTयक अविध (माह) /Duration of ePBG required (Months)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "The bidder seeking EMD exemption must submit valid supporting documents for the relevant category as per GeM GTC. Under MSE category, only manufacturers for goods and Service Providers for Services are eligible for exemption; traders are excluded.",
+    "category": "CERTIFICATION",
+    "field": "emd_exemption_document_submission",
+    "operator": "EXISTS",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b11"
+    ],
+    "source_clause": "EMD EXEMPTION",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "EMD & Performance security should be in favour of the specified beneficiary",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "security_beneficiary_requirement",
+    "operator": "==",
+    "expected_value": "Sr Postmaster, Sansad Marg Head Post office (Sr Post Master)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b14"
+    ],
+    "source_clause": "Beneficiary",
+    "applicability": null,
+    "requirement_type": "COMMERCIAL_TERMS",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Earnest Money Deposit (EMD) shall also be accepted by the buyer in the form of a surety bond",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "emd_accepted_form_surety_bond",
+    "operator": "EXISTS",
+    "expected_value": "Yes",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b13"
+    ],
+    "source_clause": "Earnest Money Deposit (EMD) shall also be accepted by the buyer in the form of a surety bond",
+    "applicability": null,
+    "requirement_type": "COMMERCIAL_TERMS",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid splitting not applied",
+    "category": "OTHER",
+    "field": "bid_splitting",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b15"
+    ],
+    "source_clause": "बोली  वभाजन लागू नह ं Aकया गया/ Bid splitting not applied",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Make in India Purchase Preference is applicable",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_purchase_preference",
+    "operator": "==",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b17"
+    ],
+    "source_clause": "एमआईआई खर द वर यता / MII Purchase Preference",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Purchase Preference to MII sellers available up to price within L1+X% margin where X is 20",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_margin_percentage",
+    "operator": "<=",
+    "expected_value": "20%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b20"
+    ],
+    "source_clause": "Purchase Preference to MII sellers availabele upto price within L1+X%",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Maximum Percentage of Bid quantity for MII purchase preference is 50%",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_purchase_preference_percentage",
+    "operator": "==",
+    "expected_value": "50",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b0",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b1",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b2"
+    ],
+    "source_clause": "Make in India Purchase Preference",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Allow participation only from Class 1 / Class 2 local suppliers as per Public Procurement (Preference to Make-in-India) order 2017 date 16.09.2020",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_participation_allowed",
+    "operator": "==",
+    "expected_value": "Yes, in compliance with the MII ORDER : DPIIT Order",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b4",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b6",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b7"
+    ],
+    "source_clause": "Public Procurement (Preference to Make-in-India) order 2017",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "MSE Purchase Preference Enabled",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_purchase_preference",
+    "operator": "==",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b8",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b9"
+    ],
+    "source_clause": "MSE Purchase Preference",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Purchase Preference to MSE OEMs/Service Provider available up to price within L1+X% where X is 15",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_price_preference_margin",
+    "operator": "<=",
+    "expected_value": "L1+15%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b10",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b12"
+    ],
+    "source_clause": "Purchase Preference to MSE OEMs/ Service Provider available upto price within L1+X%",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Percentage of Bid quantity/amount for MSE OEMs/ Service Provider Purchase preference is 25%",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_purchase_preference_quantity_percentage",
+    "operator": "==",
+    "expected_value": "25",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b15",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b16"
+    ],
+    "source_clause": "Percentage of Bid quantity/amount for MSE OEMs/ Service Provider Purchase preference",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bidder must meet minimum average annual financial turnover during the last three years ending 31st March of the previous financial year",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "bidder_min_average_turnover",
+    "operator": "EXISTS",
+    "expected_value": "As indicated in bid document",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "1. The minimum average annual financial turnover of the bidder",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Upload documentary evidence for bidder turnover in the form of certified Audited Balance Sheets or a certificate from Chartered Accountant / Cost Accountant",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "bidder_turnover_document_required",
+    "operator": "CONTAINS",
+    "expected_value": "Certified Audited Balance Sheets or CA/Cost Accountant certificate",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "1. The minimum average annual financial turnover of the bidder",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bidder or its OEM must have regularly manufactured and supplied same or similar Category Products to Central/State Govt Organization/PSU for required number of financial years",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "experience_criteria_years",
+    "operator": "EXISTS",
+    "expected_value": "As indicated in the bid document",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "2. Experience Criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Submit copies of relevant contracts and delivery acceptance certificates like CRAC in support of past experience",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "experience_proof_documents",
+    "operator": "CONTAINS",
+    "expected_value": "Copies of relevant contracts and delivery acceptance certificates like CRAC",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "2. Experience Criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "OEM must meet minimum average annual financial turnover during the last three years ending 31st March of the previous financial year",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "oem_min_average_turnover",
+    "operator": "EXISTS",
+    "expected_value": "As indicated in the bid document",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "3. OEM Turn Over Criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Upload documentary evidence for OEM turnover in the form of certified Audited Balance Sheets or a certificate from Chartered Accountant / Cost Accountant",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "oem_turnover_document_required",
+    "operator": "CONTAINS",
+    "expected_value": "Certified Audited Balance Sheets or CA/Cost Accountant certificate",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "3. OEM Turn Over Criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bidder wanting to avail Make in India purchase preference must upload a certificate from the OEM regarding percentage of local content and local value addition locations",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_local_content_certificate",
+    "operator": "EXISTS",
+    "expected_value": "OEM certificate regarding percentage of local content and locations",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "4. Preference to Make In India products",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "If bid value is more than Rs 10 Crore, declaration relating to percentage of local content shall be certified by statutory auditor or cost auditor if OEM is a company",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_statutory_auditor_certification",
+    "operator": ">= Rs 10 Crore",
+    "expected_value": "Certified by statutory auditor or cost auditor",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "4. Preference to Make In India products",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Local supplier certification by a practicing cost accountant or a chartered accountant for OEMs other than companies as per MII order dated 04.06.2020.",
+    "category": "CERTIFICATION",
+    "field": "mii_certificate_issuer",
+    "operator": "CONTAINS",
+    "expected_value": "Practicing cost accountant or chartered accountant",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0"
+    ],
+    "source_clause": "Public Procurement (preference to Make-in-India) order 2017 dated 04.06.2020",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Only Class-I and Class-II Local suppliers as per MII order dated 4.6.2020 are eligible to bid.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_supplier_class_eligibility",
+    "operator": "IN",
+    "expected_value": "Class-I Local Supplier, Class-II Local Supplier",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0"
+    ],
+    "source_clause": "Public Procurement (preference to Make-in-India) order 2017 dated 04.06.2020",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Non-Local suppliers as per MII order dated 04.06.2020 are not eligible to participate.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "non_local_supplier_eligible",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0"
+    ],
+    "source_clause": "Public Procurement (preference to Make-in-India) order 2017 dated 04.06.2020",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Eligible micro and small enterprises will be allowed to participate.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_participation_allowed",
+    "operator": "==",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0"
+    ],
+    "source_clause": "Public Procurement Policy for Micro and Small Enterprises",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Benefits of MSE will be allowed only if seller/service provider is validated on-line in GeM profile as well as validated and approved by Buyer after evaluation of documents submitted.",
+    "category": "CERTIFICATION",
+    "field": "mse_validation_requirement",
+    "operator": "CONTAINS",
+    "expected_value": "Validated online in GeM profile and approved by Buyer",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b0",
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "OM No. F.1/4/2021-PPD dated 18.05.2023",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Purchase preference to Micro and Small Enterprises (MSEs) having valid Udyam Certificate and whose credentials are validated online through Udyam Registration portal.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_purchase_preference",
+    "operator": "==",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "5. Purchase preference to Micro and Small Enterprises (MSEs)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "If the bidder wants to avail themselves of the Purchase preference, the bidder must be the manufacturer / OEM of the offered product on GeM (or Service provider in respect of bid for Services).",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_bidder_role_requirement",
+    "operator": "IN",
+    "expected_value": "Manufacturer / OEM for products, Service Provider for services",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "5. Purchase preference to Micro and Small Enterprises (MSEs)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Traders are excluded from the purview of Public Procurement Policy for Micro and Small Enterprises and resellers offering products manufactured by some other OEM are not eligible for any purchase preference.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "traders_resellers_mse_preference_eligible",
+    "operator": "==",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "5. Purchase preference to Micro and Small Enterprises (MSEs)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Relevant documentary evidence for Udyam/MSE shall be uploaded along with the bid in respect of the offered product or service.",
+    "category": "CERTIFICATION",
+    "field": "mse_documentary_evidence_upload",
+    "operator": "EXISTS",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "5. Purchase preference to Micro and Small Enterprises (MSEs)",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "If L-1 is not an MSE and MSE Seller(s) has/have quoted price within L-1+ 15% margin of purchase preference, such MSE Seller shall be given opportunity to match L-1 price.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_price_match_margin",
+    "operator": "<=",
+    "expected_value": "L-1 + 15%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "5. Purchase preference to Micro and Small Enterprises (MSEs)",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Contract will be awarded for 25% percentage of total quantity to eligible matching MSE Seller.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_award_quantity_percentage",
+    "operator": "==",
+    "expected_value": "25%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "5. Purchase preference to Micro and Small Enterprises (MSEs)",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Estimated Bid Value indicated is solely for guidance on EMD amount and for determining Eligibility Criteria related to Turn Over, Past Performance and Project / Past Experience etc.",
+    "category": "OTHER",
+    "field": "estimated_bid_value_purpose",
+    "operator": "EXISTS",
+    "expected_value": "Guidance on EMD and eligibility criteria determination",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "6. Estimated Bid Value",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "The Bidder or its OEM should have supplied same or similar Category Products for 80% of bid quantity, in at least one of the last three Financial years before the bid opening date to any Central / State Govt Organization / PSU.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_performance_quantity_percentage",
+    "operator": ">=",
+    "expected_value": "80% of bid quantity",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "7. Past Performance",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Copies of relevant contracts proving supply of cumulative order quantity in any one financial year to be submitted along with bid in support of past performance.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_performance_document_upload",
+    "operator": "EXISTS",
+    "expected_value": "Copies of relevant contracts",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "7. Past Performance",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "In case of bunch bids, the category related to primary product having highest bid value should meet the past performance criterion.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "bunch_bids_past_performance_rule",
+    "operator": "CONTAINS",
+    "expected_value": "Primary product having highest bid value",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "7. Past Performance",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Item requirement for Mobile Handheld Rugged Device with quantity 500 Unit.",
+    "category": "TECHNICAL_SPECIFICATION",
+    "field": "item_quantity",
+    "operator": "==",
+    "expected_value": "500 Unit",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b2"
+    ],
+    "source_clause": "Mobile Handheld Rugged Device",
+    "applicability": null,
+    "requirement_type": "INFORMATIONAL",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Minimum 50% Local Content required for qualifying as Class 1 Local Supplier.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "class_1_local_content_percentage",
+    "operator": ">=",
+    "expected_value": "50%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b3"
+    ],
+    "source_clause": "Local Content requirement",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Minimum 20% Local Content required for qualifying as Class 2 Local Supplier.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "class_2_local_content_percentage",
+    "operator": ">=",
+    "expected_value": "20%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b3"
+    ],
+    "source_clause": "Local Content requirement",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Percentage of Product Cost Payable on Product Delivery during Installation Commissioning and Testing (ICT).",
+    "category": "COMMERCIAL_TERMS",
+    "field": "payment_percentage_on_product_delivery",
+    "operator": "==",
+    "expected_value": "80%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b7",
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b8"
+    ],
+    "source_clause": "Installation Commissioning and Testing (ICT) details",
+    "applicability": null,
+    "requirement_type": "COMMERCIAL_TERMS",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Min Cost Allocation for ICT as a % of product cost",
+    "category": "COMMERCIAL_TERMS",
+    "field": "min_cost_allocation_ict_percentage",
+    "operator": ">=",
+    "expected_value": "20%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b0"
+    ],
+    "source_clause": "Min Cost Allocation for ICT as a % of product cost",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Number of days allowed for ICT after site readiness communication to seller",
+    "category": "DELIVERY_LOGISTICS",
+    "field": "ict_days_after_site_readiness",
+    "operator": "<=",
+    "expected_value": "60 Days",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b1"
+    ],
+    "source_clause": "Number of days allowed for ICT after site readiness communication to seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Consignee Ashwini Tomar: PARCEL DIRECTORATE, MALCHA MARG POST OFFICE COMPLEX, CHANAKYAPURI, NEW DELHI-110021, Quantity: 500, Delivery Days: 60",
+    "category": "DELIVERY_LOGISTICS",
+    "field": "consignee_delivery_destination",
+    "operator": "IN",
+    "expected_value": "500 units to PARCEL DIRECTORATE, MALCHA MARG POST OFFICE COMPLEX, CHANAKYAPURI, NEW DELHI-110021 within 60 Delivery Days",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b2",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b4",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b6",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b7",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b8",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b9",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b10",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b12"
+    ],
+    "source_clause": "Consignees/Reporting Officer and Quantity",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Option Clause: Purchaser reserves the right to increase or decrease the quantity to be ordered up to 25 percent of bid quantity at the time of placement of contract, and up to 25% during currency of contract.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "option_clause_percentage",
+    "operator": "<=",
+    "expected_value": "25%",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b15"
+    ],
+    "source_clause": "Buyer Added Bid Specific Terms and Conditions - 1. Generic - OPTION CLAUSE",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Buyer uploaded ATC document must be reviewed and complied with by bidders.",
+    "category": "OTHER",
+    "field": "buyer_uploaded_atc_document",
+    "operator": "EXISTS",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b17"
+    ],
+    "source_clause": "Buyer Added Bid Specific ATC",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "All representations and grievances pertaining to ATC clauses shall be raised with the buyer organization directly and not with GeM.",
+    "category": "LEGAL_UNDERTAKING",
+    "field": "grievance_redressal_channel",
+    "operator": "IN",
+    "expected_value": "Buyer Organization Directly",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b19"
+    ],
+    "source_clause": "Disclaimer",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Publishing Custom / BOQ bids for items for which regular GeM categories are available (unless bunched with major regular product Category Item) renders the bid null and void.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "custom_boq_restriction",
+    "operator": "==",
+    "expected_value": "Not Allowed",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b20"
+    ],
+    "source_clause": "Disclaimer - 1",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Mandating procurement of/from specific Brand / Make / Model / Manufacturer / Dealer except in case of Single Bid / Proprietary Article Certificate (PAC) Buying renders the bid null and void.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "specific_brand_mandate_restriction",
+    "operator": "==",
+    "expected_value": "Not Allowed",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b21"
+    ],
+    "source_clause": "Disclaimer - 2",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Inclusion of disqualification criteria related to suspension of seller / service provider where such suspension period has already expired renders the bid null and void.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "expired_suspension_disqualification_restriction",
+    "operator": "==",
+    "expected_value": "Not Allowed",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b22"
+    ],
+    "source_clause": "Disclaimer - 3",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Mandating submission of documents (other than EMD and signed Integrity Pact - which can be submitted within 5 days of bid opening) in physical form as a pre-requisite to qualify bidders renders the bid null and void.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "physical_document_submission_prerequisite_restriction",
+    "operator": "==",
+    "expected_value": "Not Allowed",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b18",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b19",
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b23"
+    ],
+    "source_clause": "Disclaimer - 4",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Publishing bids on GeM for procurement of works.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "procurement_of_works_publishing",
+    "operator": "EXISTS",
+    "expected_value": "Allowed",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b0"
+    ],
+    "source_clause": "5",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Procurement of Goods by creating a Service bid on GeM & vice-versa.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "goods_service_cross_procurement",
+    "operator": "EXISTS",
+    "expected_value": "Allowed",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b1"
+    ],
+    "source_clause": "6",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Seeking sample with bid or approval of samples during bid evaluation process is permitted only where allowed as per approved and published procurement policy of the Buyers' controlling Ministry/Department/State/Public Sector Enterprises Headquarters.",
+    "category": "CERTIFICATION",
+    "field": "sample_submission_policy",
+    "operator": "CONTAINS",
+    "expected_value": "Allowed as per approved policy of controlling Ministry/Department/State/PSE HQ",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b2"
+    ],
+    "source_clause": "7",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Violation of trial/sample clause with regard to approved policy must be determined and redressed by the concerned Buyer Organisation only.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "sample_violation_redressal",
+    "operator": "EXISTS",
+    "expected_value": "Redressed by Buyer Organisation",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b2"
+    ],
+    "source_clause": "7",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Seeking experience from specific organization / department / institute only or from foreign / export experience.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "specific_organization_experience_restriction",
+    "operator": "EXISTS",
+    "expected_value": "Restricted",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b3"
+    ],
+    "source_clause": "8",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Creating bid for items from incorrect categories.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "incorrect_category_bid",
+    "operator": "EXISTS",
+    "expected_value": "Prohibited",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b4"
+    ],
+    "source_clause": "9",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Reference of conditions published on any external site or reference to external documents/clauses.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "external_site_reference",
+    "operator": "EXISTS",
+    "expected_value": "Prohibited",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b5"
+    ],
+    "source_clause": "10",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Asking for any Tender fee / Bid Participation fee, as the case may be.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "tender_fee_participation_fee",
+    "operator": "EXISTS",
+    "expected_value": "No",
+    "mandatory": false,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b6"
+    ],
+    "source_clause": "11",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Buyer added ATC Clauses which are in contravention of clauses defined in bid detail section, including specifications, EMD Detail, ePBG Detail and MII and MSE Purchase Preference sections are prohibited unless allowed by GeM GTC.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "buyer_atc_contravention",
+    "operator": "EXISTS",
+    "expected_value": "Not Allowed",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b7"
+    ],
+    "source_clause": "12",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Any ATC clause in contravention with GeM GTC Clause 4 (xiii) (h) will be invalid.",
+    "category": "LEGAL_UNDERTAKING",
+    "field": "atc_contravention_gtc_clause",
+    "operator": "EXISTS",
+    "expected_value": "Invalid",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b8"
+    ],
+    "source_clause": "13",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "In case of multiple L1 bidders against a service bid, the buyer shall place the Contract by selection of a bidder amongst the L-1 bidders through a Random Algorithm executed by GeM system.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "multiple_l1_random_algorithm",
+    "operator": "EXISTS",
+    "expected_value": "Random Algorithm",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b8"
+    ],
+    "source_clause": "13",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "In a category based bid, adding additional items, through buyer added, additional scope of work/ additional terms and conditions/or any other document is prohibited. Additional items must be added through bunching category based items, custom catalogues, or BoQ.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "category_bid_additional_items_via_atc",
+    "operator": "EXISTS",
+    "expected_value": "Prohibited",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b9"
+    ],
+    "source_clause": "14",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Sellers can raise objections/grievances against additional clauses or any aspect of the bid by using the Representation window provided in the bid details field in Seller dashboard.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "seller_representation_window",
+    "operator": "EXISTS",
+    "expected_value": "Allowed",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b10"
+    ],
+    "source_clause": "Further, if any seller has any objection...",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Buyer is duty bound to reply to all seller representations and is not allowed to open bids if he fails to reply to such representations.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "buyer_representation_reply_obligation",
+    "operator": "EXISTS",
+    "expected_value": "Mandatory",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b10"
+    ],
+    "source_clause": "Further, if any seller has any objection...",
+    "applicability": null,
+    "requirement_type": "PROCESS_CONDITION",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes: Code on Wages, 2019; Industrial Relations Code, 2020; Occupational Safety, Health and Working Conditions Code, 2020; and Code on Social Security, 2020.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "four_labour_codes_compliance",
+    "operator": "EXISTS",
+    "expected_value": "Mandatory",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b11"
+    ],
+    "source_clause": "All GeM Sellers/Service Providers shall ensure full compliance...",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "For all provisions of the Labour Codes pending operationalisation, corresponding pre-existing labour enactments (Minimum Wages Act 1948, Payment of Wages Act 1936, Payment of Bonus Act 1965, Equal Remuneration Act 1976, Payment of Gratuity Act 1972, etc. and relevant State Rules) remain applicable.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "pre_existing_labour_enactments_compliance",
+    "operator": "EXISTS",
+    "expected_value": "Mandatory",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b12"
+    ],
+    "source_clause": "For all provisions of the Labour Codes that are pending...",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Seller/Service Provider is responsible for ensuring compliance under all notified and enforceable provisions of the new Labour Codes and all operative provisions of erstwhile Labour Laws until complete substitution.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "labour_laws_dual_compliance",
+    "operator": "EXISTS",
+    "expected_value": "Mandatory",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14"
+    ],
+    "source_clause": "The Seller/ Service Providers shall, therefore, be responsible...",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "All obligations relating to wages, social security, safety, working conditions, industrial relations and other statutory requirements must be strictly met. Non-compliance constitutes a breach of contract.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "statutory_labour_obligations",
+    "operator": "EXISTS",
+    "expected_value": "Mandatory",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "source_clause": "All obligations relating to wages, social security...",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "This Bid is governed by the General Terms and Conditions, conditions stipulated in Bid and Service Level Agreement specific to the Service, as the case may be, as provided in the Marketplace.",
+    "category": "LEGAL_UNDERTAKING",
+    "field": "gtc_governance",
+    "operator": "EXISTS",
+    "expected_value": "Governed by GTC and SLA",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b16",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b18"
+    ],
+    "source_clause": "This Bid is governed by the General Terms and Conditions...",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "In case of Service, if any condition specified in General Terms and Conditions is contradicted by conditions stipulated in Service Level Agreement specific to said Service, the SLA condition will override the GTC condition.",
+    "category": "LEGAL_UNDERTAKING",
+    "field": "sla_overrides_gtc",
+    "operator": "EXISTS",
+    "expected_value": "SLA overrides GTC",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b17"
+    ],
+    "source_clause": "However, in case of Service, if any condition specified...",
+    "applicability": null,
+    "requirement_type": "GENERAL_POLICY",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Restriction on procurement from a bidder of a country which shares a land border with India in terms of GeM GTC clause 26. Any bidder from such a country will be eligible to bid only if registered with the Competent Authority.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "land_border_sharing_country_restriction",
+    "operator": "EXISTS",
+    "expected_value": "Registered with Competent Authority",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b0",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b1",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b4"
+    ],
+    "source_clause": "GeM GTC clause 26",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bidder must undertake compliance regarding land border sharing restrictions. Any false declaration and non-compliance will be grounds for immediate contract termination and further legal action.",
+    "category": "LEGAL_UNDERTAKING",
+    "field": "land_border_compliance_undertaking",
+    "operator": "== ",
+    "expected_value": "Yes",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b2",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b3",
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b4"
+    ],
+    "source_clause": "GeM GTC clause 26",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_1_EXHAUSTIVE"
+  },
+  {
+    "description": "Bid offer validity period from the end date must be at least 180 days.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "bid_offer_validity_days",
+    "operator": ">=",
+    "expected_value": "180",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b4",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b5"
+    ],
+    "source_clause": "Bid Details",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Minimum average annual financial turnover of the bidder during the last 3 financial years must be at least 100 Lakhs.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "bidder_average_annual_turnover",
+    "operator": ">=",
+    "expected_value": "100 Lakh (s)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b20",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b21",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "Bid Details / Turnover eligibility criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "OEM average annual turnover for the last 3 financial years must be at least 800 Lakhs.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "oem_average_annual_turnover",
+    "operator": ">=",
+    "expected_value": "800 Lakh (s)",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b22",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b23",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b24",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "Bid Details",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "The Bidder or its OEM should have at least 3 years of past experience in manufacturing and supplying same or similar category products to any Central/State Govt Organization/PSU.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_experience_years",
+    "operator": ">=",
+    "expected_value": "3",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b25",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b26",
+      "DOC-REAL_WORLD_HOLDOUT_03-p1-b27",
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "Bid Details / Experience Criteria",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Experience Criteria document.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "document_upload_experience_criteria",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Past Performance document.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "document_upload_past_performance",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Bidder Turnover document.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "document_upload_bidder_turnover",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Certificate requested in ATC.",
+    "category": "CERTIFICATION",
+    "field": "document_upload_certificate_atc",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload OEM Authorization Certificate.",
+    "category": "CERTIFICATION",
+    "field": "document_upload_oem_authorization",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload OEM Annual Turnover document.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "document_upload_oem_annual_turnover",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Additional Doc 1 requested in ATC.",
+    "category": "OTHER",
+    "field": "document_upload_additional_doc_1",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Additional Doc 2 requested in ATC.",
+    "category": "OTHER",
+    "field": "document_upload_additional_doc_2",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Additional Doc 3 requested in ATC.",
+    "category": "OTHER",
+    "field": "document_upload_additional_doc_3",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Additional Doc 4 requested in ATC.",
+    "category": "OTHER",
+    "field": "document_upload_additional_doc_4",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload Compliance of BoQ specification and supporting document.",
+    "category": "TECHNICAL_SPECIFICATION",
+    "field": "document_upload_boq_compliance",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b5",
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload supporting documents for exemption eligibility if seeking exemption from Experience or Turnover Criteria.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "document_upload_exemption_proof",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b6"
+    ],
+    "source_clause": "Document required from seller",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Past performance requirement: The Bidder or its OEM should have supplied same or similar category products for at least 80% of bid quantity in at least one of the last three financial years.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_performance_quantity_percentage",
+    "operator": ">=",
+    "expected_value": "80",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p2-b21",
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "Past Performance",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Submit valid supporting document with bid for EMD exemption if seeking exemption as per GeM GTC (MSE manufacturers / Service Providers only; traders excluded).",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "emd_exemption_document",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p3-b11"
+    ],
+    "source_clause": "EMD Detail",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload certified Audited Balance Sheets or a certificate from a Chartered Accountant / Cost Accountant indicating turnover details for the last 3 financial years.",
+    "category": "FINANCIAL_CAPACITY",
+    "field": "turnover_document_upload",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Submit copies of relevant contracts and delivery acceptance certificates like CRAC in support of past experience quantity supplied in each financial year.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "experience_contract_and_crac_upload",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload certificate from the OEM regarding the percentage of local content and details of locations at which local value addition is made to avail MII Purchase Preference.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mii_local_content_certificate",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p4-b17"
+    ],
+    "source_clause": "Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Upload relevant documentary evidence (valid Udyam Certificate) along with the bid to avail MSE Purchase Preference, ensuring bidder is manufacturer/OEM for goods or Service Provider for services.",
+    "category": "MSE_MII_PREFERENCE",
+    "field": "mse_udyam_certificate_upload",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Submit copies of relevant contracts proving supply of cumulative order quantity in any one financial year to support past performance criteria.",
+    "category": "EXPERIENCE_PAST_PERFORMANCE",
+    "field": "past_performance_contracts_upload",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p5-b1"
+    ],
+    "source_clause": "Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Comply with option clause allowing purchaser to increase or decrease quantity up to 25 percent at contract placement and during contract currency.",
+    "category": "COMMERCIAL_TERMS",
+    "field": "option_clause_compliance",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p6-b15"
+    ],
+    "source_clause": "Buyer Added Bid Specific Terms and Conditions - Generic",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Ensure full compliance with all applicable labour laws, including provisions under the four Labour Codes and pre-existing labour enactments.",
+    "category": "STATUTORY_ELIGIBILITY",
+    "field": "labour_laws_compliance",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b11",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b12",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b13",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b14",
+      "DOC-REAL_WORLD_HOLDOUT_03-p7-b15"
+    ],
+    "source_clause": "Buyer Added Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  },
+  {
+    "description": "Undertake compliance with GeM GTC clause 26 regarding restrictions on procurement from a bidder of a country which shares a land border with India (registration with competent authority required if applicable).",
+    "category": "LEGAL_UNDERTAKING",
+    "field": "land_border_compliance_undertaking",
+    "operator": "EXISTS",
+    "expected_value": "true",
+    "mandatory": true,
+    "evidence_block_ids": [
+      "DOC-REAL_WORLD_HOLDOUT_03-p8-b4"
+    ],
+    "source_clause": "Buyer Added Bid Specific Terms and Conditions",
+    "applicability": null,
+    "requirement_type": "BIDDER_COMPLIANCE",
+    "source_pass": "PASS_2_BIDDER_OBLIGATION"
+  }
+]

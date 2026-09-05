@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gem-compliance.sih26100.gov.in/contracts/document.schema.json",
+  "title": "DocumentSegment",
+  "description": "Represents an individual document or logical page segment within an uploaded tender or bidder submission package.",
+  "type": "object",
+  "required": [
+    "document_id",
+    "parent_file",
+    "document_type",
+    "page_start",
+    "page_end",
+    "source",
+    "extraction_status"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "description": "Unique identifier for the document or segment (e.g., DOC-BID001-TECH-01)."
+    },
+    "parent_file": {
+      "type": "string",
+      "description": "Name or relative path of the parent container file (e.g., BID-00001.pdf or tender_spec.pdf)."
+    },
+    "document_type": {
+      "type": "string",
+      "description": "Functional classification of the document segment.",
+      "enum": [
+        "TENDER_DOCUMENT",
+        "TECHNICAL_SPECIFICATION",
+        "FINANCIAL_DOCUMENT",
+        "BALANCE_SHEET",
+        "ANNUAL_REPORT",
+        "CA_TURNOVER_CERTIFICATE",
+        "CERTIFICATE",
+        "ISO_CERTIFICATE",
+        "EXPERIENCE_CERTIFICATE",
+        "PAST_PERFORMANCE_DOCUMENT",
+        "PURCHASE_ORDER",
+        "COMPLETION_CERTIFICATE",
+        "GST_REGISTRATION",
+        "PAN_CARD",
+        "UDYAM_CERTIFICATE",
+        "OEM_AUTHORIZATION",
+        "UNDERTAKING",
+        "NON_BLACKLISTING_DECLARATION",
+        "LOCAL_CONTENT_DECLARATION",
+        "MAKE_IN_INDIA_CERTIFICATE",
+        "EMD_DOCUMENT",
+        "EPBG_DOCUMENT",
+        "BOQ_COMPLIANCE",
+        "ANNEXURE",
+        "OTHER",
+        "UNKNOWN"
+      ]
+    },
+    "page_start": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Starting 1-indexed page number within the parent container file."
+    },
+    "page_end": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Ending 1-indexed page number within the parent container file (must be >= page_start)."
+    },
+    "source": {
+      "type": "string",
+      "description": "Origin of the document within the procurement lifecycle.",
+      "enum": [
+        "TENDER",
+        "BIDDER",
+        "GOVERNMENT_REGISTRY",
+        "EXTERNAL"
+      ]
+    },
+    "extraction_status": {
+      "type": "string",
+      "description": "Current processing/extraction status of the document.",
+      "enum": [
+        "SUCCESS",
+        "PARTIAL",
+        "FAILED",
+        "PENDING",
+        "NOT_ATTEMPTED"
+      ]
+    },
+    "classification_confidence": {
+      "type": "string",
+      "description": "Confidence level in the document type classification.",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "default": "HIGH"
+    },
+    "text_preview": {
+      "type": "string",
+      "description": "First few hundred characters or summary extracted from the segment."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Arbitrary key-value metadata (e.g. file_size, mime_type, sha256_hash, language).",
+      "properties": {
+        "file_size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "detected_language": {
+          "type": "string",
+          "default": "en"
+        },
+        "is_scanned": {
+          "type": "boolean"
+        },
+        "total_pages": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

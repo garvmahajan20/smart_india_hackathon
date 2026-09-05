@@ -1,0 +1,2662 @@
+{
+  "bid_id": "BLIND_TEST_NO_BID", 
+  "bidder_facts": [], 
+  "captured_government_responses": [], 
+  "contradiction_inputs": [], 
+  "deterministic_config": {
+    "aggregator_version": "1.0.0", 
+    "contradiction_engine_version": "1.0.0", 
+    "default_evaluation_date": "2026-09-01", 
+    "ontology_version": "1.0.0", 
+    "precedence_policy": "GTC_STC_ATC", 
+    "replay_engine_version": "1.0.0", 
+    "rule_engine_version": "1.0.0"
+  }, 
+  "evaluation_date": "2026-09-01", 
+  "original_results": {
+    "anomaly_count": 0, 
+    "compliance_results": [
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "== 180 COUNT", 
+        "operator_used": "==", 
+        "reason": "No bidder evidence submitted for 'bid_validity_days'.", 
+        "requirement_id": "REQ-GEM7379634-001", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-001"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "== No", 
+        "operator_used": "==", 
+        "reason": "No bidder evidence submitted for 'mse_relaxation'.", 
+        "requirement_id": "REQ-GEM7379634-002", 
+        "requires_human_review": false, 
+        "severity": "MINOR", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-002"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "== No", 
+        "operator_used": "==", 
+        "reason": "No bidder evidence submitted for 'startup_relaxation'.", 
+        "requirement_id": "REQ-GEM7379634-003", 
+        "requires_human_review": false, 
+        "severity": "MINOR", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-003"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "EXISTS Compliance of BoQ specification and supporting document", 
+        "operator_used": "EXISTS", 
+        "reason": "Mandatory requirement 'Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.' not satisfied: document/evidence is missing.", 
+        "requirement_id": "REQ-GEM7379634-004", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-004"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "BETWEEN 20-30 Days DAYS", 
+        "operator_used": "BETWEEN", 
+        "reason": "No bidder evidence submitted for 'delivery_days'.", 
+        "requirement_id": "REQ-GEM7379634-005", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-005"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "== post CRAC as per GeM Policy", 
+        "operator_used": "==", 
+        "reason": "No bidder evidence submitted for 'payment_terms'.", 
+        "requirement_id": "REQ-GEM7379634-006", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-006"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "== Yes", 
+        "operator_used": "==", 
+        "reason": "No bidder evidence submitted for 'financial_document'.", 
+        "requirement_id": "REQ-GEM7379634-007", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-007"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "<= 15% COUNT", 
+        "operator_used": "<=", 
+        "reason": "No bidder evidence submitted for 'mse_preference_margin'.", 
+        "requirement_id": "REQ-GEM7379634-008", 
+        "requires_human_review": false, 
+        "severity": "MINOR", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-008"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "<= 25% COUNT", 
+        "operator_used": "<=", 
+        "reason": "No bidder evidence submitted for 'mse_preference_percent'.", 
+        "requirement_id": "REQ-GEM7379634-009", 
+        "requires_human_review": false, 
+        "severity": "MINOR", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-009"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "== Only supply of Goods", 
+        "operator_used": "==", 
+        "reason": "No bidder evidence submitted for 'scope_of_supply'.", 
+        "requirement_id": "REQ-GEM7379634-010", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-010"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "EXISTS compliance with all applicable labour laws", 
+        "operator_used": "EXISTS", 
+        "reason": "Mandatory requirement 'All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.' not satisfied: document/evidence is missing.", 
+        "requirement_id": "REQ-GEM7379634-011", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-011"
+      }, 
+      {
+        "actual": "MISSING", 
+        "bid_id": "UNKNOWN_BID", 
+        "evidence": [], 
+        "expected": "EXISTS registered with the Competent Authority", 
+        "operator_used": "EXISTS", 
+        "reason": "Mandatory requirement 'Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.' not satisfied: document/evidence is missing.", 
+        "requirement_id": "REQ-GEM7379634-012", 
+        "requires_human_review": true, 
+        "severity": "CRITICAL", 
+        "status": "MISSING", 
+        "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-012"
+      }
+    ], 
+    "compliance_status": "MISSING", 
+    "critical_failures": 0, 
+    "human_review_items": [
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-001': No bidder evidence submitted for 'bid_validity_days'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-001", 
+        "review_id": "REV-BLIND_TEST_NO_BID-001", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-002': No bidder evidence submitted for 'mse_relaxation'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-002", 
+        "review_id": "REV-BLIND_TEST_NO_BID-002", 
+        "severity": "MINOR", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-003': No bidder evidence submitted for 'startup_relaxation'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-003", 
+        "review_id": "REV-BLIND_TEST_NO_BID-003", 
+        "severity": "MINOR", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-004': Mandatory requirement 'Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.' not satisfied: document/evidence is missing.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-004", 
+        "review_id": "REV-BLIND_TEST_NO_BID-004", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-005': No bidder evidence submitted for 'delivery_days'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-005", 
+        "review_id": "REV-BLIND_TEST_NO_BID-005", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-006': No bidder evidence submitted for 'payment_terms'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-006", 
+        "review_id": "REV-BLIND_TEST_NO_BID-006", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-007': No bidder evidence submitted for 'financial_document'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-007", 
+        "review_id": "REV-BLIND_TEST_NO_BID-007", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-008': No bidder evidence submitted for 'mse_preference_margin'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-008", 
+        "review_id": "REV-BLIND_TEST_NO_BID-008", 
+        "severity": "MINOR", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-009': No bidder evidence submitted for 'mse_preference_percent'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-009", 
+        "review_id": "REV-BLIND_TEST_NO_BID-009", 
+        "severity": "MINOR", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-010': No bidder evidence submitted for 'scope_of_supply'.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-010", 
+        "review_id": "REV-BLIND_TEST_NO_BID-010", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-011': Mandatory requirement 'All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.' not satisfied: document/evidence is missing.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-011", 
+        "review_id": "REV-BLIND_TEST_NO_BID-011", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }, 
+      {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "category": "MISSING_EVIDENCE", 
+        "created_at": "2026-09-04T16:21:43Z", 
+        "evidence_references": [], 
+        "reason": "Requirement 'REQ-GEM7379634-012': Mandatory requirement 'Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.' not satisfied: document/evidence is missing.", 
+        "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-012", 
+        "review_id": "REV-BLIND_TEST_NO_BID-012", 
+        "severity": "CRITICAL", 
+        "source_documents": [], 
+        "source_pages": [], 
+        "status": "OPEN", 
+        "tender_id": "GEM/2026/B/7379634"
+      }
+    ], 
+    "integrity_findings": [], 
+    "integrity_status": "CONSISTENT", 
+    "major_failures": 0, 
+    "overall_status": "REVIEW", 
+    "provenance_graph": {
+      "edges": [
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-001:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b4:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-001", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b4"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-001:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b5:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-001", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b5"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-002:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b12:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-002", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b12"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-002:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b13:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-002", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b13"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-003:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b14:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-003", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b14"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-003:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b15:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-003", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b15"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-004:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b16:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-004", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b16"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-004:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b17:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-004", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b17"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-005:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b7:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-005", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b7"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-005:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b8:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-005", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b8"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-006:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b9:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-006", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b9"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-007:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b14:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-007", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b14"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-007:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b15:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-007", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b15"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-008:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b28:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-008", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b28"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-008:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b29:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-008", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b29"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-008:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b30:2", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-008", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b30"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-009:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b0:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-009", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b0"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-009:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b1:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-009", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b1"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-009:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b2:2", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-009", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b2"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-010:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b7:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-010", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b7"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-010:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b8:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-010", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b8"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-011:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b5:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-011", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b5"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-011:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b6:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-011", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b6"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-011:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b7:2", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-011", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b7"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-011:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b8:3", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-011", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b8"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-011:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b9:4", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-011", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b9"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-012:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b11:0", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-012", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b11"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-012:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b12:1", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-012", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b12"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-012:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b13:2", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-012", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b13"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-012:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b14:3", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-012", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b14"
+        }, 
+        {
+          "edge_id": "EDGE:REQ:REQ-GEM7379634-012:REQUIREMENT_HAS_EVIDENCE:BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b15:4", 
+          "edge_type": "REQUIREMENT_HAS_EVIDENCE", 
+          "properties": {}, 
+          "source_id": "REQ:REQ-GEM7379634-012", 
+          "target_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b15"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-001:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-001", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-001", 
+          "target_id": "REQ:REQ-GEM7379634-001"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-002:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-002", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-002", 
+          "target_id": "REQ:REQ-GEM7379634-002"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-003:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-003", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-003", 
+          "target_id": "REQ:REQ-GEM7379634-003"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-004:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-004", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-004", 
+          "target_id": "REQ:REQ-GEM7379634-004"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-005:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-005", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-005", 
+          "target_id": "REQ:REQ-GEM7379634-005"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-006:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-006", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-006", 
+          "target_id": "REQ:REQ-GEM7379634-006"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-007:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-007", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-007", 
+          "target_id": "REQ:REQ-GEM7379634-007"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-008:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-008", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-008", 
+          "target_id": "REQ:REQ-GEM7379634-008"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-009:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-009", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-009", 
+          "target_id": "REQ:REQ-GEM7379634-009"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-010:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-010", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-010", 
+          "target_id": "REQ:REQ-GEM7379634-010"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-011:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-011", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-011", 
+          "target_id": "REQ:REQ-GEM7379634-011"
+        }, 
+        {
+          "edge_id": "EDGE:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-012:RESULT_EVALUATES_REQUIREMENT:REQ:REQ-GEM7379634-012", 
+          "edge_type": "RESULT_EVALUATES_REQUIREMENT", 
+          "properties": {}, 
+          "source_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-012", 
+          "target_id": "REQ:REQ-GEM7379634-012"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-001:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-001", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-001", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-001"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-002:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-002", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-002", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-002"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-003:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-003", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-003", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-003"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-004:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-004", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-004", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-004"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-005:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-005", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-005", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-005"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-006:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-006", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-006", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-006"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-007:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-007", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-007", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-007"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-008:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-008", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-008", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-008"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-009:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-009", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-009", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-009"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-010:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-010", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-010", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-010"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-011:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-011", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-011", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-011"
+        }, 
+        {
+          "edge_id": "EDGE:REVIEW:REV-BLIND_TEST_NO_BID-012:REVIEW_ITEM_FOR_RESULT:RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-012", 
+          "edge_type": "REVIEW_ITEM_FOR_RESULT", 
+          "properties": {}, 
+          "source_id": "REVIEW:REV-BLIND_TEST_NO_BID-012", 
+          "target_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-012"
+        }
+      ], 
+      "graph_version": "1.0.0", 
+      "metadata": {
+        "bid_id": "BLIND_TEST_NO_BID", 
+        "is_acyclic": true, 
+        "node_counts": {
+          "HUMAN_REVIEW_ITEM": 12, 
+          "PHYSICAL_TEXT_BLOCK": 31, 
+          "TENDER_REQUIREMENT": 12, 
+          "VERIFICATION_RESULT": 12
+        }, 
+        "tender_id": "GEM/2026/B/7379634", 
+        "total_edges": 55, 
+        "total_nodes": 67
+      }, 
+      "nodes": [
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b12]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b12", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              459.83, 
+              45.0, 
+              495.62, 
+              265.84
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b12", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "एमएसएमई के िलए अनुभव के वष0 और टन%ओवर से छूट 6दान\nक\u0010 गई है/MSE Relaxation for Years of\nExperience and Turnover", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b13]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b13", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              473.9, 
+              276.0, 
+              484.37, 
+              288.19
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b13", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "No", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b14]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b14", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              501.08, 
+              45.0, 
+              536.87, 
+              255.29
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b14", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "&टाट%अप के िलए अनुभव के वष0 और टन%ओवर से छूट 6दान\nक\u0010 गई है /Startup Relaxation for Years of\nExperience and Turnover", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b15]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b15", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              515.15, 
+              276.0, 
+              525.62, 
+              288.19
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b15", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "No", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b16]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b16", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              558.83, 
+              45.0, 
+              585.62, 
+              252.05
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b16", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "\u0001व7ेता से मांगे गए द&तावेज़/Document required\nfrom seller", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b17]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b17", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              545.15, 
+              276.0, 
+              600.62, 
+              546.44
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b17", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "Compliance of BoQ specification and supporting document\n*In case any bidder is seeking exemption from Experience /\nTurnover Criteria, the supporting documents to prove his\neligibility for exemption must be uploaded for evaluation by\nthe buyer", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b4]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b4", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              288.08, 
+              45.0, 
+              314.87, 
+              254.99
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b4", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "\u0001बड पेशकश वैधता (बंद होने क\u0010 तार\u0013ख से)/Bid Offer\nValidity (From End Date)", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.1 [DOC-GEM_2026_B_7379634-p1-b5]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P1:DOC-GEM_2026_B_7379634-p1-b5", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              296.15, 
+              276.0, 
+              306.62, 
+              325.44
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p1-b5", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 1, 
+            "snippet": "180 (Days)", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b14]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b14", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              309.08, 
+              45.0, 
+              335.87, 
+              226.92
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b14", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "\u0001वWीय द&तावेज क\u0010 आवDयकता है / Financial\nDocument Required", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b15]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b15", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              317.15, 
+              276.0, 
+              327.62, 
+              291.68
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b15", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "Yes", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b28]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b28", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              694.58, 
+              45.0, 
+              709.7, 
+              260.89
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b28", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "सूZम और लघु उ]म मूल उपकरण िनमा%ताओं को खर\u0013द म>", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b29]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b29", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              710.33, 
+              45.0, 
+              748.37, 
+              266.87
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b29", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "6ाथिमकता, य=द उनका मूSय L1+X% तक क\u0010 सीमा म> हो /\nPurchase Preference to MSE OEMs available upto\nprice within L1+X%", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b30]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b30", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              716.15, 
+              276.0, 
+              726.62, 
+              287.4
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b30", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "15", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b7]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b7", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              177.83, 
+              45.0, 
+              204.62, 
+              233.13
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b7", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "=डलीवर\u0013 क\u0010 &वीकृत शतR / Allowed Terms of\ndelivery", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b8]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b8", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              180.65, 
+              276.0, 
+              202.37, 
+              527.32
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b8", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "to be supply within 20-30 Days whole quantity at Store,\nBMHRC, Bhopal", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.2 [DOC-GEM_2026_B_7379634-p2-b9]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P2:DOC-GEM_2026_B_7379634-p2-b9", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              212.33, 
+              45.0, 
+              227.45, 
+              523.94
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p2-b9", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 2, 
+            "snippet": "भुगतान क\u0010 शतR / Payment terms\nPayment should be made post CRAC as per GeM Policy", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.3 [DOC-GEM_2026_B_7379634-p3-b0]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b0", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              60.83, 
+              45.0, 
+              75.95, 
+              261.41
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p3-b0", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 3, 
+            "snippet": "सूZम और लघु उ]म को खर\u0013द म> 6ाथिमकता के िलए \u0001बड", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.3 [DOC-GEM_2026_B_7379634-p3-b1]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b1", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              76.58, 
+              45.0, 
+              114.62, 
+              246.67
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p3-b1", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 3, 
+            "snippet": "क\u0010 मा ा का अिधकतम 6ितशत / Maximum\nPercentage of Bid quantity for MSE purchase\npreference", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.3 [DOC-GEM_2026_B_7379634-p3-b2]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b2", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              82.4, 
+              276.0, 
+              92.87, 
+              287.4
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p3-b2", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 3, 
+            "snippet": "25", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.3 [DOC-GEM_2026_B_7379634-p3-b7]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b7", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              363.65, 
+              55.5, 
+              374.12, 
+              153.51
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p3-b7", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 3, 
+            "snippet": "1. Scope of Supply", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.3 [DOC-GEM_2026_B_7379634-p3-b8]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P3:DOC-GEM_2026_B_7379634-p3-b8", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              386.9, 
+              72.0, 
+              397.37, 
+              437.94
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p3-b8", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 3, 
+            "snippet": "Scope of supply (Bid price to include all cost components) : Only supply of Goods", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b11]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b11", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              571.58, 
+              40.5, 
+              586.7, 
+              554.03
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b11", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "जेम क\u0010 सामाcय शत0 के खंड 26 के संदभ% म> भारत के साथ भूिम सीमा साझा करने वाले देश के \u0001बडर से खर\u0013द पर 6ितबंध के संबंध म>", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b12]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b12", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              587.33, 
+              40.5, 
+              602.45, 
+              554.59
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b12", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "भारत के साथ भूिम सीमा साझा करने वाले देश का कोई भी \u0001बडर इस िन\u0001वदा म> \u0001बड देने के िलए तभी पा  होगा जब वह \u0001बड देने वाला", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b13]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b13", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              603.08, 
+              40.5, 
+              618.2, 
+              554.03
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b13", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "सfम 6ािधकार\u0013 के पास पंजीकृत हो।\u0001बड म> भाग लेते समय \u0001बडर को इसका अनुपालन करना होगा और कोई भी गलत घोषणा =कए जाने", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b14]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b14", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              618.83, 
+              40.5, 
+              633.95, 
+              554.16
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b14", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "व इसका अनुपालन न करने पर अनुबंध को तgकाल समाh करने और कानून के अनुसार आगे क\u0010 कानूनी कार%वाई का आधार होगा।/In terms", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b15]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b15", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              634.93, 
+              40.5, 
+              664.42, 
+              554.58
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b15", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "of GeM GTC clause 26 regarding Restrictions on procurement from a bidder of a country which shares a land border with India, any bidder from a country which shares a\nland border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority. While par", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b5]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b5", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              287.9, 
+              40.5, 
+              343.37, 
+              552.51
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b5", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws,\nincluding the provisions, rules, schemes and guidelines under the four Labour Codes i.e. the Code\non Wages, 2019; the Industrial Relations Code, 2020; the Occupational Safety, Health and Working\nCondition", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b6]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b6", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              353.15, 
+              40.5, 
+              408.62, 
+              554.01
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b6", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "For all provisions of the Labour Codes that are pending operationalisation through rules, schemes or\nnotifications, the corresponding provisions of the pre-existing labour enactments (such as The\nMinimum Wages Act, 1948, The Payment of Wages Act, 1936, The Payment of Bonus Act, 1965, The\nEqual Remun", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b7]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b7", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              418.4, 
+              40.5, 
+              428.87, 
+              511.91
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b7", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "The Seller/ Service Providers shall, therefore, be responsible for ensuring compliance under:", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b8]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b8", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              438.65, 
+              70.5, 
+              471.62, 
+              538.08
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b8", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "All notified and enforceable provisions of the new Labour Codes as mentioned hereinabove;\nand\nAll operative provisions of the erstwhile Labour Laws until their complete substitution.", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Evidence: GEM_2026_B_7379634.pdf P.4 [DOC-GEM_2026_B_7379634-p4-b9]", 
+          "node_id": "BLOCK:GEM_2026_B_7379634.pdf:P4:DOC-GEM_2026_B_7379634-p4-b9", 
+          "node_type": "PHYSICAL_TEXT_BLOCK", 
+          "properties": {
+            "bbox": [
+              481.4, 
+              40.5, 
+              525.62, 
+              551.85
+            ], 
+            "block_id": "DOC-GEM_2026_B_7379634-p4-b9", 
+            "document": "GEM_2026_B_7379634.pdf", 
+            "document_id": "GEM_2026_B_7379634.pdf", 
+            "page": 4, 
+            "snippet": "All obligations relating to wages, social security, safety, working conditions, industrial relations etc.\nand any other statutory requirements shall be strictly met by the Seller/ Service Provider. Any non-\ncompliance shall constitute a breach of the contract and shall entitle the Buyer to take appr", 
+            "source_type": "TENDER_DOCUMENT"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-001", 
+          "node_id": "REQ:REQ-GEM7379634-001", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": "BID_VALIDITY_DAYS", 
+            "category": "COMMERCIAL_TERMS", 
+            "description": "Bid Offer Validity (From End Date) must be 180 Days.", 
+            "expected_value": "180", 
+            "field": "bid_validity_days", 
+            "mandatory": true, 
+            "operator": "==", 
+            "requirement_id": "REQ-GEM7379634-001", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-002", 
+          "node_id": "REQ:REQ-GEM7379634-002", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "MSE_MII_PREFERENCE", 
+            "description": "MSE Relaxation for Years of Experience and Turnover is not provided.", 
+            "expected_value": "No", 
+            "field": "mse_relaxation", 
+            "mandatory": false, 
+            "operator": "==", 
+            "requirement_id": "REQ-GEM7379634-002", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-003", 
+          "node_id": "REQ:REQ-GEM7379634-003", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "OTHER", 
+            "description": "Startup Relaxation for Years of Experience and Turnover is not provided.", 
+            "expected_value": "No", 
+            "field": "startup_relaxation", 
+            "mandatory": false, 
+            "operator": "==", 
+            "requirement_id": "REQ-GEM7379634-003", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-004", 
+          "node_id": "REQ:REQ-GEM7379634-004", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "TECHNICAL_SPECIFICATION", 
+            "description": "Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.", 
+            "expected_value": "Compliance of BoQ specification and supporting document", 
+            "field": "boq_compliance", 
+            "mandatory": true, 
+            "operator": "EXISTS", 
+            "requirement_id": "REQ-GEM7379634-004", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-005", 
+          "node_id": "REQ:REQ-GEM7379634-005", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": "DELIVERY_PERIOD", 
+            "category": "DELIVERY_LOGISTICS", 
+            "description": "Goods must be supplied within 20-30 Days whole quantity at Store, BMHRC, Bhopal.", 
+            "expected_value": "20-30 Days", 
+            "field": "delivery_days", 
+            "mandatory": true, 
+            "operator": "BETWEEN", 
+            "requirement_id": "REQ-GEM7379634-005", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-006", 
+          "node_id": "REQ:REQ-GEM7379634-006", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "COMMERCIAL_TERMS", 
+            "description": "Payment should be made post CRAC as per GeM Policy.", 
+            "expected_value": "post CRAC as per GeM Policy", 
+            "field": "payment_terms", 
+            "mandatory": true, 
+            "operator": "==", 
+            "requirement_id": "REQ-GEM7379634-006", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-007", 
+          "node_id": "REQ:REQ-GEM7379634-007", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "FINANCIAL_CAPACITY", 
+            "description": "Financial Document is required from the bidder.", 
+            "expected_value": "Yes", 
+            "field": "financial_document", 
+            "mandatory": true, 
+            "operator": "==", 
+            "requirement_id": "REQ-GEM7379634-007", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-008", 
+          "node_id": "REQ:REQ-GEM7379634-008", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "MSE_MII_PREFERENCE", 
+            "description": "Purchase Preference to MSE OEMs is available upto price within L1+15%.", 
+            "expected_value": "15%", 
+            "field": "mse_preference_margin", 
+            "mandatory": false, 
+            "operator": "<=", 
+            "requirement_id": "REQ-GEM7379634-008", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-009", 
+          "node_id": "REQ:REQ-GEM7379634-009", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "MSE_MII_PREFERENCE", 
+            "description": "Maximum Percentage of Bid quantity for MSE purchase preference is 25%.", 
+            "expected_value": "25%", 
+            "field": "mse_preference_percent", 
+            "mandatory": false, 
+            "operator": "<=", 
+            "requirement_id": "REQ-GEM7379634-009", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-010", 
+          "node_id": "REQ:REQ-GEM7379634-010", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "TECHNICAL_SPECIFICATION", 
+            "description": "Scope of supply (Bid price to include all cost components) : Only supply of Goods.", 
+            "expected_value": "Only supply of Goods", 
+            "field": "scope_of_supply", 
+            "mandatory": true, 
+            "operator": "==", 
+            "requirement_id": "REQ-GEM7379634-010", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-011", 
+          "node_id": "REQ:REQ-GEM7379634-011", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "LEGAL_UNDERTAKING", 
+            "description": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.", 
+            "expected_value": "compliance with all applicable labour laws", 
+            "field": "labour_laws_compliance", 
+            "mandatory": true, 
+            "operator": "EXISTS", 
+            "requirement_id": "REQ-GEM7379634-011", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Requirement: REQ-GEM7379634-012", 
+          "node_id": "REQ:REQ-GEM7379634-012", 
+          "node_type": "TENDER_REQUIREMENT", 
+          "properties": {
+            "canonical_field": null, 
+            "category": "STATUTORY_ELIGIBILITY", 
+            "description": "Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.", 
+            "expected_value": "registered with the Competent Authority", 
+            "field": "land_border_registration", 
+            "mandatory": true, 
+            "operator": "EXISTS", 
+            "requirement_id": "REQ-GEM7379634-012", 
+            "tender_id": "GEM/2026/B/7379634"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-001 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-001", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "== 180 COUNT", 
+            "fact_id": null, 
+            "operator_used": "==", 
+            "reason": "No bidder evidence submitted for 'bid_validity_days'.", 
+            "requirement_id": "REQ-GEM7379634-001", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-001"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-002 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-002", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "== No", 
+            "fact_id": null, 
+            "operator_used": "==", 
+            "reason": "No bidder evidence submitted for 'mse_relaxation'.", 
+            "requirement_id": "REQ-GEM7379634-002", 
+            "requires_human_review": false, 
+            "severity": "MINOR", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-002"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-003 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-003", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "== No", 
+            "fact_id": null, 
+            "operator_used": "==", 
+            "reason": "No bidder evidence submitted for 'startup_relaxation'.", 
+            "requirement_id": "REQ-GEM7379634-003", 
+            "requires_human_review": false, 
+            "severity": "MINOR", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-003"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-004 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-004", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "EXISTS Compliance of BoQ specification and supporting document", 
+            "fact_id": null, 
+            "operator_used": "EXISTS", 
+            "reason": "Mandatory requirement 'Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.' not satisfied: document/evidence is missing.", 
+            "requirement_id": "REQ-GEM7379634-004", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-004"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-005 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-005", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "BETWEEN 20-30 Days DAYS", 
+            "fact_id": null, 
+            "operator_used": "BETWEEN", 
+            "reason": "No bidder evidence submitted for 'delivery_days'.", 
+            "requirement_id": "REQ-GEM7379634-005", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-005"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-006 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-006", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "== post CRAC as per GeM Policy", 
+            "fact_id": null, 
+            "operator_used": "==", 
+            "reason": "No bidder evidence submitted for 'payment_terms'.", 
+            "requirement_id": "REQ-GEM7379634-006", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-006"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-007 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-007", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "== Yes", 
+            "fact_id": null, 
+            "operator_used": "==", 
+            "reason": "No bidder evidence submitted for 'financial_document'.", 
+            "requirement_id": "REQ-GEM7379634-007", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-007"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-008 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-008", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "<= 15% COUNT", 
+            "fact_id": null, 
+            "operator_used": "<=", 
+            "reason": "No bidder evidence submitted for 'mse_preference_margin'.", 
+            "requirement_id": "REQ-GEM7379634-008", 
+            "requires_human_review": false, 
+            "severity": "MINOR", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-008"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-009 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-009", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "<= 25% COUNT", 
+            "fact_id": null, 
+            "operator_used": "<=", 
+            "reason": "No bidder evidence submitted for 'mse_preference_percent'.", 
+            "requirement_id": "REQ-GEM7379634-009", 
+            "requires_human_review": false, 
+            "severity": "MINOR", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-009"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-010 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-010", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "== Only supply of Goods", 
+            "fact_id": null, 
+            "operator_used": "==", 
+            "reason": "No bidder evidence submitted for 'scope_of_supply'.", 
+            "requirement_id": "REQ-GEM7379634-010", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-010"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-011 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-011", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "EXISTS compliance with all applicable labour laws", 
+            "fact_id": null, 
+            "operator_used": "EXISTS", 
+            "reason": "Mandatory requirement 'All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.' not satisfied: document/evidence is missing.", 
+            "requirement_id": "REQ-GEM7379634-011", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-011"
+          }
+        }, 
+        {
+          "label": "Result: REQ-GEM7379634-012 -> MISSING", 
+          "node_id": "RESULT:VERIF-UNKNOWN_BID-REQ-GEM7379634-012", 
+          "node_type": "VERIFICATION_RESULT", 
+          "properties": {
+            "actual": "MISSING", 
+            "expected": "EXISTS registered with the Competent Authority", 
+            "fact_id": null, 
+            "operator_used": "EXISTS", 
+            "reason": "Mandatory requirement 'Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.' not satisfied: document/evidence is missing.", 
+            "requirement_id": "REQ-GEM7379634-012", 
+            "requires_human_review": true, 
+            "severity": "CRITICAL", 
+            "status": "MISSING", 
+            "verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-012"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-001)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-001", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-001': No bidder evidence submitted for 'bid_validity_days'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-001", 
+            "review_id": "REV-BLIND_TEST_NO_BID-001", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-002)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-002", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-002': No bidder evidence submitted for 'mse_relaxation'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-002", 
+            "review_id": "REV-BLIND_TEST_NO_BID-002", 
+            "severity": "MINOR"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-003)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-003", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-003': No bidder evidence submitted for 'startup_relaxation'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-003", 
+            "review_id": "REV-BLIND_TEST_NO_BID-003", 
+            "severity": "MINOR"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-004)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-004", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-004': Mandatory requirement 'Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.' not satisfied: document/evidence is missing.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-004", 
+            "review_id": "REV-BLIND_TEST_NO_BID-004", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-005)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-005", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-005': No bidder evidence submitted for 'delivery_days'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-005", 
+            "review_id": "REV-BLIND_TEST_NO_BID-005", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-006)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-006", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-006': No bidder evidence submitted for 'payment_terms'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-006", 
+            "review_id": "REV-BLIND_TEST_NO_BID-006", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-007)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-007", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-007': No bidder evidence submitted for 'financial_document'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-007", 
+            "review_id": "REV-BLIND_TEST_NO_BID-007", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-008)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-008", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-008': No bidder evidence submitted for 'mse_preference_margin'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-008", 
+            "review_id": "REV-BLIND_TEST_NO_BID-008", 
+            "severity": "MINOR"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-009)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-009", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-009': No bidder evidence submitted for 'mse_preference_percent'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-009", 
+            "review_id": "REV-BLIND_TEST_NO_BID-009", 
+            "severity": "MINOR"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-010)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-010", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-010': No bidder evidence submitted for 'scope_of_supply'.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-010", 
+            "review_id": "REV-BLIND_TEST_NO_BID-010", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-011)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-011", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-011': Mandatory requirement 'All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.' not satisfied: document/evidence is missing.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-011", 
+            "review_id": "REV-BLIND_TEST_NO_BID-011", 
+            "severity": "CRITICAL"
+          }
+        }, 
+        {
+          "label": "Human Review: MISSING_EVIDENCE (REV-BLIND_TEST_NO_BID-012)", 
+          "node_id": "REVIEW:REV-BLIND_TEST_NO_BID-012", 
+          "node_type": "HUMAN_REVIEW_ITEM", 
+          "properties": {
+            "category": "MISSING_EVIDENCE", 
+            "reason": "Requirement 'REQ-GEM7379634-012': Mandatory requirement 'Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.' not satisfied: document/evidence is missing.", 
+            "related_verification_id": "VERIF-UNKNOWN_BID-REQ-GEM7379634-012", 
+            "review_id": "REV-BLIND_TEST_NO_BID-012", 
+            "severity": "CRITICAL"
+          }
+        }
+      ]
+    }, 
+    "review_required": true
+  }, 
+  "replay_engine_version": "1.0.0", 
+  "requirements": [
+    {
+      "canonical_field": "BID_VALIDITY_DAYS", 
+      "category": "COMMERCIAL_TERMS", 
+      "description": "Bid Offer Validity (From End Date) must be 180 Days.", 
+      "evidence": [
+        {
+          "bbox": [
+            288.08, 
+            45.0, 
+            314.87, 
+            254.99
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b4", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "\u0001बड पेशकश वैधता (बंद होने क\u0010 तार\u0013ख से)/Bid Offer\nValidity (From End Date)", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            296.15, 
+            276.0, 
+            306.62, 
+            325.44
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b5", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "180 (Days)", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "180", 
+      "extraction_confidence": "HIGH", 
+      "field": "bid_validity_days", 
+      "field_resolution": {
+        "canonical_field_id": "BID_VALIDITY_DAYS", 
+        "category": "OPERATIONAL", 
+        "contradiction_eligible": true, 
+        "family": "BID_VALIDITY", 
+        "label": "Bid Validity Period", 
+        "raw_field": "bid_validity_days", 
+        "resolution_method": "EXACT_ALIAS", 
+        "resolution_status": "RESOLVED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": 180, 
+      "operator": "==", 
+      "requirement_id": "REQ-GEM7379634-001", 
+      "source_page": 1, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634", 
+      "unit": "COUNT"
+    }, 
+    {
+      "category": "MSE_MII_PREFERENCE", 
+      "description": "MSE Relaxation for Years of Experience and Turnover is not provided.", 
+      "evidence": [
+        {
+          "bbox": [
+            459.83, 
+            45.0, 
+            495.62, 
+            265.84
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b12", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "एमएसएमई के िलए अनुभव के वष0 और टन%ओवर से छूट 6दान\nक\u0010 गई है/MSE Relaxation for Years of\nExperience and Turnover", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            473.9, 
+            276.0, 
+            484.37, 
+            288.19
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b13", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "No", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "No", 
+      "extraction_confidence": "HIGH", 
+      "field": "mse_relaxation", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "mse_relaxation", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": false, 
+      "normalized_expected_value": "No", 
+      "operator": "==", 
+      "requirement_id": "REQ-GEM7379634-002", 
+      "source_page": 1, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "category": "OTHER", 
+      "description": "Startup Relaxation for Years of Experience and Turnover is not provided.", 
+      "evidence": [
+        {
+          "bbox": [
+            501.08, 
+            45.0, 
+            536.87, 
+            255.29
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b14", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "&टाट%अप के िलए अनुभव के वष0 और टन%ओवर से छूट 6दान\nक\u0010 गई है /Startup Relaxation for Years of\nExperience and Turnover", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            515.15, 
+            276.0, 
+            525.62, 
+            288.19
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b15", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "No", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "No", 
+      "extraction_confidence": "HIGH", 
+      "field": "startup_relaxation", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "startup_relaxation", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": false, 
+      "normalized_expected_value": "No", 
+      "operator": "==", 
+      "requirement_id": "REQ-GEM7379634-003", 
+      "source_page": 1, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "category": "TECHNICAL_SPECIFICATION", 
+      "description": "Seller must submit Compliance of BoQ specification and supporting document. In case any bidder is seeking exemption from Experience / Turnover Criteria, the supporting documents to prove eligibility for exemption must be uploaded.", 
+      "evidence": [
+        {
+          "bbox": [
+            558.83, 
+            45.0, 
+            585.62, 
+            252.05
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b16", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "\u0001व7ेता से मांगे गए द&तावेज़/Document required\nfrom seller", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            545.15, 
+            276.0, 
+            600.62, 
+            546.44
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p1-b17", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 1, 
+          "snippet": "Compliance of BoQ specification and supporting document\n*In case any bidder is seeking exemption from Experience /\nTurnover Criteria, the supporting documents to prove his\neligibility for exemption must be uploaded for evaluation by\nthe buyer", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "Compliance of BoQ specification and supporting document", 
+      "extraction_confidence": "HIGH", 
+      "field": "boq_compliance", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "boq_compliance", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": "Compliance of BoQ specification and supporting document", 
+      "operator": "EXISTS", 
+      "requirement_id": "REQ-GEM7379634-004", 
+      "source_page": 1, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "canonical_field": "DELIVERY_PERIOD", 
+      "category": "DELIVERY_LOGISTICS", 
+      "description": "Goods must be supplied within 20-30 Days whole quantity at Store, BMHRC, Bhopal.", 
+      "evidence": [
+        {
+          "bbox": [
+            177.83, 
+            45.0, 
+            204.62, 
+            233.13
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b7", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "=डलीवर\u0013 क\u0010 &वीकृत शतR / Allowed Terms of\ndelivery", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            180.65, 
+            276.0, 
+            202.37, 
+            527.32
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b8", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "to be supply within 20-30 Days whole quantity at Store,\nBMHRC, Bhopal", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "20-30 Days", 
+      "extraction_confidence": "HIGH", 
+      "field": "delivery_days", 
+      "field_resolution": {
+        "canonical_field_id": "DELIVERY_PERIOD", 
+        "category": "OPERATIONAL", 
+        "contradiction_eligible": true, 
+        "family": "DELIVERY", 
+        "label": "Delivery Period", 
+        "raw_field": "delivery_days", 
+        "resolution_method": "EXACT_ALIAS", 
+        "resolution_status": "RESOLVED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": 20, 
+      "operator": "BETWEEN", 
+      "requirement_id": "REQ-GEM7379634-005", 
+      "source_page": 2, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634", 
+      "unit": "DAYS"
+    }, 
+    {
+      "category": "COMMERCIAL_TERMS", 
+      "description": "Payment should be made post CRAC as per GeM Policy.", 
+      "evidence": [
+        {
+          "bbox": [
+            212.33, 
+            45.0, 
+            227.45, 
+            523.94
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b9", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "भुगतान क\u0010 शतR / Payment terms\nPayment should be made post CRAC as per GeM Policy", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "post CRAC as per GeM Policy", 
+      "extraction_confidence": "HIGH", 
+      "field": "payment_terms", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "payment_terms", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": "post CRAC as per GeM Policy", 
+      "operator": "==", 
+      "requirement_id": "REQ-GEM7379634-006", 
+      "source_page": 2, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "category": "FINANCIAL_CAPACITY", 
+      "description": "Financial Document is required from the bidder.", 
+      "evidence": [
+        {
+          "bbox": [
+            309.08, 
+            45.0, 
+            335.87, 
+            226.92
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b14", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "\u0001वWीय द&तावेज क\u0010 आवDयकता है / Financial\nDocument Required", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            317.15, 
+            276.0, 
+            327.62, 
+            291.68
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b15", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "Yes", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "Yes", 
+      "extraction_confidence": "HIGH", 
+      "field": "financial_document", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "financial_document", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": "Yes", 
+      "operator": "==", 
+      "requirement_id": "REQ-GEM7379634-007", 
+      "source_page": 2, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "category": "MSE_MII_PREFERENCE", 
+      "description": "Purchase Preference to MSE OEMs is available upto price within L1+15%.", 
+      "evidence": [
+        {
+          "bbox": [
+            694.58, 
+            45.0, 
+            709.7, 
+            260.89
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b28", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "सूZम और लघु उ]म मूल उपकरण िनमा%ताओं को खर\u0013द म>", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            710.33, 
+            45.0, 
+            748.37, 
+            266.87
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b29", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "6ाथिमकता, य=द उनका मूSय L1+X% तक क\u0010 सीमा म> हो /\nPurchase Preference to MSE OEMs available upto\nprice within L1+X%", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            716.15, 
+            276.0, 
+            726.62, 
+            287.4
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p2-b30", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 2, 
+          "snippet": "15", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "15%", 
+      "extraction_confidence": "HIGH", 
+      "field": "mse_preference_margin", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "mse_preference_margin", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": false, 
+      "normalized_expected_value": 15, 
+      "operator": "<=", 
+      "requirement_id": "REQ-GEM7379634-008", 
+      "source_page": 2, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634", 
+      "unit": "COUNT"
+    }, 
+    {
+      "category": "MSE_MII_PREFERENCE", 
+      "description": "Maximum Percentage of Bid quantity for MSE purchase preference is 25%.", 
+      "evidence": [
+        {
+          "bbox": [
+            60.83, 
+            45.0, 
+            75.95, 
+            261.41
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p3-b0", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 3, 
+          "snippet": "सूZम और लघु उ]म को खर\u0013द म> 6ाथिमकता के िलए \u0001बड", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            76.58, 
+            45.0, 
+            114.62, 
+            246.67
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p3-b1", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 3, 
+          "snippet": "क\u0010 मा ा का अिधकतम 6ितशत / Maximum\nPercentage of Bid quantity for MSE purchase\npreference", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            82.4, 
+            276.0, 
+            92.87, 
+            287.4
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p3-b2", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 3, 
+          "snippet": "25", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "25%", 
+      "extraction_confidence": "HIGH", 
+      "field": "mse_preference_percent", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "mse_preference_percent", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": false, 
+      "normalized_expected_value": 25, 
+      "operator": "<=", 
+      "requirement_id": "REQ-GEM7379634-009", 
+      "source_page": 3, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634", 
+      "unit": "COUNT"
+    }, 
+    {
+      "category": "TECHNICAL_SPECIFICATION", 
+      "description": "Scope of supply (Bid price to include all cost components) : Only supply of Goods.", 
+      "evidence": [
+        {
+          "bbox": [
+            363.65, 
+            55.5, 
+            374.12, 
+            153.51
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p3-b7", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 3, 
+          "snippet": "1. Scope of Supply", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            386.9, 
+            72.0, 
+            397.37, 
+            437.94
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p3-b8", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 3, 
+          "snippet": "Scope of supply (Bid price to include all cost components) : Only supply of Goods", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "Only supply of Goods", 
+      "extraction_confidence": "HIGH", 
+      "field": "scope_of_supply", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "scope_of_supply", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": "Only supply of Goods", 
+      "operator": "==", 
+      "requirement_id": "REQ-GEM7379634-010", 
+      "source_clause": "1. Scope of Supply", 
+      "source_page": 3, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "category": "LEGAL_UNDERTAKING", 
+      "description": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws, including the provisions, rules, schemes and guidelines under the four Labour Codes.", 
+      "evidence": [
+        {
+          "bbox": [
+            287.9, 
+            40.5, 
+            343.37, 
+            552.51
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b5", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "All GeM Sellers/Service Providers shall ensure full compliance with all applicable labour laws,\nincluding the provisions, rules, schemes and guidelines under the four Labour Codes i.e. the Code\non Wages, 2019; the Industrial Relations Code, 2020; the Occupational Safety, Health and Working\nCondition", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            353.15, 
+            40.5, 
+            408.62, 
+            554.01
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b6", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "For all provisions of the Labour Codes that are pending operationalisation through rules, schemes or\nnotifications, the corresponding provisions of the pre-existing labour enactments (such as The\nMinimum Wages Act, 1948, The Payment of Wages Act, 1936, The Payment of Bonus Act, 1965, The\nEqual Remun", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            418.4, 
+            40.5, 
+            428.87, 
+            511.91
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b7", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "The Seller/ Service Providers shall, therefore, be responsible for ensuring compliance under:", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            438.65, 
+            70.5, 
+            471.62, 
+            538.08
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b8", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "All notified and enforceable provisions of the new Labour Codes as mentioned hereinabove;\nand\nAll operative provisions of the erstwhile Labour Laws until their complete substitution.", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            481.4, 
+            40.5, 
+            525.62, 
+            551.85
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b9", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "All obligations relating to wages, social security, safety, working conditions, industrial relations etc.\nand any other statutory requirements shall be strictly met by the Seller/ Service Provider. Any non-\ncompliance shall constitute a breach of the contract and shall entitle the Buyer to take appr", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "compliance with all applicable labour laws", 
+      "extraction_confidence": "HIGH", 
+      "field": "labour_laws_compliance", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "labour_laws_compliance", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": "compliance with all applicable labour laws", 
+      "operator": "EXISTS", 
+      "requirement_id": "REQ-GEM7379634-011", 
+      "source_page": 4, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }, 
+    {
+      "category": "STATUTORY_ELIGIBILITY", 
+      "description": "Any bidder from a country which shares a land border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority.", 
+      "evidence": [
+        {
+          "bbox": [
+            571.58, 
+            40.5, 
+            586.7, 
+            554.03
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b11", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "जेम क\u0010 सामाcय शत0 के खंड 26 के संदभ% म> भारत के साथ भूिम सीमा साझा करने वाले देश के \u0001बडर से खर\u0013द पर 6ितबंध के संबंध म>", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            587.33, 
+            40.5, 
+            602.45, 
+            554.59
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b12", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "भारत के साथ भूिम सीमा साझा करने वाले देश का कोई भी \u0001बडर इस िन\u0001वदा म> \u0001बड देने के िलए तभी पा  होगा जब वह \u0001बड देने वाला", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            603.08, 
+            40.5, 
+            618.2, 
+            554.03
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b13", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "सfम 6ािधकार\u0013 के पास पंजीकृत हो।\u0001बड म> भाग लेते समय \u0001बडर को इसका अनुपालन करना होगा और कोई भी गलत घोषणा =कए जाने", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            618.83, 
+            40.5, 
+            633.95, 
+            554.16
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b14", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "व इसका अनुपालन न करने पर अनुबंध को तgकाल समाh करने और कानून के अनुसार आगे क\u0010 कानूनी कार%वाई का आधार होगा।/In terms", 
+          "source_type": "TENDER_CLAUSE"
+        }, 
+        {
+          "bbox": [
+            634.93, 
+            40.5, 
+            664.42, 
+            554.58
+          ], 
+          "block_id": "DOC-GEM_2026_B_7379634-p4-b15", 
+          "document": "GEM_2026_B_7379634.pdf", 
+          "document_id": "DOC-GEM_2026_B_7379634", 
+          "page": 4, 
+          "snippet": "of GeM GTC clause 26 regarding Restrictions on procurement from a bidder of a country which shares a land border with India, any bidder from a country which shares a\nland border with India will be eligible to bid in this tender only if the bidder is registered with the Competent Authority. While par", 
+          "source_type": "TENDER_CLAUSE"
+        }
+      ], 
+      "expected_value": "registered with the Competent Authority", 
+      "extraction_confidence": "HIGH", 
+      "field": "land_border_registration", 
+      "field_resolution": {
+        "canonical_field_id": null, 
+        "category": null, 
+        "contradiction_eligible": false, 
+        "family": null, 
+        "label": null, 
+        "raw_field": "land_border_registration", 
+        "resolution_method": null, 
+        "resolution_status": "UNMAPPED"
+      }, 
+      "mandatory": true, 
+      "normalized_expected_value": "registered with the Competent Authority", 
+      "operator": "EXISTS", 
+      "requirement_id": "REQ-GEM7379634-012", 
+      "source_page": 4, 
+      "source_priority": 1, 
+      "source_type": "ATC", 
+      "tender_id": "GEM/2026/B/7379634"
+    }
+  ], 
+  "snapshot_hash": "a135db624a73957b2dc98def65d181088f2bfbd25e90a382221390cca1b07a9b", 
+  "snapshot_id": "SNAP-GEM/2026/B/7379634-BLIND_TEST_NO_BID", 
+  "snapshot_version": "1.0.0", 
+  "tender_id": "GEM/2026/B/7379634", 
+  "tender_metadata": {}, 
+  "verification_config_hash": "eafba3dd838c7487b2cb492aafabc44f9896b5516f04b969703db473e6870b48"
+}

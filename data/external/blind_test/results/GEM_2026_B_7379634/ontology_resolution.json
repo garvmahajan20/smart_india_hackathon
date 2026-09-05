@@ -1,0 +1,122 @@
+[
+  {
+    "raw_field": "bid_validity_days",
+    "canonical_field_id": "BID_VALIDITY_DAYS",
+    "label": "Bid Validity Period",
+    "category": "OPERATIONAL",
+    "family": "BID_VALIDITY",
+    "resolution_status": "RESOLVED",
+    "resolution_method": "EXACT_ALIAS",
+    "contradiction_eligible": true
+  },
+  {
+    "raw_field": "mse_relaxation",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "startup_relaxation",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "boq_compliance",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "delivery_days",
+    "canonical_field_id": "DELIVERY_PERIOD",
+    "label": "Delivery Period",
+    "category": "OPERATIONAL",
+    "family": "DELIVERY",
+    "resolution_status": "RESOLVED",
+    "resolution_method": "EXACT_ALIAS",
+    "contradiction_eligible": true
+  },
+  {
+    "raw_field": "payment_terms",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "financial_document",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "mse_preference_margin",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "mse_preference_percent",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "scope_of_supply",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "labour_laws_compliance",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  },
+  {
+    "raw_field": "land_border_registration",
+    "canonical_field_id": null,
+    "label": null,
+    "category": null,
+    "family": null,
+    "resolution_status": "UNMAPPED",
+    "resolution_method": null,
+    "contradiction_eligible": false
+  }
+]

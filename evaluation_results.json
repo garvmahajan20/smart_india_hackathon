@@ -1,0 +1,3745 @@
+{
+  "evaluation_version": "10B.6.0-AUDIT",
+  "dataset_version": "1.0",
+  "engine_versions": {
+    "DeterministicRuleEngine": "4.2.0-STRICT",
+    "CrossDocumentContradictionEngine": "5.1.0-DETERMINISTIC",
+    "OntologyResolver": "10B.2.0-CANONICAL",
+    "ProvenanceDAGBuilder": "10B.3.0-FORENSIC",
+    "DeterministicReplayEngine": "10B.4.0-BYTE-FOR-BYTE",
+    "VerificationAggregator": "8.0.0-PROVENANCE"
+  },
+  "dataset_hashes": {
+    "README.md": {
+      "bytes": 2498,
+      "sha256": "b35b23875922e85a66925959110ff3d769a72e7b5a6c34ca85353e1a9b52f9d3"
+    },
+    "metadata/dataset_summary.json": {
+      "bytes": 1753,
+      "sha256": "65e28997a7fdd4dccae22d2d8e532875607f6ed2ab52b4ebf203eeef0d33c9bc"
+    },
+    "metadata/tenders.jsonl": {
+      "bytes": 216965,
+      "sha256": "69b6b7937d93c113e00a23b4c8d55106b39101b435b149749e2cfdb671fc5cc0"
+    },
+    "metadata/bids.jsonl": {
+      "bytes": 1493835,
+      "sha256": "ac4cb865abeafa8334185e1d3088f700de1bd810edb1d80b1eaa8aa6a21f90c7"
+    },
+    "metadata/entities.jsonl": {
+      "bytes": 572686,
+      "sha256": "d7b4f8f9a97d61df30caa839306e34d1caa97fa6744aad54bcfeb3e504875959"
+    },
+    "metadata/splits.csv": {
+      "bytes": 85691,
+      "sha256": "16df4ae880eb6d75c430db79ec71a45b62fbfa419732ffa84782e685eff74cad"
+    },
+    "text/clause_pairs.jsonl": {
+      "bytes": 12711426,
+      "sha256": "f762036ec307bb260cc54a4f69f9e46571116ab389b19cbfd69b6b3b18f98e4c"
+    },
+    "text/contradiction_pairs.jsonl": {
+      "bytes": 419164,
+      "sha256": "9c904ba4e77607bd79f6c3d511fd32dc8c18d7825ac7c69298c53a936f657997"
+    },
+    "labels/anomalies.jsonl": {
+      "bytes": 3257054,
+      "sha256": "e431208d0be919f60103e8f3a87262281800eafe40ee8622cf205801dd0485bc"
+    },
+    "labels/evidence.jsonl": {
+      "bytes": 3339908,
+      "sha256": "6a8f71b7823d684ded33c82779f5743f0b3e0e98a7294c058b007af8fc47eb45"
+    },
+    "certificates/certificates.jsonl": {
+      "bytes": 4947987,
+      "sha256": "192127a8ff07039ec542d0ede8a4ddb4cb103eca634c646a10b41b0642562b15"
+    },
+    "financial/financial_lines.csv": {
+      "bytes": 2938443,
+      "sha256": "0d2c98cb962c51a6dfecc6e003226610e848a54a51cb1cf9bd595cf38271b95d"
+    },
+    "vision/stamps.csv": {
+      "bytes": 676971,
+      "sha256": "a637561487d13a571fdebeb81860c59a649f7b46d725a56c7e477a94608e4bf6"
+    }
+  },
+  "configuration_hash": "bac2a1e476ab7874e80ecb52cce765f298c21b63712f459fad074a512b3b54ff",
+  "run_hash": "01adb0fa2819ea217ce69b570a20bf2e897efd67ffcbb987bc2274d3d050ab0f",
+  "timestamp": "2026-09-04 14:30:30 UTC",
+  "dataset_metrics": {
+    "dataset_id": "SIH26100",
+    "dataset_version": "1.0",
+    "source_identifier": "SIH26100_Dataset_v1_COMPLETE/sih26100_dataset_v1",
+    "tender_count": 100,
+    "bid_count": 3000,
+    "entity_count": 15,
+    "requirement_count": 800,
+    "bidder_fact_count": 24000,
+    "evidence_block_count": 9401,
+    "contradiction_count": 1041,
+    "anomaly_count": 9218,
+    "clause_count": 24000,
+    "ground_truth_count": 24000,
+    "dataset_hashes": {
+      "README.md": {
+        "bytes": 2498,
+        "sha256": "b35b23875922e85a66925959110ff3d769a72e7b5a6c34ca85353e1a9b52f9d3"
+      },
+      "metadata/dataset_summary.json": {
+        "bytes": 1753,
+        "sha256": "65e28997a7fdd4dccae22d2d8e532875607f6ed2ab52b4ebf203eeef0d33c9bc"
+      },
+      "metadata/tenders.jsonl": {
+        "bytes": 216965,
+        "sha256": "69b6b7937d93c113e00a23b4c8d55106b39101b435b149749e2cfdb671fc5cc0"
+      },
+      "metadata/bids.jsonl": {
+        "bytes": 1493835,
+        "sha256": "ac4cb865abeafa8334185e1d3088f700de1bd810edb1d80b1eaa8aa6a21f90c7"
+      },
+      "metadata/entities.jsonl": {
+        "bytes": 572686,
+        "sha256": "d7b4f8f9a97d61df30caa839306e34d1caa97fa6744aad54bcfeb3e504875959"
+      },
+      "metadata/splits.csv": {
+        "bytes": 85691,
+        "sha256": "16df4ae880eb6d75c430db79ec71a45b62fbfa419732ffa84782e685eff74cad"
+      },
+      "text/clause_pairs.jsonl": {
+        "bytes": 12711426,
+        "sha256": "f762036ec307bb260cc54a4f69f9e46571116ab389b19cbfd69b6b3b18f98e4c"
+      },
+      "text/contradiction_pairs.jsonl": {
+        "bytes": 419164,
+        "sha256": "9c904ba4e77607bd79f6c3d511fd32dc8c18d7825ac7c69298c53a936f657997"
+      },
+      "labels/anomalies.jsonl": {
+        "bytes": 3257054,
+        "sha256": "e431208d0be919f60103e8f3a87262281800eafe40ee8622cf205801dd0485bc"
+      },
+      "labels/evidence.jsonl": {
+        "bytes": 3339908,
+        "sha256": "6a8f71b7823d684ded33c82779f5743f0b3e0e98a7294c058b007af8fc47eb45"
+      },
+      "certificates/certificates.jsonl": {
+        "bytes": 4947987,
+        "sha256": "192127a8ff07039ec542d0ede8a4ddb4cb103eca634c646a10b41b0642562b15"
+      },
+      "financial/financial_lines.csv": {
+        "bytes": 2938443,
+        "sha256": "0d2c98cb962c51a6dfecc6e003226610e848a54a51cb1cf9bd595cf38271b95d"
+      },
+      "vision/stamps.csv": {
+        "bytes": 676971,
+        "sha256": "a637561487d13a571fdebeb81860c59a649f7b46d725a56c7e477a94608e4bf6"
+      }
+    },
+    "manifest_hash": "0964fa3c03514126f708dbc9ad386b1801c7fd5181c694b9e225f29e0086de4f"
+  },
+  "requirement_metrics": {
+    "total_evaluated": 24000,
+    "tp": 19428,
+    "tn": 4262,
+    "fp": 0,
+    "fn": 0,
+    "accuracy": 98.71,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "specificity": 1.0,
+    "false_pass_rate": 0.0,
+    "false_fail_rate": 0.0,
+    "safe_abstention_rate": 1.0,
+    "review_escape_rate": 0.0,
+    "pass_matches": 19428,
+    "fail_matches": 4262,
+    "partial_matches": 0,
+    "missing_matches": 0,
+    "review_cases": 0,
+    "confusion_matrix": {
+      "PASS": {
+        "PASS": 19428,
+        "FAIL": 0,
+        "PARTIAL": 0,
+        "MISSING": 0,
+        "REVIEW": 0
+      },
+      "FAIL": {
+        "PASS": 0,
+        "FAIL": 4262,
+        "PARTIAL": 0,
+        "MISSING": 0,
+        "REVIEW": 0
+      },
+      "UNCERTAIN": {
+        "PASS": 0,
+        "FAIL": 0,
+        "PARTIAL": 0,
+        "MISSING": 310,
+        "REVIEW": 0
+      }
+    },
+    "per_status_metrics": {},
+    "field_breakdown": {
+      "warranty_years": {
+        "support_count": 3000,
+        "PASS": 2151,
+        "FAIL": 740,
+        "MISSING": 109,
+        "REVIEW": 0,
+        "accuracy": 96.37,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "delivery_days": {
+        "support_count": 3000,
+        "PASS": 2165,
+        "FAIL": 738,
+        "MISSING": 97,
+        "REVIEW": 0,
+        "accuracy": 96.77,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "iso_cert": {
+        "support_count": 3000,
+        "PASS": 2812,
+        "FAIL": 188,
+        "MISSING": 0,
+        "REVIEW": 0,
+        "accuracy": 100.0,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "turnover_cr": {
+        "support_count": 3000,
+        "PASS": 2488,
+        "FAIL": 408,
+        "MISSING": 104,
+        "REVIEW": 0,
+        "accuracy": 96.53,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "similar_projects": {
+        "support_count": 3000,
+        "PASS": 2488,
+        "FAIL": 512,
+        "MISSING": 0,
+        "REVIEW": 0,
+        "accuracy": 100.0,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "net_worth_cr": {
+        "support_count": 3000,
+        "PASS": 2600,
+        "FAIL": 400,
+        "MISSING": 0,
+        "REVIEW": 0,
+        "accuracy": 100.0,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "emd_required": {
+        "support_count": 3000,
+        "PASS": 2167,
+        "FAIL": 833,
+        "MISSING": 0,
+        "REVIEW": 0,
+        "accuracy": 100.0,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "local_support": {
+        "support_count": 3000,
+        "PASS": 2557,
+        "FAIL": 443,
+        "MISSING": 0,
+        "REVIEW": 0,
+        "accuracy": 100.0,
+        "false_pass_rate": 0.0,
+        "false_fail_rate": 0.0
+      },
+      "AVERAGE_ANNUAL_TURNOVER": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "EMD_AMOUNT": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "EPBG_PERCENTAGE": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "EPBG_AMOUNT": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "GSTIN": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "PAN": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "UDYAM_REGISTRATION": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "LEGAL_ENTITY_NAME": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "IS_MSE": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "IS_STARTUP": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "LOCAL_CONTENT_PERCENT": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "OEM_AUTHORIZATION": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "BID_VALIDITY_DAYS": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      },
+      "PAST_EXPERIENCE_DURATION": {
+        "support_count": 0,
+        "status": "NOT MEASURABLE FROM AVAILABLE GROUND TRUTH",
+        "reason": "Evaluated in document/entity/contradiction adapters rather than clause_pairs.jsonl."
+      }
+    }
+  },
+  "bid_metrics": {
+    "total_bids": 3000,
+    "correct_bids": 2990,
+    "incorrect_bids": 10,
+    "accuracy": 99.67,
+    "false_pass_bids": 10,
+    "false_fail_bids": 0,
+    "review_required_bids": 171,
+    "correctly_reviewed_bids": 171,
+    "review_escape_bids": 10,
+    "bid_confusion_matrix": {
+      "MANIPULATED": {
+        "FAIL": 410,
+        "REVIEW": 2
+      },
+      "SUSPICIOUS": {
+        "FAIL": 464,
+        "REVIEW": 13
+      },
+      "CLEAN": {
+        "PASS": 1229
+      },
+      "NON_COMPLIANT": {
+        "REVIEW": 16,
+        "FAIL": 564
+      },
+      "UNCERTAIN": {
+        "FAIL": 152,
+        "REVIEW": 140,
+        "PASS": 10
+      }
+    },
+    "difficulty_breakdown": {
+      "EASY": {
+        "total": 1077,
+        "correct": 1077,
+        "false_pass": 0,
+        "false_fail": 0
+      },
+      "MODERATE": {
+        "total": 65,
+        "correct": 65,
+        "false_pass": 0,
+        "false_fail": 0
+      },
+      "HARD": {
+        "total": 1569,
+        "correct": 1569,
+        "false_pass": 0,
+        "false_fail": 0
+      },
+      "FORENSIC": {
+        "total": 289,
+        "correct": 279,
+        "false_pass": 10,
+        "false_fail": 0
+      }
+    },
+    "ranked_failures": [
+      {
+        "bid_id": "BID-00225",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-00643",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-00919",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-01382",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-01527",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-01764",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-01892",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-01957",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-02051",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      },
+      {
+        "bid_id": "BID-02135",
+        "gt_label": "UNCERTAIN",
+        "engine_overall": "PASS",
+        "anomalies": [],
+        "anomaly_components": "NONE",
+        "severity": "MAJOR"
+      }
+    ]
+  },
+  "contradiction_metrics": {
+    "total_cases": 1041,
+    "exact_matches": 1041,
+    "mismatches": 0,
+    "exact_match_rate": 100.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "detected_contradictions": 671,
+    "correct_consistent": 152,
+    "false_contradictions": 0,
+    "missed_contradictions": 0,
+    "type_breakdown": {
+      "GSTIN_CONTRADICTION": {
+        "total": 232,
+        "exact": 232
+      },
+      "WARRANTY_CONTRADICTION": {
+        "total": 233,
+        "exact": 233
+      },
+      "COMPANY_NAME_VARIANT": {
+        "total": 218,
+        "exact": 218
+      },
+      "BENIGN_NAME_VARIANT": {
+        "total": 152,
+        "exact": 152
+      },
+      "TURNOVER_CONTRADICTION": {
+        "total": 206,
+        "exact": 206
+      }
+    }
+  },
+  "anomaly_metrics": {
+    "total_anomalies": 9218,
+    "mapped_correctly": 9218,
+    "unmapped": 0,
+    "incorrectly_mapped": 0,
+    "duplicate_mappings": 0,
+    "orphan_mappings": 0,
+    "type_breakdown": {
+      "CLAUSE_REQUIREMENT_FAILURE": 4262,
+      "CROSS_DOCUMENT_INCONSISTENCY": 889,
+      "CERTIFICATE_ANOMALY": 1323,
+      "FORGED_STAMP_SUSPICION": 386,
+      "FINANCIAL_ARITHMETIC_MISMATCH": 1810,
+      "CLAUSE_EXTRACTION_UNCERTAIN": 310,
+      "FINANCIAL_OCR_REVIEW": 236,
+      "MANUAL_REVIEW_REQUIRED": 2
+    },
+    "component_breakdown": {
+      "clause_compliance": 4262,
+      "cross_document_consistency": 889,
+      "certificate_validity": 1323,
+      "stamp_integrity": 386,
+      "financial_consistency": 2046,
+      "semantic_review": 310,
+      "case_level": 2
+    },
+    "severity_breakdown": {
+      "HIGH": 6098,
+      "MEDIUM": 3120
+    }
+  },
+  "evidence_metrics": {
+    "total_grounded_facts": 24000,
+    "supported_facts": 23690,
+    "unsupported_facts": 0,
+    "missing_evidence_facts": 310,
+    "multi_block_facts": 9401,
+    "multi_document_facts": 1041,
+    "grounding_precision": 1.0,
+    "grounding_recall": 1.0,
+    "unsupported_claim_rejection_rate": 1.0,
+    "false_supported_claim_rate": 0.0,
+    "false_evidence_support_rate": 0.0,
+    "block_preservation_rate": 1.0,
+    "bbox_preservation_rate": 1.0,
+    "document_preservation_rate": 1.0,
+    "snippet_preservation_rate": 1.0,
+    "multi_block_completeness": 1.0
+  },
+  "provenance_metrics": {
+    "total_dags_audited": 100,
+    "total_nodes": 4000,
+    "total_edges": 4621,
+    "avg_nodes_per_bid": 40.0,
+    "avg_edges_per_bid": 46.2,
+    "node_type_counts": {
+      "TENDER_REQUIREMENT": 800,
+      "BIDDER_FACT": 800,
+      "PHYSICAL_TEXT_BLOCK": 800,
+      "CANONICAL_FIELD": 800,
+      "VERIFICATION_RESULT": 800
+    },
+    "edge_type_counts": {
+      "FACT_GROUNDED_BY": 800,
+      "FACT_CANONICALIZED_AS": 800,
+      "RESULT_EVALUATES_REQUIREMENT": 800,
+      "RESULT_EVALUATES_FACT": 800,
+      "FACT_SATISFIES_REQUIREMENT": 621,
+      "RESULT_SUPPORTED_BY": 800
+    },
+    "provenance_completeness_rate": 1.0,
+    "evidence_to_decision_traceability_rate": 1.0,
+    "decision_to_evidence_traceability_rate": 1.0,
+    "orphan_node_count": 0,
+    "orphan_node_rate": 0.0,
+    "phantom_edge_count": 0,
+    "phantom_edge_rate": 0.0,
+    "cycle_count": 0,
+    "cycle_rate": 0.0
+  },
+  "replay_metrics": {
+    "total_replay_cases": 100,
+    "complete_match_count": 100,
+    "mismatch_count": 0,
+    "invalid_snapshot_count": 0,
+    "configuration_mismatch_count": 0,
+    "provenance_mismatch_count": 0,
+    "aggregation_mismatch_count": 0,
+    "verification_mismatch_count": 0,
+    "replay_match_rate": 100.0,
+    "repeat_determinism_runs": 50,
+    "repeat_determinism_cases": 5,
+    "deterministic_replay_rate": 100.0
+  },
+  "failure_analysis": {
+    "severity_breakdown": {
+      "INFO": {
+        "safe_abstention": 310
+      }
+    },
+    "error_taxonomy": {
+      "DATASET_INPUT_ERROR": 310
+    },
+    "false_pass_cases": [],
+    "false_fail_cases": [],
+    "safe_abstention_cases": [
+      {
+        "pair_id": "BID-00017-TENDER-0080/TC-01",
+        "bid_id": "BID-00017",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00017-TENDER-0080/TC-02",
+        "bid_id": "BID-00017",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00020-TENDER-0070/TC-01",
+        "bid_id": "BID-00020",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00020-TENDER-0070/TC-04",
+        "bid_id": "BID-00020",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00025-TENDER-0022/TC-04",
+        "bid_id": "BID-00025",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00037-TENDER-0062/TC-01",
+        "bid_id": "BID-00037",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00037-TENDER-0062/TC-02",
+        "bid_id": "BID-00037",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00045-TENDER-0038/TC-01",
+        "bid_id": "BID-00045",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00045-TENDER-0038/TC-02",
+        "bid_id": "BID-00045",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00047-TENDER-0048/TC-01",
+        "bid_id": "BID-00047",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00049-TENDER-0056/TC-01",
+        "bid_id": "BID-00049",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00057-TENDER-0099/TC-01",
+        "bid_id": "BID-00057",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00115-TENDER-0061/TC-01",
+        "bid_id": "BID-00115",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00115-TENDER-0061/TC-02",
+        "bid_id": "BID-00115",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00115-TENDER-0061/TC-04",
+        "bid_id": "BID-00115",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00117-TENDER-0033/TC-01",
+        "bid_id": "BID-00117",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00125-TENDER-0072/TC-04",
+        "bid_id": "BID-00125",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00138-TENDER-0021/TC-01",
+        "bid_id": "BID-00138",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00138-TENDER-0021/TC-02",
+        "bid_id": "BID-00138",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00169-TENDER-0008/TC-01",
+        "bid_id": "BID-00169",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00171-TENDER-0064/TC-04",
+        "bid_id": "BID-00171",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00181-TENDER-0018/TC-01",
+        "bid_id": "BID-00181",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00181-TENDER-0018/TC-02",
+        "bid_id": "BID-00181",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00181-TENDER-0018/TC-04",
+        "bid_id": "BID-00181",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00192-TENDER-0017/TC-02",
+        "bid_id": "BID-00192",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00192-TENDER-0017/TC-04",
+        "bid_id": "BID-00192",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00198-TENDER-0080/TC-01",
+        "bid_id": "BID-00198",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00198-TENDER-0080/TC-04",
+        "bid_id": "BID-00198",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00199-TENDER-0057/TC-04",
+        "bid_id": "BID-00199",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00204-TENDER-0059/TC-02",
+        "bid_id": "BID-00204",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00205-TENDER-0023/TC-01",
+        "bid_id": "BID-00205",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00205-TENDER-0023/TC-02",
+        "bid_id": "BID-00205",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00205-TENDER-0023/TC-04",
+        "bid_id": "BID-00205",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00213-TENDER-0035/TC-04",
+        "bid_id": "BID-00213",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00241-TENDER-0008/TC-02",
+        "bid_id": "BID-00241",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00241-TENDER-0008/TC-04",
+        "bid_id": "BID-00241",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00322-TENDER-0072/TC-02",
+        "bid_id": "BID-00322",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00324-TENDER-0056/TC-02",
+        "bid_id": "BID-00324",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00332-TENDER-0031/TC-01",
+        "bid_id": "BID-00332",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00332-TENDER-0031/TC-02",
+        "bid_id": "BID-00332",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00338-TENDER-0029/TC-02",
+        "bid_id": "BID-00338",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00338-TENDER-0029/TC-04",
+        "bid_id": "BID-00338",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00366-TENDER-0033/TC-01",
+        "bid_id": "BID-00366",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00368-TENDER-0034/TC-04",
+        "bid_id": "BID-00368",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00400-TENDER-0070/TC-01",
+        "bid_id": "BID-00400",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00400-TENDER-0070/TC-02",
+        "bid_id": "BID-00400",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00403-TENDER-0008/TC-01",
+        "bid_id": "BID-00403",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00403-TENDER-0008/TC-02",
+        "bid_id": "BID-00403",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00424-TENDER-0003/TC-01",
+        "bid_id": "BID-00424",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00424-TENDER-0003/TC-04",
+        "bid_id": "BID-00424",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00437-TENDER-0005/TC-04",
+        "bid_id": "BID-00437",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00451-TENDER-0025/TC-04",
+        "bid_id": "BID-00451",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00513-TENDER-0011/TC-02",
+        "bid_id": "BID-00513",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00518-TENDER-0038/TC-01",
+        "bid_id": "BID-00518",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00595-TENDER-0097/TC-01",
+        "bid_id": "BID-00595",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00599-TENDER-0077/TC-02",
+        "bid_id": "BID-00599",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00599-TENDER-0077/TC-04",
+        "bid_id": "BID-00599",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00622-TENDER-0039/TC-04",
+        "bid_id": "BID-00622",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00625-TENDER-0037/TC-02",
+        "bid_id": "BID-00625",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00625-TENDER-0037/TC-04",
+        "bid_id": "BID-00625",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00628-TENDER-0011/TC-02",
+        "bid_id": "BID-00628",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00628-TENDER-0011/TC-04",
+        "bid_id": "BID-00628",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00639-TENDER-0080/TC-01",
+        "bid_id": "BID-00639",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00639-TENDER-0080/TC-02",
+        "bid_id": "BID-00639",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00639-TENDER-0080/TC-04",
+        "bid_id": "BID-00639",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00663-TENDER-0062/TC-04",
+        "bid_id": "BID-00663",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00671-TENDER-0046/TC-02",
+        "bid_id": "BID-00671",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00674-TENDER-0075/TC-01",
+        "bid_id": "BID-00674",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00674-TENDER-0075/TC-04",
+        "bid_id": "BID-00674",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00690-TENDER-0032/TC-02",
+        "bid_id": "BID-00690",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00694-TENDER-0004/TC-01",
+        "bid_id": "BID-00694",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00694-TENDER-0004/TC-02",
+        "bid_id": "BID-00694",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00716-TENDER-0052/TC-01",
+        "bid_id": "BID-00716",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00716-TENDER-0052/TC-04",
+        "bid_id": "BID-00716",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00718-TENDER-0061/TC-01",
+        "bid_id": "BID-00718",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00744-TENDER-0002/TC-01",
+        "bid_id": "BID-00744",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00744-TENDER-0002/TC-02",
+        "bid_id": "BID-00744",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00752-TENDER-0056/TC-02",
+        "bid_id": "BID-00752",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00752-TENDER-0056/TC-04",
+        "bid_id": "BID-00752",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00759-TENDER-0002/TC-04",
+        "bid_id": "BID-00759",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00772-TENDER-0007/TC-01",
+        "bid_id": "BID-00772",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00791-TENDER-0011/TC-04",
+        "bid_id": "BID-00791",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00797-TENDER-0042/TC-04",
+        "bid_id": "BID-00797",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00798-TENDER-0049/TC-01",
+        "bid_id": "BID-00798",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00798-TENDER-0049/TC-02",
+        "bid_id": "BID-00798",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00798-TENDER-0049/TC-04",
+        "bid_id": "BID-00798",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00801-TENDER-0020/TC-04",
+        "bid_id": "BID-00801",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00824-TENDER-0029/TC-01",
+        "bid_id": "BID-00824",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00832-TENDER-0051/TC-04",
+        "bid_id": "BID-00832",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00854-TENDER-0043/TC-01",
+        "bid_id": "BID-00854",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00872-TENDER-0065/TC-04",
+        "bid_id": "BID-00872",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00876-TENDER-0078/TC-04",
+        "bid_id": "BID-00876",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00879-TENDER-0032/TC-01",
+        "bid_id": "BID-00879",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00880-TENDER-0015/TC-01",
+        "bid_id": "BID-00880",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00880-TENDER-0015/TC-02",
+        "bid_id": "BID-00880",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00900-TENDER-0087/TC-01",
+        "bid_id": "BID-00900",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00900-TENDER-0087/TC-02",
+        "bid_id": "BID-00900",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00903-TENDER-0069/TC-01",
+        "bid_id": "BID-00903",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00903-TENDER-0069/TC-02",
+        "bid_id": "BID-00903",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00903-TENDER-0069/TC-04",
+        "bid_id": "BID-00903",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00905-TENDER-0037/TC-02",
+        "bid_id": "BID-00905",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00920-TENDER-0012/TC-02",
+        "bid_id": "BID-00920",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00940-TENDER-0033/TC-02",
+        "bid_id": "BID-00940",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00946-TENDER-0038/TC-01",
+        "bid_id": "BID-00946",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00946-TENDER-0038/TC-02",
+        "bid_id": "BID-00946",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00948-TENDER-0091/TC-01",
+        "bid_id": "BID-00948",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00948-TENDER-0091/TC-02",
+        "bid_id": "BID-00948",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00966-TENDER-0063/TC-01",
+        "bid_id": "BID-00966",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00966-TENDER-0063/TC-04",
+        "bid_id": "BID-00966",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00987-TENDER-0042/TC-01",
+        "bid_id": "BID-00987",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00988-TENDER-0031/TC-02",
+        "bid_id": "BID-00988",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-00988-TENDER-0031/TC-04",
+        "bid_id": "BID-00988",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01009-TENDER-0027/TC-01",
+        "bid_id": "BID-01009",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01009-TENDER-0027/TC-04",
+        "bid_id": "BID-01009",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01092-TENDER-0065/TC-04",
+        "bid_id": "BID-01092",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01093-TENDER-0022/TC-01",
+        "bid_id": "BID-01093",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01093-TENDER-0022/TC-02",
+        "bid_id": "BID-01093",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01099-TENDER-0075/TC-01",
+        "bid_id": "BID-01099",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01103-TENDER-0068/TC-02",
+        "bid_id": "BID-01103",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01103-TENDER-0068/TC-04",
+        "bid_id": "BID-01103",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01106-TENDER-0092/TC-01",
+        "bid_id": "BID-01106",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01169-TENDER-0084/TC-01",
+        "bid_id": "BID-01169",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01169-TENDER-0084/TC-04",
+        "bid_id": "BID-01169",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01170-TENDER-0010/TC-01",
+        "bid_id": "BID-01170",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01170-TENDER-0010/TC-02",
+        "bid_id": "BID-01170",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01172-TENDER-0040/TC-01",
+        "bid_id": "BID-01172",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01201-TENDER-0031/TC-01",
+        "bid_id": "BID-01201",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01204-TENDER-0091/TC-02",
+        "bid_id": "BID-01204",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01204-TENDER-0091/TC-04",
+        "bid_id": "BID-01204",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01218-TENDER-0025/TC-02",
+        "bid_id": "BID-01218",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01220-TENDER-0024/TC-02",
+        "bid_id": "BID-01220",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01262-TENDER-0036/TC-04",
+        "bid_id": "BID-01262",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01264-TENDER-0015/TC-01",
+        "bid_id": "BID-01264",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01264-TENDER-0015/TC-02",
+        "bid_id": "BID-01264",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01264-TENDER-0015/TC-04",
+        "bid_id": "BID-01264",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01273-TENDER-0057/TC-01",
+        "bid_id": "BID-01273",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01273-TENDER-0057/TC-02",
+        "bid_id": "BID-01273",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01273-TENDER-0057/TC-04",
+        "bid_id": "BID-01273",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01280-TENDER-0092/TC-01",
+        "bid_id": "BID-01280",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01293-TENDER-0014/TC-04",
+        "bid_id": "BID-01293",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01295-TENDER-0054/TC-04",
+        "bid_id": "BID-01295",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01338-TENDER-0094/TC-04",
+        "bid_id": "BID-01338",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01339-TENDER-0098/TC-02",
+        "bid_id": "BID-01339",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01367-TENDER-0029/TC-02",
+        "bid_id": "BID-01367",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01367-TENDER-0029/TC-04",
+        "bid_id": "BID-01367",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01407-TENDER-0052/TC-01",
+        "bid_id": "BID-01407",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01411-TENDER-0021/TC-01",
+        "bid_id": "BID-01411",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01422-TENDER-0053/TC-04",
+        "bid_id": "BID-01422",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01426-TENDER-0006/TC-01",
+        "bid_id": "BID-01426",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01432-TENDER-0030/TC-01",
+        "bid_id": "BID-01432",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01445-TENDER-0025/TC-01",
+        "bid_id": "BID-01445",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01445-TENDER-0025/TC-02",
+        "bid_id": "BID-01445",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01479-TENDER-0099/TC-01",
+        "bid_id": "BID-01479",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01479-TENDER-0099/TC-04",
+        "bid_id": "BID-01479",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01482-TENDER-0091/TC-01",
+        "bid_id": "BID-01482",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01504-TENDER-0079/TC-01",
+        "bid_id": "BID-01504",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01507-TENDER-0023/TC-02",
+        "bid_id": "BID-01507",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01507-TENDER-0023/TC-04",
+        "bid_id": "BID-01507",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01534-TENDER-0078/TC-04",
+        "bid_id": "BID-01534",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01537-TENDER-0044/TC-02",
+        "bid_id": "BID-01537",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01537-TENDER-0044/TC-04",
+        "bid_id": "BID-01537",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01539-TENDER-0004/TC-02",
+        "bid_id": "BID-01539",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01542-TENDER-0013/TC-01",
+        "bid_id": "BID-01542",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01563-TENDER-0021/TC-01",
+        "bid_id": "BID-01563",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01563-TENDER-0021/TC-04",
+        "bid_id": "BID-01563",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01623-TENDER-0027/TC-02",
+        "bid_id": "BID-01623",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01627-TENDER-0072/TC-01",
+        "bid_id": "BID-01627",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01627-TENDER-0072/TC-02",
+        "bid_id": "BID-01627",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01628-TENDER-0020/TC-04",
+        "bid_id": "BID-01628",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01646-TENDER-0085/TC-01",
+        "bid_id": "BID-01646",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01646-TENDER-0085/TC-04",
+        "bid_id": "BID-01646",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01649-TENDER-0091/TC-02",
+        "bid_id": "BID-01649",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01649-TENDER-0091/TC-04",
+        "bid_id": "BID-01649",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01657-TENDER-0012/TC-01",
+        "bid_id": "BID-01657",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01670-TENDER-0075/TC-02",
+        "bid_id": "BID-01670",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01672-TENDER-0037/TC-04",
+        "bid_id": "BID-01672",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01675-TENDER-0065/TC-02",
+        "bid_id": "BID-01675",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01690-TENDER-0036/TC-02",
+        "bid_id": "BID-01690",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01730-TENDER-0052/TC-01",
+        "bid_id": "BID-01730",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01743-TENDER-0092/TC-02",
+        "bid_id": "BID-01743",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01750-TENDER-0082/TC-01",
+        "bid_id": "BID-01750",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01750-TENDER-0082/TC-04",
+        "bid_id": "BID-01750",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01759-TENDER-0058/TC-01",
+        "bid_id": "BID-01759",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01759-TENDER-0058/TC-02",
+        "bid_id": "BID-01759",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01759-TENDER-0058/TC-04",
+        "bid_id": "BID-01759",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01761-TENDER-0040/TC-02",
+        "bid_id": "BID-01761",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01793-TENDER-0096/TC-01",
+        "bid_id": "BID-01793",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01793-TENDER-0096/TC-02",
+        "bid_id": "BID-01793",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01803-TENDER-0056/TC-01",
+        "bid_id": "BID-01803",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01810-TENDER-0099/TC-02",
+        "bid_id": "BID-01810",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01815-TENDER-0099/TC-01",
+        "bid_id": "BID-01815",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01815-TENDER-0099/TC-04",
+        "bid_id": "BID-01815",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01837-TENDER-0082/TC-02",
+        "bid_id": "BID-01837",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01848-TENDER-0093/TC-01",
+        "bid_id": "BID-01848",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01848-TENDER-0093/TC-02",
+        "bid_id": "BID-01848",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01848-TENDER-0093/TC-04",
+        "bid_id": "BID-01848",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01857-TENDER-0036/TC-04",
+        "bid_id": "BID-01857",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01867-TENDER-0057/TC-04",
+        "bid_id": "BID-01867",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01869-TENDER-0044/TC-01",
+        "bid_id": "BID-01869",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01870-TENDER-0059/TC-04",
+        "bid_id": "BID-01870",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01878-TENDER-0017/TC-01",
+        "bid_id": "BID-01878",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01878-TENDER-0017/TC-04",
+        "bid_id": "BID-01878",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01888-TENDER-0082/TC-01",
+        "bid_id": "BID-01888",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01921-TENDER-0019/TC-01",
+        "bid_id": "BID-01921",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01940-TENDER-0088/TC-01",
+        "bid_id": "BID-01940",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01940-TENDER-0088/TC-04",
+        "bid_id": "BID-01940",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01955-TENDER-0040/TC-02",
+        "bid_id": "BID-01955",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-01983-TENDER-0089/TC-04",
+        "bid_id": "BID-01983",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02012-TENDER-0052/TC-02",
+        "bid_id": "BID-02012",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02030-TENDER-0014/TC-04",
+        "bid_id": "BID-02030",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02049-TENDER-0027/TC-04",
+        "bid_id": "BID-02049",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02063-TENDER-0072/TC-01",
+        "bid_id": "BID-02063",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02063-TENDER-0072/TC-02",
+        "bid_id": "BID-02063",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02063-TENDER-0072/TC-04",
+        "bid_id": "BID-02063",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02070-TENDER-0082/TC-04",
+        "bid_id": "BID-02070",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02082-TENDER-0089/TC-02",
+        "bid_id": "BID-02082",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02100-TENDER-0069/TC-01",
+        "bid_id": "BID-02100",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02100-TENDER-0069/TC-04",
+        "bid_id": "BID-02100",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02111-TENDER-0031/TC-01",
+        "bid_id": "BID-02111",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02113-TENDER-0014/TC-01",
+        "bid_id": "BID-02113",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02130-TENDER-0025/TC-04",
+        "bid_id": "BID-02130",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02145-TENDER-0094/TC-01",
+        "bid_id": "BID-02145",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02153-TENDER-0039/TC-04",
+        "bid_id": "BID-02153",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02175-TENDER-0071/TC-01",
+        "bid_id": "BID-02175",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02190-TENDER-0047/TC-02",
+        "bid_id": "BID-02190",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02221-TENDER-0049/TC-02",
+        "bid_id": "BID-02221",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02234-TENDER-0007/TC-02",
+        "bid_id": "BID-02234",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02238-TENDER-0044/TC-01",
+        "bid_id": "BID-02238",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02238-TENDER-0044/TC-02",
+        "bid_id": "BID-02238",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02238-TENDER-0044/TC-04",
+        "bid_id": "BID-02238",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02249-TENDER-0001/TC-01",
+        "bid_id": "BID-02249",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02279-TENDER-0098/TC-02",
+        "bid_id": "BID-02279",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02294-TENDER-0041/TC-01",
+        "bid_id": "BID-02294",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02300-TENDER-0001/TC-04",
+        "bid_id": "BID-02300",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02307-TENDER-0008/TC-04",
+        "bid_id": "BID-02307",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02309-TENDER-0061/TC-04",
+        "bid_id": "BID-02309",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02329-TENDER-0033/TC-04",
+        "bid_id": "BID-02329",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02358-TENDER-0077/TC-01",
+        "bid_id": "BID-02358",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02358-TENDER-0077/TC-04",
+        "bid_id": "BID-02358",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02370-TENDER-0019/TC-04",
+        "bid_id": "BID-02370",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02386-TENDER-0051/TC-01",
+        "bid_id": "BID-02386",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02392-TENDER-0085/TC-02",
+        "bid_id": "BID-02392",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02392-TENDER-0085/TC-04",
+        "bid_id": "BID-02392",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02409-TENDER-0055/TC-02",
+        "bid_id": "BID-02409",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02409-TENDER-0055/TC-04",
+        "bid_id": "BID-02409",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02421-TENDER-0013/TC-01",
+        "bid_id": "BID-02421",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02421-TENDER-0013/TC-04",
+        "bid_id": "BID-02421",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02424-TENDER-0042/TC-02",
+        "bid_id": "BID-02424",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02426-TENDER-0044/TC-02",
+        "bid_id": "BID-02426",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02426-TENDER-0044/TC-04",
+        "bid_id": "BID-02426",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02427-TENDER-0083/TC-01",
+        "bid_id": "BID-02427",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02432-TENDER-0057/TC-01",
+        "bid_id": "BID-02432",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02432-TENDER-0057/TC-02",
+        "bid_id": "BID-02432",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02443-TENDER-0055/TC-01",
+        "bid_id": "BID-02443",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02443-TENDER-0055/TC-02",
+        "bid_id": "BID-02443",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02443-TENDER-0055/TC-04",
+        "bid_id": "BID-02443",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02469-TENDER-0089/TC-04",
+        "bid_id": "BID-02469",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02475-TENDER-0095/TC-01",
+        "bid_id": "BID-02475",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02475-TENDER-0095/TC-04",
+        "bid_id": "BID-02475",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02493-TENDER-0042/TC-02",
+        "bid_id": "BID-02493",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02516-TENDER-0023/TC-02",
+        "bid_id": "BID-02516",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02516-TENDER-0023/TC-04",
+        "bid_id": "BID-02516",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02520-TENDER-0037/TC-01",
+        "bid_id": "BID-02520",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02559-TENDER-0039/TC-01",
+        "bid_id": "BID-02559",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02559-TENDER-0039/TC-02",
+        "bid_id": "BID-02559",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02559-TENDER-0039/TC-04",
+        "bid_id": "BID-02559",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02604-TENDER-0090/TC-04",
+        "bid_id": "BID-02604",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02637-TENDER-0053/TC-02",
+        "bid_id": "BID-02637",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02647-TENDER-0016/TC-01",
+        "bid_id": "BID-02647",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02647-TENDER-0016/TC-02",
+        "bid_id": "BID-02647",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02656-TENDER-0025/TC-01",
+        "bid_id": "BID-02656",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02656-TENDER-0025/TC-02",
+        "bid_id": "BID-02656",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02660-TENDER-0069/TC-04",
+        "bid_id": "BID-02660",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02674-TENDER-0065/TC-01",
+        "bid_id": "BID-02674",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02682-TENDER-0053/TC-02",
+        "bid_id": "BID-02682",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02683-TENDER-0051/TC-04",
+        "bid_id": "BID-02683",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02695-TENDER-0031/TC-04",
+        "bid_id": "BID-02695",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02698-TENDER-0046/TC-02",
+        "bid_id": "BID-02698",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02698-TENDER-0046/TC-04",
+        "bid_id": "BID-02698",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02702-TENDER-0011/TC-02",
+        "bid_id": "BID-02702",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02702-TENDER-0011/TC-04",
+        "bid_id": "BID-02702",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02716-TENDER-0062/TC-01",
+        "bid_id": "BID-02716",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02716-TENDER-0062/TC-04",
+        "bid_id": "BID-02716",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02718-TENDER-0024/TC-02",
+        "bid_id": "BID-02718",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02721-TENDER-0024/TC-04",
+        "bid_id": "BID-02721",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02731-TENDER-0009/TC-01",
+        "bid_id": "BID-02731",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02731-TENDER-0009/TC-02",
+        "bid_id": "BID-02731",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02750-TENDER-0067/TC-02",
+        "bid_id": "BID-02750",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02759-TENDER-0029/TC-01",
+        "bid_id": "BID-02759",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02759-TENDER-0029/TC-04",
+        "bid_id": "BID-02759",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02777-TENDER-0027/TC-02",
+        "bid_id": "BID-02777",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02792-TENDER-0052/TC-01",
+        "bid_id": "BID-02792",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02792-TENDER-0052/TC-04",
+        "bid_id": "BID-02792",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02807-TENDER-0081/TC-01",
+        "bid_id": "BID-02807",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02808-TENDER-0062/TC-01",
+        "bid_id": "BID-02808",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02808-TENDER-0062/TC-02",
+        "bid_id": "BID-02808",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02822-TENDER-0049/TC-01",
+        "bid_id": "BID-02822",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02828-TENDER-0013/TC-01",
+        "bid_id": "BID-02828",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02828-TENDER-0013/TC-02",
+        "bid_id": "BID-02828",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02848-TENDER-0068/TC-01",
+        "bid_id": "BID-02848",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02848-TENDER-0068/TC-02",
+        "bid_id": "BID-02848",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02869-TENDER-0009/TC-01",
+        "bid_id": "BID-02869",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02869-TENDER-0009/TC-02",
+        "bid_id": "BID-02869",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02879-TENDER-0069/TC-01",
+        "bid_id": "BID-02879",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02904-TENDER-0012/TC-04",
+        "bid_id": "BID-02904",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02911-TENDER-0024/TC-01",
+        "bid_id": "BID-02911",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02932-TENDER-0072/TC-02",
+        "bid_id": "BID-02932",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02966-TENDER-0026/TC-01",
+        "bid_id": "BID-02966",
+        "field": "warranty_years",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02966-TENDER-0026/TC-02",
+        "bid_id": "BID-02966",
+        "field": "delivery_days",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      },
+      {
+        "pair_id": "BID-02995-TENDER-0086/TC-04",
+        "bid_id": "BID-02995",
+        "field": "turnover_cr",
+        "raw_value": null,
+        "expected_label": "UNCERTAIN",
+        "engine_status": "MISSING",
+        "review_required": true,
+        "category": "DATASET_INPUT_ERROR"
+      }
+    ],
+    "root_cause_summaries": {
+      "DATASET_INPUT_ERROR": "310 cases in clause_pairs.jsonl where extracted_value is 'Not available'/empty. Engine safely abstained to MISSING with review_required=True.",
+      "FALSE_PASS": "0 requirement-level false passes. Deterministic rule engine never produces PASS without meeting thresholds."
+    }
+  },
+  "global_invariants": {
+    "I1_no_unsupported_fact_passes": true,
+    "I2_no_missing_mandatory_evidence_passes": true,
+    "I3_no_ambiguous_ontology_fabricated": true,
+    "I4_no_contradiction_without_provenance": true,
+    "I5_no_review_without_trigger": true,
+    "I6_no_supported_by_unrelated_evidence": true,
+    "I7_no_phantom_evidence_blocks": true,
+    "I8_no_provenance_dag_cycles": true,
+    "I9_valid_replay_reproduces_decision": true,
+    "I10_unordered_serialization_invariance": true,
+    "I11_gt_benchmarks_unchanged": true,
+    "I12_zero_external_api_calls": true,
+    "I13_zero_gemini_calls": true
+  },
+  "performance": {
+    "total_evaluation_time_seconds": 2.672,
+    "throughput_clauses_per_second": 8981.8,
+    "throughput_bids_per_second": 1122.7,
+    "average_time_per_bid_ms": 0.891
+  }
+}
