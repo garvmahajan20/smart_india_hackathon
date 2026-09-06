@@ -176,6 +176,8 @@ class VerificationOrchestrator:
             government_responses=gov_responses,
             grounding_warnings=grounding_warnings,
             extraction_metadata=extraction_meta,
+            requirements=requirements,
+            facts=all_facts,
         )
 
         # 8. Compile Verification Dossier
@@ -294,6 +296,10 @@ class VerificationOrchestrator:
                 "extraction_mode": self.mode.value if hasattr(self.mode, 'value') else str(self.mode),
             },
             provenance_graph=dag.to_dict(),
+            compliance_score=aggregated.compliance_score_breakdown,
+            risk_assessment=aggregated.risk_assessment,
+            recommendation=aggregated.recommendation,
+            pending_requirements=aggregated.pending_requirements,
         )
 
     def _save_to_disk(self, aggregated: AggregatedVerification, dossier: VerificationDossier) -> None:

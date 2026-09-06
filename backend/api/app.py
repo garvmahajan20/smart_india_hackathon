@@ -42,6 +42,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from .digilocker_router import router as digilocker_router
+app.include_router(digilocker_router)
+
+from .pan_router import router as pan_router
+app.include_router(pan_router)
+
+from .udyam_router import router as udyam_router
+app.include_router(udyam_router)
+
+from .epfo_router import router as epfo_router
+app.include_router(epfo_router)
+
+from .dpiit_router import router as dpiit_router
+app.include_router(dpiit_router)
+
+from .esic_router import router as esic_router
+app.include_router(esic_router)
+
 # Global Orchestrator Instances (cached/mock by default to conserve quota)
 _orchestrator = VerificationOrchestrator(mode=LLMMode.MOCK)
 

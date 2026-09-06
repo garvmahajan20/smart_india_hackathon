@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 
@@ -41,6 +41,12 @@ class AggregatedVerificationResponse(BaseModel):
     generated_at: str
     deterministic_run_id: str
     processing_metadata: Dict[str, Any] = {}
+    compliance_score: float = 0.0
+    compliance_score_breakdown: Dict[str, Any] = {}
+    risk_level: str = "LOW"
+    risk_assessment: Dict[str, Any] = {}
+    recommendation: Dict[str, Any] = {}
+    pending_requirements: List[Dict[str, Any]] = []
 
 class VerificationDossierResponse(BaseModel):
     tender: Dict[str, Any]
@@ -53,6 +59,11 @@ class VerificationDossierResponse(BaseModel):
     anomalies: List[Dict[str, Any]]
     human_review_items: List[Dict[str, Any]]
     audit_metadata: Dict[str, Any]
+    provenance_graph: Optional[Dict[str, Any]] = None
+    compliance_score: Optional[Dict[str, Any]] = None
+    risk_assessment: Optional[Dict[str, Any]] = None
+    recommendation: Optional[Dict[str, Any]] = None
+    pending_requirements: List[Dict[str, Any]] = []
 
 class ErrorResponse(BaseModel):
     error: str

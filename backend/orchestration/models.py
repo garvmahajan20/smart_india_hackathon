@@ -79,6 +79,12 @@ class AggregatedVerification:
     generated_at: str = dc.field(default_factory=lambda: time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
     deterministic_run_id: str = ""
     processing_metadata: Dict[str, Any] = dc.field(default_factory=dict)
+    compliance_score: float = 0.0
+    compliance_score_breakdown: Dict[str, Any] = dc.field(default_factory=dict)
+    risk_level: str = "LOW"
+    risk_assessment: Dict[str, Any] = dc.field(default_factory=dict)
+    recommendation: Dict[str, Any] = dc.field(default_factory=dict)
+    pending_requirements: List[Dict[str, Any]] = dc.field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -100,6 +106,10 @@ class VerificationDossier:
     human_review_items: List[Dict[str, Any]]
     audit_metadata: Dict[str, Any]
     provenance_graph: Optional[Dict[str, Any]] = None
+    compliance_score: Optional[Dict[str, Any]] = None
+    risk_assessment: Optional[Dict[str, Any]] = None
+    recommendation: Optional[Dict[str, Any]] = None
+    pending_requirements: List[Dict[str, Any]] = dc.field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -107,3 +117,4 @@ class VerificationDossier:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "VerificationDossier":
         return cls(**data)
+

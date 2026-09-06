@@ -569,6 +569,15 @@ class ProvenanceDAGBuilder:
                 ))
             return node_id
 
+        def _to_ev_dict(ev: Any) -> Dict[str, Any]:
+            if isinstance(ev, dict):
+                return ev
+            if hasattr(ev, "to_dict") and callable(ev.to_dict):
+                return ev.to_dict()
+            if hasattr(ev, "__dict__"):
+                return ev.__dict__
+            return {}
+
         # 3. TENDER REQUIREMENTS & THEIR EVIDENCE
         req_node_ids: Dict[str, str] = {}
         for req in requirements:
@@ -593,7 +602,8 @@ class ProvenanceDAGBuilder:
 
             # Requirement physical evidence blocks
             if req.evidence:
-                for idx, ev in enumerate(req.evidence):
+                for idx, ev_raw in enumerate(req.evidence):
+                    ev = _to_ev_dict(ev_raw)
                     p = ev.get("page", req.source_page or 1)
                     bb = ev.get("bbox")
                     snip = ev.get("snippet", req.description)
@@ -644,7 +654,8 @@ class ProvenanceDAGBuilder:
             # Multi-Block Physical Evidence Preservation
             # Phase 10B.1 explicit rule: every block in f.evidence must be a distinct node!
             if getattr(f, "evidence", None) and len(f.evidence) > 0:
-                for idx, ev in enumerate(f.evidence):
+                for idx, ev_raw in enumerate(f.evidence):
+                    ev = _to_ev_dict(ev_raw)
                     p = ev.get("page", f.page)
                     bb = ev.get("bbox")
                     snip = ev.get("snippet", f.raw_text_snippet or "")
@@ -755,7 +766,8 @@ class ProvenanceDAGBuilder:
 
             # Link Result -> Physical Evidence Blocks
             if res.evidence:
-                for idx, ev in enumerate(res.evidence):
+                for idx, ev_raw in enumerate(res.evidence):
+                    ev = _to_ev_dict(ev_raw)
                     p = ev.get("page", 1)
                     bb = ev.get("bbox")
                     snip = ev.get("snippet", "")

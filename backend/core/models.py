@@ -265,6 +265,7 @@ class VerificationResult:
     precedence_chain: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
+        ev_list = [e.to_dict() if hasattr(e, "to_dict") else e for e in self.evidence]
         d = {
             "verification_id": self.verification_id,
             "requirement_id": self.requirement_id,
@@ -275,7 +276,7 @@ class VerificationResult:
             "actual": self.actual,
             "operator_used": self.operator_used,
             "reason": self.reason,
-            "evidence": self.evidence,
+            "evidence": ev_list,
             "requires_human_review": self.requires_human_review,
         }
         if self.fact_id is not None:

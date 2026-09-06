@@ -3,7 +3,11 @@ import hashlib
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from backend.core.models import VerificationResult
+from backend.core.models import TenderRequirement, VerificationResult
+from backend.core.pending_requirements import PendingRequirementExtractor
+from backend.core.recommendation_engine import AIRecommendationEngine
+from backend.core.risk_engine import DeterministicRiskEngine
+from backend.core.scoring import ComplianceScoringEngine
 from backend.verification.models import AdapterResponse, IntegrityFinding, VerificationStatus
 from .models import (
     AggregatedVerification,
@@ -32,6 +36,9 @@ class VerificationAggregator:
         government_responses: List[AdapterResponse],
         grounding_warnings: Optional[List[str]] = None,
         extraction_metadata: Optional[Dict[str, Any]] = None,
+        requirements: Optional[List[TenderRequirement]] = None,
+        facts: Optional[List[Any]] = None,
+        tender_metadata: Optional[Dict[str, Any]] = None,
     ) -> AggregatedVerification:
         """
         Executes deterministic aggregation logic over all verification signals.
@@ -222,6 +229,59 @@ class VerificationAggregator:
         review_required = (overall_status == OverallStatus.REVIEW.value) or (len(human_review_items) > 0)
         anomaly_count = contradiction_count + integrity_review_count + (1 if is_debarred else 0)
 
+        # 7. Synthesize Effective Requirements if not explicitly provided
+        effective_reqs = requirements or [
+            TenderRequirement(
+                requirement_id=r.requirement_id,
+                tender_id=tender_id,
+                category="COMPLIANCE",
+                description=f"Clause {r.requirement_id}",
+                operator=r.operator_used or "==",
+                mandatory=(r.severity in ("CRITICAL", "MAJOR")),
+            )
+            for r in compliance_results
+        ]
+
+        # 8. Deterministic Scoring Engine (Phase 6)
+        score_breakdown = ComplianceScoringEngine.calculate_score(
+            requirements=effective_reqs,
+            compliance_results=compliance_results,
+            integrity_findings=integrity_findings,
+            is_debarred=is_debarred,
+            facts=facts,
+            tender_metadata=tender_metadata,
+        )
+
+        # 9. Deterministic Risk Engine (Phase 7)
+        risk_assessment = DeterministicRiskEngine.assess_risk(
+            compliance_results=compliance_results,
+            integrity_findings=integrity_findings,
+            government_responses=government_responses,
+            grounding_warnings=grounding_warnings,
+            is_debarred=is_debarred,
+            debarment_reason=debarment_reason if is_debarred else None,
+        )
+
+        # 10. Structured Pending Requirements Extraction (Phase 4)
+        pending_items = PendingRequirementExtractor.extract_pending_requirements(
+            requirements=effective_reqs,
+            compliance_results=compliance_results,
+            facts=facts or [],
+            government_responses=government_responses,
+            tender_metadata=tender_metadata,
+        )
+
+        # 11. AI Recommendation Engine (Phases 8 & 9)
+        ai_recommendation = AIRecommendationEngine.generate_recommendation(
+            compliance_score=score_breakdown,
+            risk_assessment=risk_assessment,
+            compliance_results=compliance_results,
+            pending_requirements=pending_items,
+            integrity_findings=integrity_findings,
+            government_responses=government_responses,
+            is_debarred=is_debarred,
+        )
+
         return AggregatedVerification(
             verification_id=verification_id,
             tender_id=tender_id,
@@ -248,5 +308,12 @@ class VerificationAggregator:
                 "government_checks_run": len(government_responses),
                 "extraction_mode": extraction_metadata.get("mode", "MOCK"),
                 "active_model": extraction_metadata.get("model", "gemini-3.8-flash"),
-            }
+            },
+            compliance_score=score_breakdown.final_score,
+            compliance_score_breakdown=score_breakdown.to_dict(),
+            risk_level=risk_assessment.level.value,
+            risk_assessment=risk_assessment.to_dict(),
+            recommendation=ai_recommendation.to_dict(),
+            pending_requirements=[p.to_dict() for p in pending_items],
         )
+
