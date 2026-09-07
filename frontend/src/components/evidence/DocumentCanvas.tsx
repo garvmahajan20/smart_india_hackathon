@@ -18,7 +18,9 @@ interface DocumentCanvasProps {
   bidId: string;
   textBlocks: PhysicalTextBlock[];
   selectedClauseId: string | null;
+  selectedBlockId?: string | null;
   onSelectClause: (clauseId: string) => void;
+  onSelectBlock?: (blockId: string) => void;
   onHoverEvidence: (evidence: EvidenceData | null, pos?: { x: number; y: number }) => void;
 }
 
@@ -27,7 +29,9 @@ export const DocumentCanvas: React.FC<DocumentCanvasProps> = ({
   bidId,
   textBlocks,
   selectedClauseId,
+  selectedBlockId,
   onSelectClause,
+  onSelectBlock,
   onHoverEvidence,
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -35,17 +39,22 @@ export const DocumentCanvas: React.FC<DocumentCanvasProps> = ({
 
   const totalPages = Math.max(1, ...textBlocks.map((b) => b.page));
 
-  // Automatically switch page when active clause changes
+  // Automatically switch page when active clause or evidence block changes
   useEffect(() => {
-    if (selectedClauseId && textBlocks.length > 0) {
-      const match = textBlocks.find(
-        (b) => b.clause_id === selectedClauseId || (b.clause_id && selectedClauseId.includes(b.clause_id))
-      );
-      if (match && match.page) {
+    if (textBlocks.length > 0) {
+      const match = selectedBlockId
+        ? textBlocks.find((b) => b.id === selectedBlockId)
+        : selectedClauseId
+        ? textBlocks.find(
+            (b) => b.clause_id === selectedClauseId || (b.clause_id && selectedClauseId.includes(b.clause_id))
+          )
+        : undefined;
+
+      if (match?.page) {
         setCurrentPage(match.page);
       }
     }
-  }, [selectedClauseId, textBlocks]);
+  }, [selectedClauseId, selectedBlockId, textBlocks]);
 
   const pageBlocks = textBlocks.filter((b) => b.page === currentPage);
 
@@ -157,13 +166,17 @@ export const DocumentCanvas: React.FC<DocumentCanvasProps> = ({
               </div>
             ) : (
               pageBlocks.map((block) => {
-                const isSelected = selectedClauseId && block.clause_id === selectedClauseId;
+                const isSelected = selectedBlockId === block.id || (!selectedBlockId && selectedClauseId && block.clause_id === selectedClauseId);
 
                 return (
                   <div
                     key={block.id}
                     onClick={() => {
-                      if (block.clause_id) onSelectClause(block.clause_id);
+                      if (block.clause_id) {
+                        onSelectClause(block.clause_id);
+                      } else if (onSelectBlock) {
+                        onSelectBlock(block.id);
+                      }
                     }}
                     onMouseEnter={(e) => {
                       const rect = e.currentTarget.getBoundingClientRect();
