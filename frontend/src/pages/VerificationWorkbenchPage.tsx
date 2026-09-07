@@ -134,7 +134,7 @@ export const VerificationWorkbenchPage: React.FC = () => {
   };
 
   const handleSelectContradictionEvidence = (
-    evidence: { document: string; page: number; snippet: string },
+    evidence: Record<string, any>,
     side: "A" | "B"
   ) => {
     const matchingBlock = physicalBlocks.find((block) =>
