@@ -1,0 +1,20 @@
+{
+  "scenario_id": "SCENARIO_02_MISSING_MANDATORY",
+  "description": "Mandatory OEM Authorization missing from bid pack; triggers pending requirement and review cap",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "bid.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-002",
+  "bid_id": "BID-CTRL-002",
+  "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+  "expected_compliance_status": "MISSING",
+  "expected_overall_status": "REVIEW",
+  "expected_score_max": 55.0,
+  "expected_risk_level": [
+    "HIGH",
+    "CRITICAL"
+  ],
+  "expected_recommendation_verdict": "REVIEW",
+  "expected_pending_requirements_count": 1
+}

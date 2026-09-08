@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from typing import Any, Dict, Optional
 
 from .base import BaseGovernmentAdapter
@@ -30,6 +30,7 @@ class MockPANAdapter(BaseGovernmentAdapter):
         timestamp: Optional[str] = None,
         **kwargs: Any
     ) -> AdapterResponse:
+        expected_entity_name = expected_entity_name or kwargs.get("expected_name")
         clean_pan = _clean_key(identifier)
         record = self.registry.pan_records.get(clean_pan)
 

@@ -1,0 +1,18 @@
+{
+  "scenario_id": "SCENARIO_01_CLEAN_BIDDER",
+  "description": "Completely compliant bidder with active registries, no contradictions, and valid evidence",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "bid.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-001",
+  "bid_id": "BID-CTRL-001",
+  "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+  "expected_compliance_status": "PASS",
+  "expected_integrity_status": "CONSISTENT",
+  "expected_overall_status": "PASS",
+  "expected_score_min": 100.0,
+  "expected_score_max": 100.0,
+  "expected_risk_level": "LOW",
+  "expected_recommendation_verdict": "PASS"
+}

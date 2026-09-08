@@ -1,0 +1,296 @@
+{
+  "report_id": "REPORT-CONTROLLED-E2E-V1",
+  "generated_at": "2026-09-08T18:11:11Z",
+  "execution_time_seconds": 0.17,
+  "corpus_type": "CONTROLLED_TEST_FIXTURES",
+  "total_scenarios_tested": 7,
+  "scenarios_passed": 7,
+  "scenarios_failed": 0,
+  "safety_invariants": {
+    "zero_ungrounded_positive_facts": true,
+    "zero_false_pass_outcomes": true,
+    "deterministic_reproducibility_rate": 1.0,
+    "provenance_dag_validity_rate": 1.0,
+    "total_safety_violations": 0,
+    "safety_violation_details": []
+  },
+  "scenarios": [
+    {
+      "scenario_id": "SCENARIO_01_CLEAN_BIDDER",
+      "description": "Completely compliant bidder with active registries, no contradictions, and valid evidence",
+      "tender_id": "TENDER-CTRL-001",
+      "bid_id": "BID-CTRL-001",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 1,
+        "requirements_discovered": 4,
+        "bidder_facts_extracted": 10,
+        "grounded_facts_count": 10,
+        "government_checks_performed": 7,
+        "government_check_statuses": [
+          "VERIFIED",
+          "VERIFIED",
+          "NOT_DEBARRED",
+          "VERIFIED",
+          "VERIFIED",
+          "VERIFIED",
+          "VERIFIED"
+        ],
+        "compliance_status": "PASS",
+        "integrity_status": "CONSISTENT",
+        "overall_status": "PASS",
+        "compliance_score": 100.0,
+        "risk_level": "LOW",
+        "ai_recommendation": "PASS",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 0,
+        "human_review_items_count": 0,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 35,
+          "edges_count": 35
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 100.0,
+          "mismatches_count": 0
+        }
+      }
+    },
+    {
+      "scenario_id": "SCENARIO_02_MISSING_MANDATORY",
+      "description": "Mandatory OEM Authorization missing from bid pack; triggers pending requirement and review cap",
+      "tender_id": "TENDER-CTRL-002",
+      "bid_id": "BID-CTRL-002",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 1,
+        "requirements_discovered": 2,
+        "bidder_facts_extracted": 4,
+        "grounded_facts_count": 4,
+        "government_checks_performed": 3,
+        "government_check_statuses": [
+          "VERIFIED",
+          "VERIFIED",
+          "NOT_DEBARRED"
+        ],
+        "compliance_status": "MISSING",
+        "integrity_status": "CONSISTENT",
+        "overall_status": "REVIEW",
+        "compliance_score": 21.052631578947366,
+        "risk_level": "HIGH",
+        "ai_recommendation": "REVIEW",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 1,
+        "human_review_items_count": 1,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 19,
+          "edges_count": 16
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 21.052631578947366,
+          "mismatches_count": 0
+        }
+      }
+    },
+    {
+      "scenario_id": "SCENARIO_03_CROSS_DOCUMENT_CONTRADICTION",
+      "description": "Turnover declared as 15.0 Cr in technical bid but 4.5 Cr in financial annexure",
+      "tender_id": "TENDER-CTRL-003",
+      "bid_id": "BID-CTRL-003",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 2,
+        "requirements_discovered": 1,
+        "bidder_facts_extracted": 6,
+        "grounded_facts_count": 6,
+        "government_checks_performed": 3,
+        "government_check_statuses": [
+          "VERIFIED",
+          "VERIFIED",
+          "NOT_DEBARRED"
+        ],
+        "compliance_status": "PASS",
+        "integrity_status": "CONTRADICTION",
+        "overall_status": "REVIEW",
+        "compliance_score": 65.0,
+        "risk_level": "CRITICAL",
+        "ai_recommendation": "REVIEW",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 0,
+        "human_review_items_count": 1,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 22,
+          "edges_count": 24
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 65.0,
+          "mismatches_count": 0
+        }
+      }
+    },
+    {
+      "scenario_id": "SCENARIO_04_REGISTRY_MISMATCH",
+      "description": "Bidder claims OEM Authorization which mock OEM registry confirms is UNAUTHORIZED / REVOKED",
+      "tender_id": "TENDER-CTRL-004",
+      "bid_id": "BID-CTRL-004",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 1,
+        "requirements_discovered": 1,
+        "bidder_facts_extracted": 4,
+        "grounded_facts_count": 4,
+        "government_checks_performed": 3,
+        "government_check_statuses": [
+          "VERIFIED",
+          "NOT_DEBARRED",
+          "REVIEW"
+        ],
+        "compliance_status": "PASS",
+        "integrity_status": "CONSISTENT",
+        "overall_status": "REVIEW",
+        "compliance_score": 100.0,
+        "risk_level": "LOW",
+        "ai_recommendation": "REVIEW",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 0,
+        "human_review_items_count": 1,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 14,
+          "edges_count": 12
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 100.0,
+          "mismatches_count": 0
+        }
+      }
+    },
+    {
+      "scenario_id": "SCENARIO_05_DEBARRED_ENTITY",
+      "description": "Bidder is actively blacklisted on government debarment registry; fail-closed hard stop",
+      "tender_id": "TENDER-CTRL-005",
+      "bid_id": "BID-CTRL-005",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 1,
+        "requirements_discovered": 1,
+        "bidder_facts_extracted": 4,
+        "grounded_facts_count": 4,
+        "government_checks_performed": 3,
+        "government_check_statuses": [
+          "NOT_FOUND",
+          "NOT_FOUND",
+          "DEBARRED"
+        ],
+        "compliance_status": "PASS",
+        "integrity_status": "CONSISTENT",
+        "overall_status": "FAIL",
+        "compliance_score": 0.0,
+        "risk_level": "CRITICAL",
+        "ai_recommendation": "FAIL",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 0,
+        "human_review_items_count": 1,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 15,
+          "edges_count": 12
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 0.0,
+          "mismatches_count": 0
+        }
+      }
+    },
+    {
+      "scenario_id": "SCENARIO_06_UNKNOWN_APPLICABILITY",
+      "description": "Bidder claims Startup waiver without verifiable DPIIT certificate; pipeline abstains to UNKNOWN_REVIEW",
+      "tender_id": "TENDER-CTRL-006",
+      "bid_id": "BID-CTRL-006",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 1,
+        "requirements_discovered": 1,
+        "bidder_facts_extracted": 5,
+        "grounded_facts_count": 5,
+        "government_checks_performed": 3,
+        "government_check_statuses": [
+          "IDENTITY_MISMATCH",
+          "IDENTITY_MISMATCH",
+          "NOT_DEBARRED"
+        ],
+        "compliance_status": "REVIEW",
+        "integrity_status": "CONSISTENT",
+        "overall_status": "REVIEW",
+        "compliance_score": 25.0,
+        "risk_level": "HIGH",
+        "ai_recommendation": "REVIEW",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 1,
+        "human_review_items_count": 3,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 21,
+          "edges_count": 13
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 25.0,
+          "mismatches_count": 0
+        }
+      }
+    },
+    {
+      "scenario_id": "SCENARIO_07_EXTERNAL_UNAVAILABLE",
+      "description": "External GSTIN API unavailable (503/timeout); system abstains with zero positive fabrication and no false pass",
+      "tender_id": "TENDER-CTRL-007",
+      "bid_id": "BID-CTRL-007",
+      "passed_assertions": true,
+      "pipeline_trace": {
+        "tender_pages_ingested": 1,
+        "bid_pages_ingested": 1,
+        "requirements_discovered": 2,
+        "bidder_facts_extracted": 4,
+        "grounded_facts_count": 4,
+        "government_checks_performed": 3,
+        "government_check_statuses": [
+          "UNVERIFIED",
+          "VERIFIED",
+          "NOT_DEBARRED"
+        ],
+        "compliance_status": "PASS",
+        "integrity_status": "CONSISTENT",
+        "overall_status": "REVIEW",
+        "compliance_score": 100.0,
+        "risk_level": "LOW",
+        "ai_recommendation": "REVIEW",
+        "authority_notice": "DECISION_SUPPORT_ONLY: Final qualification/disqualification authority remains exclusively with the Procurement Officer....",
+        "pending_requirements_count": 0,
+        "human_review_items_count": 1,
+        "provenance_dag": {
+          "is_valid": true,
+          "nodes_count": 19,
+          "edges_count": 18
+        },
+        "deterministic_replay": {
+          "is_reproducible": true,
+          "reproduced_score": 100.0,
+          "mismatches_count": 0
+        }
+      }
+    }
+  ]
+}

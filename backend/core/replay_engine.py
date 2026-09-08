@@ -442,12 +442,25 @@ class DeterministicReplayEngine:
 
         # Layer A.2: Government Responses vs Declared Regulatory Facts
         declared_regulatory_ids = set()
+        declared_auth_codes = set()
+        declared_mii_declarations = set()
+        declared_itr_acks = set()
         declared_names = set()
         for f in facts:
-            if f.canonical_field in ["GSTIN", "PAN", "UDYAM_REGISTRATION"] or f.field in ["gstin", "pan", "udyam_registration", "cin"]:
+            f_field_lower = (f.field or "").lower()
+            if f.canonical_field in ["GSTIN", "PAN", "UDYAM_REGISTRATION", "CIN"] or f_field_lower in ["gstin", "pan", "udyam_registration", "cin"]:
                 if f.value:
                     declared_regulatory_ids.add(str(f.value).strip().upper())
-            if f.canonical_field in ["BIDDER_NAME", "COMPANY_NAME"] or f.field in ["bidder_name", "company_name", "vendor_name", "registered_name"]:
+            if f.canonical_field in ["OEM_AUTHORIZATION_CODE", "AUTHORIZATION_CODE"] or f_field_lower in ["oem_authorization_code", "authorization_code", "oem_auth_code", "maf_code", "oem_authorization"]:
+                if f.value:
+                    declared_auth_codes.add(str(f.value).strip().upper())
+            if f.canonical_field == "MII_DECLARATION" or f_field_lower in ["mii", "mii_declaration", "mii_declaration_number", "mii_certificate"]:
+                if f.value:
+                    declared_mii_declarations.add(str(f.value).strip().upper())
+            if f.canonical_field == "ITR_ACK" or f_field_lower in ["itr", "itr_ack", "itr_acknowledgement_number", "itr_ack_number"]:
+                if f.value:
+                    declared_itr_acks.add(str(f.value).strip().upper())
+            if f.canonical_field in ["BIDDER_NAME", "COMPANY_NAME"] or f_field_lower in ["bidder_name", "company_name", "vendor_name", "registered_name"]:
                 if f.value:
                     declared_names.add(str(f.value).strip().lower())
         if tender_meta.get("bidder_name"):
@@ -471,32 +484,76 @@ class DeterministicReplayEngine:
         for g in captured_gov:
             if g.adapter_name in ["DebarmentAdapter", "MockDebarmentAdapter"]:
                 qid_lower = str(g.queried_identifier).strip().lower() if g.queried_identifier else ""
-                if declared_names and qid_lower and not any(d in qid_lower or qid_lower in d for d in declared_names):
+                qid_upper = str(g.queried_identifier).strip().upper() if g.queried_identifier else ""
+                if declared_names or declared_regulatory_ids:
+                    name_match = declared_names and qid_lower and any(d in qid_lower or qid_lower in d for d in declared_names)
+                    id_match = qid_upper in declared_regulatory_ids
+                    if not (name_match or id_match):
+                        mismatches.append(
+                            ReplayMismatch(
+                                category=MismatchCategory.REVIEW_ITEM_MISMATCH.value,
+                                item_id=g.adapter_name,
+                                field="queried_identifier",
+                                original=sorted(list(declared_names)),
+                                replayed=g.queried_identifier,
+                                description=f"Debarment queried identifier '{g.queried_identifier}' was not declared in bidder names or identifiers.",
+                            )
+                        )
+                continue
+
+            qid = str(g.queried_identifier).strip().upper() if g.queried_identifier else ""
+            adapter_upper = g.adapter_name.upper()
+            if "OEM" in adapter_upper:
+                if declared_auth_codes and qid and qid not in declared_auth_codes:
                     mismatches.append(
                         ReplayMismatch(
                             category=MismatchCategory.REVIEW_ITEM_MISMATCH.value,
                             item_id=g.adapter_name,
                             field="queried_identifier",
-                            original=sorted(list(declared_names)),
-                            replayed=g.queried_identifier,
-                            description=f"Debarment queried identifier '{g.queried_identifier}' was not declared in bidder names.",
+                            original=sorted(list(declared_auth_codes)),
+                            replayed=qid,
+                            description=f"Government response queried OEM code '{qid}' was not declared in bidder facts.",
                         )
                     )
-                continue
-
-            qid = str(g.queried_identifier).strip().upper() if g.queried_identifier else ""
-            if declared_regulatory_ids and qid and qid not in declared_regulatory_ids:
-                mismatches.append(
-                    ReplayMismatch(
-                        category=MismatchCategory.REVIEW_ITEM_MISMATCH.value,
-                        item_id=g.adapter_name,
-                        field="queried_identifier",
-                        original=sorted(list(declared_regulatory_ids)),
-                        replayed=qid,
-                        description=f"Government response queried identifier '{qid}' was not declared in bidder facts.",
+            elif "MII" in adapter_upper:
+                if declared_mii_declarations and qid and qid not in declared_mii_declarations:
+                    mismatches.append(
+                        ReplayMismatch(
+                            category=MismatchCategory.REVIEW_ITEM_MISMATCH.value,
+                            item_id=g.adapter_name,
+                            field="queried_identifier",
+                            original=sorted(list(declared_mii_declarations)),
+                            replayed=qid,
+                            description=f"Government response queried MII declaration '{qid}' was not declared in bidder facts.",
+                        )
                     )
-                )
-            if declared_names and getattr(g, "registered_entity_name", None):
+            elif "ITD" in adapter_upper:
+                if declared_itr_acks and qid and qid not in declared_itr_acks:
+                    mismatches.append(
+                        ReplayMismatch(
+                            category=MismatchCategory.REVIEW_ITEM_MISMATCH.value,
+                            item_id=g.adapter_name,
+                            field="queried_identifier",
+                            original=sorted(list(declared_itr_acks)),
+                            replayed=qid,
+                            description=f"Government response queried ITR acknowledgement '{qid}' was not declared in bidder facts.",
+                        )
+                    )
+            elif declared_regulatory_ids and qid:
+                if qid not in declared_regulatory_ids:
+                    mismatches.append(
+                        ReplayMismatch(
+                            category=MismatchCategory.REVIEW_ITEM_MISMATCH.value,
+                            item_id=g.adapter_name,
+                            field="queried_identifier",
+                            original=sorted(list(declared_regulatory_ids)),
+                            replayed=qid,
+                            description=f"Government response queried identifier '{qid}' was not declared in bidder facts.",
+                        )
+                    )
+            g_stat = getattr(g, "status", None)
+            g_stat_val = g_stat.value if hasattr(g_stat, "value") else str(g_stat)
+            if declared_names and getattr(g, "registered_entity_name", None) and g_stat_val == "VERIFIED":
                 r_name = str(g.registered_entity_name).strip().lower()
                 if not any(d in r_name or r_name in d for d in declared_names):
                     mismatches.append(

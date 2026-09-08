@@ -1,0 +1,125 @@
+{
+  "fixture_suite_id": "CONTROLLED_E2E_SUITE_V1",
+  "description": "Controlled test suite covering all 7 canonical procurement verification outcomes",
+  "scenarios": [
+    {
+      "scenario_id": "SCENARIO_01_CLEAN_BIDDER",
+      "description": "Completely compliant bidder with active registries, no contradictions, and valid evidence",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "bid.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-001",
+      "bid_id": "BID-CTRL-001",
+      "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+      "expected_compliance_status": "PASS",
+      "expected_integrity_status": "CONSISTENT",
+      "expected_overall_status": "PASS",
+      "expected_score_min": 100.0,
+      "expected_score_max": 100.0,
+      "expected_risk_level": "LOW",
+      "expected_recommendation_verdict": "PASS"
+    },
+    {
+      "scenario_id": "SCENARIO_02_MISSING_MANDATORY",
+      "description": "Mandatory OEM Authorization missing from bid pack; triggers pending requirement and review cap",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "bid.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-002",
+      "bid_id": "BID-CTRL-002",
+      "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+      "expected_compliance_status": "MISSING",
+      "expected_overall_status": "REVIEW",
+      "expected_score_max": 55.0,
+      "expected_risk_level": [
+        "HIGH",
+        "CRITICAL"
+      ],
+      "expected_recommendation_verdict": "REVIEW",
+      "expected_pending_requirements_count": 1
+    },
+    {
+      "scenario_id": "SCENARIO_03_CROSS_DOCUMENT_CONTRADICTION",
+      "description": "Turnover declared as 15.0 Cr in technical bid but 4.5 Cr in financial annexure",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "technical_bid.pdf",
+        "financial_annexure.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-003",
+      "bid_id": "BID-CTRL-003",
+      "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+      "expected_integrity_status": "CONTRADICTION",
+      "expected_contradiction_finding": "TURNOVER_CONTRADICTION",
+      "expected_overall_status": "REVIEW",
+      "expected_score_max": 65.0,
+      "expected_recommendation_verdict": "REVIEW"
+    },
+    {
+      "scenario_id": "SCENARIO_04_REGISTRY_MISMATCH",
+      "description": "Bidder claims OEM Authorization which mock OEM registry confirms is UNAUTHORIZED / REVOKED",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "bid.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-004",
+      "bid_id": "BID-CTRL-004",
+      "company_name": "SYNTHETIC CONTRADICTION MFG LTD",
+      "expected_oem_status": "UNAUTHORIZED",
+      "expected_overall_status": [
+        "FAIL",
+        "REVIEW"
+      ],
+      "expected_recommendation_verdict": [
+        "FAIL",
+        "REVIEW"
+      ]
+    },
+    {
+      "scenario_id": "SCENARIO_05_DEBARRED_ENTITY",
+      "description": "Bidder is actively blacklisted on government debarment registry; fail-closed hard stop",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "bid.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-005",
+      "bid_id": "BID-CTRL-005",
+      "company_name": "Fraudulent Tech Supplies Pvt Ltd",
+      "expected_debarment_status": "DEBARRED",
+      "expected_overall_status": "FAIL",
+      "expected_score_max": 0.0,
+      "expected_risk_level": "CRITICAL",
+      "expected_recommendation_verdict": "FAIL"
+    },
+    {
+      "scenario_id": "SCENARIO_06_UNKNOWN_APPLICABILITY",
+      "description": "Bidder claims Startup waiver without verifiable DPIIT certificate; pipeline abstains to UNKNOWN_REVIEW",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "bid.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-006",
+      "bid_id": "BID-CTRL-006",
+      "company_name": "SYNTHETIC AMBIGUOUS STARTUP PVT LTD",
+      "expected_compliance_status": "REVIEW",
+      "expected_overall_status": "REVIEW",
+      "expected_recommendation_verdict": "REVIEW"
+    },
+    {
+      "scenario_id": "SCENARIO_07_EXTERNAL_UNAVAILABLE",
+      "description": "External GSTIN API unavailable (503/timeout); system abstains with zero positive fabrication and no false pass",
+      "tender_file": "tender.pdf",
+      "bid_files": [
+        "bid.pdf"
+      ],
+      "tender_id": "TENDER-CTRL-007",
+      "bid_id": "BID-CTRL-007",
+      "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+      "expected_registry_status": "UNAVAILABLE",
+      "expected_overall_status": "REVIEW",
+      "expected_recommendation_verdict": "REVIEW"
+    }
+  ]
+}

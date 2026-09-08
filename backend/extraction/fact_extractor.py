@@ -107,10 +107,16 @@ class LLMBidderFactExtractor(BaseFactExtractor):
                     e["bbox"] for e in ground_res.resolved_evidence if "bbox" in e and e["bbox"]
                 ]
 
+            # Resolve canonical field from ontology
+            from backend.core.ontology import resolve_field
+            ont_res = resolve_field(cand.field)
+            canonical_cid = ont_res.canonical_field_id if ont_res.resolution_status == "RESOLVED" else None
+
             fact_obj = BidderFact(
                 fact_id=fact_id,
                 bid_id=effective_bid_id,
                 field=cand.field,
+                canonical_field=canonical_cid,
                 value=cand.raw_value,
                 normalized_value=norm_val,
                 unit=unit,
