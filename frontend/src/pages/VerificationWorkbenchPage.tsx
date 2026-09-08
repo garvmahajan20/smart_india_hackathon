@@ -53,10 +53,15 @@ export const VerificationWorkbenchPage: React.FC = () => {
   const [selectedClauseId, setSelectedClauseId] = useState<string | null>(
     verification.verification_results[0]?.requirement_id || null
   );
+  const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
   const [activeEvidence, setActiveEvidence] = useState<EvidenceData | null>(null);
   const [hoveredEvidence, setHoveredEvidence] = useState<EvidenceData | null>(null);
   const [inspectorPos, setInspectorPos] = useState<{ x: number; y: number } | null>(null);
-  const [activeWorkspaceTab, setActiveWorkspaceTab] = useState<"forensics" | "registries" | "dossier">("forensics");
+  const [activeWorkspaceTab, setActiveWorkspaceTab] = useState<"forensics" | "registries" | "dossier">(
+    verification.integrity_status === "CONTRADICTION" && verification.contradictions.length > 0
+      ? "registries"
+      : "forensics"
+  );
 
   // Sync initial evidence on mount
   useEffect(() => {
@@ -64,6 +69,7 @@ export const VerificationWorkbenchPage: React.FC = () => {
       const first = verification.verification_results[0];
       const ev = first.evidence[0];
       setSelectedClauseId(first.requirement_id);
+      setSelectedBlockId(null);
       if (ev) {
         setActiveEvidence({
           document: ev.document,
@@ -86,6 +92,7 @@ export const VerificationWorkbenchPage: React.FC = () => {
   // Handle requirement selection -> locate evidence and focus
   const handleSelectClause = (clauseId: string) => {
     setSelectedClauseId(clauseId);
+    setSelectedBlockId(null);
     const item = verification.verification_results.find(
       (r) => r.requirement_id === clauseId || clauseId.includes(r.requirement_id)
     );
@@ -106,6 +113,51 @@ export const VerificationWorkbenchPage: React.FC = () => {
         confidence_heuristic: "HIGH",
       });
     }
+  };
+
+  const handleSelectEvidenceBlock = (blockId: string) => {
+    const block = physicalBlocks.find((b) => b.id === blockId);
+    if (!block) return;
+
+    setSelectedBlockId(blockId);
+    setSelectedClauseId(null);
+    setActiveEvidence({
+      document: block.id === "BLK-001-02" ? "financial_annexure.pdf" : "technical_bid.pdf",
+      page: block.page,
+      block_id: block.id,
+      bbox: block.bbox,
+      snippet: block.text,
+      grounding_state: block.grounding_state,
+      confidence_heuristic: block.confidence_heuristic,
+    });
+    setActiveWorkspaceTab("forensics");
+  };
+
+  const handleSelectContradictionEvidence = (
+    evidence: Record<string, any>,
+    side: "A" | "B"
+  ) => {
+    const matchingBlock = physicalBlocks.find((block) =>
+      block.text.includes(evidence.snippet.replace("...", "")) ||
+      evidence.snippet.includes(block.text.split("\n").pop() || "__no_match__")
+    );
+
+    if (matchingBlock) {
+      handleSelectEvidenceBlock(matchingBlock.id);
+      return;
+    }
+
+    setSelectedClauseId(null);
+    setSelectedBlockId(null);
+    setActiveEvidence({
+      document: evidence.document,
+      page: evidence.page,
+      snippet: evidence.snippet,
+      grounding_state: "VERIFIED",
+      confidence_heuristic: "HIGH",
+      requirement_id: `CONTRA-000001 · EVIDENCE ${side}`,
+    });
+    setActiveWorkspaceTab("forensics");
   };
 
   const handleTriggerEvidence = (item: VerificationResult, pos?: { x: number; y: number }) => {
@@ -239,7 +291,9 @@ export const VerificationWorkbenchPage: React.FC = () => {
               bidId={verification.bid_id}
               textBlocks={physicalBlocks}
               selectedClauseId={selectedClauseId}
+              selectedBlockId={selectedBlockId}
               onSelectClause={handleSelectClause}
+              onSelectBlock={handleSelectEvidenceBlock}
               onHoverEvidence={(ev, pos) => {
                 setHoveredEvidence(ev);
                 setInspectorPos(pos || null);
@@ -293,11 +347,11 @@ export const VerificationWorkbenchPage: React.FC = () => {
                 {/* Traceability Bar */}
                 <div className="pt-1.5 border-t border-slate-800 flex items-center justify-between text-[10px] font-mono text-slate-400">
                   <div className="flex items-center gap-3">
-                    <span>Threshold: <strong className="text-slate-200">{String(activeEvidence.expected)}</strong></span>
+                    <span>Threshold: <strong className="text-slate-200">{String(activeEvidence.expected ?? "—")}</strong></span>
                     <span>•</span>
-                    <span>Extracted: <strong className="text-blue-300">{activeEvidence.actual}</strong></span>
+                    <span>Extracted: <strong className="text-blue-300">{activeEvidence.actual ?? "—"}</strong></span>
                     <span>•</span>
-                    <span>Verdict: <strong className="text-emerald-400">{activeEvidence.status}</strong></span>
+                    <span>Verdict: <strong className="text-emerald-400">{activeEvidence.status ?? "EVIDENCE"}</strong></span>
                   </div>
                   <span className="text-slate-500">Step 4 Deterministic Rule Trace</span>
                 </div>
@@ -349,7 +403,7 @@ export const VerificationWorkbenchPage: React.FC = () => {
             ) : (
               <div className="space-y-3 mt-4">
                 {verification.contradictions.map((c) => (
-                  <div key={c.finding_id} className="p-4 bg-rose-50 border border-rose-200 rounded-lg space-y-2">
+                  <div key={c.finding_id} className="p-4 bg-rose-50 border border-rose-200 rounded-lg space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-bold text-rose-900 text-xs">{c.finding_id}</span>
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-200 text-rose-900">
@@ -358,6 +412,34 @@ export const VerificationWorkbenchPage: React.FC = () => {
                     </div>
                     <p className="text-xs font-bold text-rose-950">{c.description}</p>
                     {c.hint && <p className="text-xs text-rose-700 italic">{c.hint}</p>}
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => handleSelectContradictionEvidence(c.evidence_a, "A")}
+                        className="text-left p-2.5 rounded border border-rose-200 bg-white hover:bg-rose-50 transition-colors group"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase">Evidence A · Page {c.evidence_a.page}</span>
+                          <Eye className="w-3.5 h-3.5 text-rose-500 group-hover:translate-x-0.5 transition-transform" />
+                        </div>
+                        <p className="mt-1 text-[11px] font-mono text-slate-800 line-clamp-2">{c.evidence_a.snippet}</p>
+                        <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold text-rose-700">View in document <CornerDownRight className="w-3 h-3" /></span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleSelectContradictionEvidence(c.evidence_b, "B")}
+                        className="text-left p-2.5 rounded border border-rose-200 bg-white hover:bg-rose-50 transition-colors group"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase">Evidence B · Page {c.evidence_b.page}</span>
+                          <Eye className="w-3.5 h-3.5 text-rose-500 group-hover:translate-x-0.5 transition-transform" />
+                        </div>
+                        <p className="mt-1 text-[11px] font-mono text-slate-800 line-clamp-2">{c.evidence_b.snippet}</p>
+                        <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold text-rose-700">View in document <CornerDownRight className="w-3 h-3" /></span>
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
