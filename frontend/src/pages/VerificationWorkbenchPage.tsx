@@ -370,20 +370,52 @@ export const VerificationWorkbenchPage: React.FC = () => {
               <span className="text-[11px] font-mono text-slate-500">GOVERNMENT VERIFICATION FABRIC</span>
             </h3>
 
+                      {verification.government_checks.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               {verification.government_checks.map((g, idx) => (
-                <div key={idx} className="p-4 rounded-lg border border-slate-200 bg-slate-50/70 space-y-2">
+                <div
+                  key={idx}
+                  className="p-4 rounded-lg border border-slate-200 bg-slate-50/70 space-y-2"
+                >
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-900 text-xs">{g.adapter_name}</span>
+                    <span className="font-bold text-slate-900 text-xs">
+                      {g.adapter_name}
+                    </span>
+
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
                       {g.status}
                     </span>
                   </div>
-                  <div className="font-mono text-xs text-slate-600">ID: {g.queried_identifier}</div>
-                  <p className="text-[11px] text-slate-500">{g.reason}</p>
+
+                  <div className="font-mono text-xs text-slate-600">
+                    ID: {g.queried_identifier}
+                  </div>
+
+                  <p className="text-[11px] text-slate-500">
+                    {g.reason}
+                  </p>
                 </div>
               ))}
             </div>
+          ) : (
+            <div className="mt-3">
+              <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+                <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4 text-slate-400" />
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold text-slate-700">
+                    No registry checks required
+                  </p>
+
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    No government registry adapter was invoked for this finding.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
           </div>
 
           <div>
@@ -403,44 +435,141 @@ export const VerificationWorkbenchPage: React.FC = () => {
             ) : (
               <div className="space-y-3 mt-4">
                 {verification.contradictions.map((c) => (
-                  <div key={c.finding_id} className="p-4 bg-rose-50 border border-rose-200 rounded-lg space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono font-bold text-rose-900 text-xs">{c.finding_id}</span>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-200 text-rose-900">
-                        {c.severity} SEVERITY
-                      </span>
-                    </div>
-                    <p className="text-xs font-bold text-rose-950">{c.description}</p>
-                    {c.hint && <p className="text-xs text-rose-700 italic">{c.hint}</p>}
+                                  <div
+                  key={c.finding_id}
+                  className="p-4 bg-rose-50 border border-rose-200 rounded-lg space-y-3"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-mono font-bold text-rose-900 text-xs">
+                      {c.finding_id}
+                    </span>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                    <span className="px-2 py-1 rounded text-[10px] font-bold bg-rose-200 text-rose-900">
+                      {c.severity} SEVERITY
+                    </span>
+                  </div>
+
+                  <div>
+                    <h4 className="text-base font-bold text-slate-900">
+                      GSTIN discrepancy detected
+                    </h4>
+
+                    <p className="mt-1 text-xs text-slate-600">
+                      {c.description}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 items-stretch">
+
+                    {/* Evidence A */}
+                    <div className="bg-white border border-rose-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            Technical Schedule
+                          </p>
+
+                          <p className="text-[10px] text-slate-400">
+                            Page {c.evidence_a.page}
+                          </p>
+                        </div>
+
+                        <span className="text-[10px] font-mono font-semibold text-slate-400">
+                          EVIDENCE A
+                        </span>
+                      </div>
+
+                      <div className="rounded-md bg-slate-50 border border-slate-200 p-3">
+                        <p className="font-mono text-sm font-bold text-slate-900 break-all">
+                          {c.evidence_a.snippet}
+                        </p>
+                      </div>
+
                       <button
                         type="button"
-                        onClick={() => handleSelectContradictionEvidence(c.evidence_a, "A")}
-                        className="text-left p-2.5 rounded border border-rose-200 bg-white hover:bg-rose-50 transition-colors group"
+                        onClick={() =>
+                          handleSelectContradictionEvidence(
+                            c.evidence_a,
+                            "A"
+                          )
+                        }
+                        className="mt-3 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-rose-200 bg-white text-xs font-semibold text-rose-700 hover:bg-rose-50 transition-colors"
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase">Evidence A · Page {c.evidence_a.page}</span>
-                          <Eye className="w-3.5 h-3.5 text-rose-500 group-hover:translate-x-0.5 transition-transform" />
-                        </div>
-                        <p className="mt-1 text-[11px] font-mono text-slate-800 line-clamp-2">{c.evidence_a.snippet}</p>
-                        <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold text-rose-700">View in document <CornerDownRight className="w-3 h-3" /></span>
+                        <Eye className="w-3.5 h-3.5" />
+                        View in document
                       </button>
+                    </div>
+
+                    {/* Mismatch indicator */}
+                    <div className="flex md:flex-col items-center justify-center gap-2 py-1">
+                      <div className="hidden md:block h-full w-px bg-rose-200" />
+
+                      <div className="w-10 h-10 shrink-0 rounded-full bg-rose-100 border border-rose-300 flex items-center justify-center">
+                        <span className="text-lg font-bold text-rose-600">
+                          ≠
+                        </span>
+                      </div>
+
+                      <div className="hidden md:block h-full w-px bg-rose-200" />
+                    </div>
+
+                    {/* Evidence B */}
+                    <div className="bg-white border border-rose-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            Financial Annexure
+                          </p>
+
+                          <p className="text-[10px] text-slate-400">
+                            Page {c.evidence_b.page}
+                          </p>
+                        </div>
+
+                        <span className="text-[10px] font-mono font-semibold text-slate-400">
+                          EVIDENCE B
+                        </span>
+                      </div>
+
+                      <div className="rounded-md bg-slate-50 border border-slate-200 p-3">
+                        <p className="font-mono text-sm font-bold text-slate-900 break-all">
+                          {c.evidence_b.snippet}
+                        </p>
+                      </div>
 
                       <button
                         type="button"
-                        onClick={() => handleSelectContradictionEvidence(c.evidence_b, "B")}
-                        className="text-left p-2.5 rounded border border-rose-200 bg-white hover:bg-rose-50 transition-colors group"
+                        onClick={() =>
+                          handleSelectContradictionEvidence(
+                            c.evidence_b,
+                            "B"
+                          )
+                        }
+                        className="mt-3 w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md border border-rose-200 bg-white text-xs font-semibold text-rose-700 hover:bg-rose-50 transition-colors"
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase">Evidence B · Page {c.evidence_b.page}</span>
-                          <Eye className="w-3.5 h-3.5 text-rose-500 group-hover:translate-x-0.5 transition-transform" />
-                        </div>
-                        <p className="mt-1 text-[11px] font-mono text-slate-800 line-clamp-2">{c.evidence_b.snippet}</p>
-                        <span className="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold text-rose-700">View in document <CornerDownRight className="w-3 h-3" /></span>
+                        <Eye className="w-3.5 h-3.5" />
+                        View in document
                       </button>
                     </div>
                   </div>
+
+                  <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-md bg-rose-100 border border-rose-200">
+                    <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
+
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-rose-800">
+                      Values do not match
+                    </span>
+                  </div>
+
+                  {c.hint && (
+                    <p className="text-[11px] text-slate-500 border-t border-rose-100 pt-2">
+                      <span className="font-semibold text-slate-700">
+                        Review note:
+                      </span>{" "}
+                      {c.hint}
+                    </p>
+                  )}
+                </div>
                 ))}
               </div>
             )}
