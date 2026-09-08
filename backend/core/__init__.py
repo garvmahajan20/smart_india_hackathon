@@ -1,4 +1,4 @@
-﻿from .models import (
+from .models import (
     SourceType,
     ComplianceStatus,
     Severity,
@@ -21,6 +21,18 @@ from .operators import evaluate_operator, OperatorResult
 from .precedence import resolve_precedence, PrecedenceResolutionResult
 from .rule_engine import DeterministicRuleEngine
 from .contradiction_engine import CrossDocumentContradictionEngine
+from .applicability import ApplicabilityEvaluator, ApplicabilityStatus, ApplicabilityResolution
+from .pending_requirements import PendingRequirement, PendingRequirementExtractor
+from .scoring import ComplianceScoringEngine, ComplianceScoreBreakdown, ScoreDeduction
+from .risk_engine import DeterministicRiskEngine, RiskLevel, RiskAssessment, RiskFactor
+from .recommendation_engine import AIRecommendationEngine, AIRecommendation, RecommendationVerdict
+from .adjudication import (
+    AdjudicationDecision,
+    AdjudicationTargetType,
+    OfficerAdjudicationRequest,
+    OfficerAdjudicationRecord,
+    ProcurementOfficerAdjudicationEngine,
+)
 
 __all__ = [
     "SourceType",
@@ -44,4 +56,25 @@ __all__ = [
     "PrecedenceResolutionResult",
     "DeterministicRuleEngine",
     "CrossDocumentContradictionEngine",
+    "ApplicabilityEvaluator",
+    "ApplicabilityStatus",
+    "ApplicabilityResolution",
+    "PendingRequirement",
+    "PendingRequirementExtractor",
+    "ComplianceScoringEngine",
+    "ComplianceScoreBreakdown",
+    "ScoreDeduction",
+    "DeterministicRiskEngine",
+    "RiskLevel",
+    "RiskAssessment",
+    "RiskFactor",
+    "AIRecommendationEngine",
+    "AIRecommendation",
+    "RecommendationVerdict",
+    "AdjudicationDecision",
+    "AdjudicationTargetType",
+    "OfficerAdjudicationRequest",
+    "OfficerAdjudicationRecord",
+    "ProcurementOfficerAdjudicationEngine",
 ]
+

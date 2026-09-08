@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional
@@ -60,9 +60,14 @@ class ExtractedPage:
     is_empty: bool = False
     is_low_text: bool = False
     warnings: List[str] = field(default_factory=list)
+    quality_grade: str = "GOOD"  # "GOOD", "DEGRADED", "SEVERELY_DEGRADED", "UNKNOWN"
+    ocr_passes_count: int = 0
+    preprocessing_applied: List[str] = field(default_factory=list)
+    optical_signals: Dict[str, Any] = field(default_factory=dict)
+    validation_report: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        return {
+        res: Dict[str, Any] = {
             "page_number": self.page_number,
             "width": self.width,
             "height": self.height,
@@ -75,7 +80,15 @@ class ExtractedPage:
             "is_empty": self.is_empty,
             "is_low_text": self.is_low_text,
             "warnings": self.warnings,
+            "quality_grade": self.quality_grade,
+            "ocr_passes_count": self.ocr_passes_count,
+            "preprocessing_applied": self.preprocessing_applied,
         }
+        if self.optical_signals:
+            res["optical_signals"] = self.optical_signals
+        if self.validation_report:
+            res["validation_report"] = self.validation_report
+        return res
 
 @dataclass
 class DocumentMetadata:

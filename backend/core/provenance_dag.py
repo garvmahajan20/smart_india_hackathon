@@ -33,6 +33,7 @@ class NodeType(str, Enum):
     VERIFICATION_RESULT = "VERIFICATION_RESULT"
     INTEGRITY_FINDING = "INTEGRITY_FINDING"
     HUMAN_REVIEW_ITEM = "HUMAN_REVIEW_ITEM"
+    OFFICER_ADJUDICATION = "OFFICER_ADJUDICATION"
 
 
 class EdgeType(str, Enum):
@@ -47,6 +48,8 @@ class EdgeType(str, Enum):
     INTEGRITY_FINDING_COMPARES = "INTEGRITY_FINDING_COMPARES"
     REVIEW_ITEM_FOR_RESULT = "REVIEW_ITEM_FOR_RESULT"
     REVIEW_ITEM_SUPPORTED_BY = "REVIEW_ITEM_SUPPORTED_BY"
+    ADJUDICATION_FOR_REVIEW_ITEM = "ADJUDICATION_FOR_REVIEW_ITEM"
+    ADJUDICATION_OVERRIDES_RESULT = "ADJUDICATION_OVERRIDES_RESULT"
 
 
 class GraphValidationError(Exception):
@@ -504,6 +507,7 @@ class ProvenanceDAGBuilder:
         human_review_items: Optional[List[Any]] = None,
         bid_id: Optional[str] = None,
         tender_id: Optional[str] = None,
+        adjudications: Optional[List[Any]] = None,
     ) -> ProvenanceDAG:
         """
         Builds and validates a deterministic ProvenanceDAG.
@@ -569,6 +573,15 @@ class ProvenanceDAGBuilder:
                 ))
             return node_id
 
+        def _to_ev_dict(ev: Any) -> Dict[str, Any]:
+            if isinstance(ev, dict):
+                return ev
+            if hasattr(ev, "to_dict") and callable(ev.to_dict):
+                return ev.to_dict()
+            if hasattr(ev, "__dict__"):
+                return ev.__dict__
+            return {}
+
         # 3. TENDER REQUIREMENTS & THEIR EVIDENCE
         req_node_ids: Dict[str, str] = {}
         for req in requirements:
@@ -593,7 +606,8 @@ class ProvenanceDAGBuilder:
 
             # Requirement physical evidence blocks
             if req.evidence:
-                for idx, ev in enumerate(req.evidence):
+                for idx, ev_raw in enumerate(req.evidence):
+                    ev = _to_ev_dict(ev_raw)
                     p = ev.get("page", req.source_page or 1)
                     bb = ev.get("bbox")
                     snip = ev.get("snippet", req.description)
@@ -644,7 +658,8 @@ class ProvenanceDAGBuilder:
             # Multi-Block Physical Evidence Preservation
             # Phase 10B.1 explicit rule: every block in f.evidence must be a distinct node!
             if getattr(f, "evidence", None) and len(f.evidence) > 0:
-                for idx, ev in enumerate(f.evidence):
+                for idx, ev_raw in enumerate(f.evidence):
+                    ev = _to_ev_dict(ev_raw)
                     p = ev.get("page", f.page)
                     bb = ev.get("bbox")
                     snip = ev.get("snippet", f.raw_text_snippet or "")
@@ -755,7 +770,8 @@ class ProvenanceDAGBuilder:
 
             # Link Result -> Physical Evidence Blocks
             if res.evidence:
-                for idx, ev in enumerate(res.evidence):
+                for idx, ev_raw in enumerate(res.evidence):
+                    ev = _to_ev_dict(ev_raw)
                     p = ev.get("page", 1)
                     bb = ev.get("bbox")
                     snip = ev.get("snippet", "")
@@ -920,6 +936,56 @@ class ProvenanceDAGBuilder:
                         source_id=rev_node_id,
                         edge_type=EdgeType.REVIEW_ITEM_SUPPORTED_BY.value,
                         target_id=b_node_id,
+                    ))
+
+        # 8. OFFICER ADJUDICATIONS
+        if adjudications:
+            for adj in adjudications:
+                adj_id = adj.get("adjudication_id") if isinstance(adj, dict) else adj.adjudication_id
+                target_id = adj.get("target_id") if isinstance(adj, dict) else adj.target_id
+                decision = adj.get("decision") if isinstance(adj, dict) else adj.decision
+                officer_id = adj.get("officer_id") if isinstance(adj, dict) else adj.officer_id
+                justification = adj.get("justification") if isinstance(adj, dict) else adj.justification
+                timestamp = adj.get("applied_at") or adj.get("timestamp") if isinstance(adj, dict) else getattr(adj, "applied_at", "")
+
+                adj_node_id = f"ADJUDICATION:{adj_id}"
+                if adj_node_id not in dag.nodes:
+                    dag.add_node(ProvenanceNode(
+                        node_id=adj_node_id,
+                        node_type=NodeType.OFFICER_ADJUDICATION.value,
+                        label=f"Officer Adjudication: {decision} by {officer_id}",
+                        properties={
+                            "adjudication_id": adj_id,
+                            "target_id": target_id,
+                            "decision": decision,
+                            "officer_id": officer_id,
+                            "justification": justification,
+                            "timestamp": timestamp,
+                        },
+                    ))
+
+                # Link adjudication to review item if present
+                target_rev_node = f"REVIEW:{target_id}"
+                if target_rev_node in dag.nodes:
+                    edge_id = make_edge_id(adj_node_id, EdgeType.ADJUDICATION_FOR_REVIEW_ITEM.value, target_rev_node)
+                    dag.add_edge(ProvenanceEdge(
+                        edge_id=edge_id,
+                        source_id=adj_node_id,
+                        edge_type=EdgeType.ADJUDICATION_FOR_REVIEW_ITEM.value,
+                        target_id=target_rev_node,
+                    ))
+
+                # Link adjudication to verification result if present
+                target_res_node = result_node_ids.get(target_id)
+                if not target_res_node and f"RES:{target_id}" in dag.nodes:
+                    target_res_node = f"RES:{target_id}"
+                if target_res_node and target_res_node in dag.nodes:
+                    edge_id = make_edge_id(adj_node_id, EdgeType.ADJUDICATION_OVERRIDES_RESULT.value, target_res_node)
+                    dag.add_edge(ProvenanceEdge(
+                        edge_id=edge_id,
+                        source_id=adj_node_id,
+                        edge_type=EdgeType.ADJUDICATION_OVERRIDES_RESULT.value,
+                        target_id=target_res_node,
                     ))
 
         # Enforce graph invariants

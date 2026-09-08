@@ -41,6 +41,8 @@ Thumbs.db
 # Cache directories
 data/cache/
 
-# Large dataset ZIP archive
+# Large dataset ZIP archive and raw data
 SIH26100_Dataset_v1_COMPLETE.zip
+data/raw/
+data/external/
 

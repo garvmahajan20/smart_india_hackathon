@@ -18,6 +18,10 @@ from .schemas import (
     HealthResponse,
     HumanReviewItemResponse,
     VerificationDossierResponse,
+    AdjudicationRequest,
+    AdjudicationResponse,
+    AuditTrailResponse,
+    ReplayVerificationResponse,
 )
 
 load_dotenv()
@@ -41,6 +45,30 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+from .digilocker_router import router as digilocker_router
+app.include_router(digilocker_router)
+
+from .pan_router import router as pan_router
+app.include_router(pan_router)
+
+from .udyam_router import router as udyam_router
+app.include_router(udyam_router)
+
+from .epfo_router import router as epfo_router
+app.include_router(epfo_router)
+
+from .dpiit_router import router as dpiit_router
+app.include_router(dpiit_router)
+
+from .esic_router import router as esic_router
+app.include_router(esic_router)
+
+from .gst_router import router as gst_router
+app.include_router(gst_router)
+
+from .mock_registry_router import router as mock_registry_router
+app.include_router(mock_registry_router)
 
 # Global Orchestrator Instances (cached/mock by default to conserve quota)
 _orchestrator = VerificationOrchestrator(mode=LLMMode.MOCK)
@@ -235,3 +263,101 @@ async def get_verification_review_items(verification_id: str):
             detail=f"Verification '{verification_id}' not found.",
         )
     return res.human_review_items
+
+@app.post(
+    "/api/v1/verification/{verification_id}/adjudicate",
+    response_model=AdjudicationResponse,
+    responses={
+        400: {"model": ErrorResponse},
+        404: {"model": ErrorResponse},
+        500: {"model": ErrorResponse},
+    },
+)
+async def adjudicate_verification_item(
+    verification_id: str,
+    payload: AdjudicationRequest,
+):
+    """
+    Procurement Officer Adjudication / Override Endpoint.
+    Records authoritative human adjudication, deterministically recalculates
+    scores, caps, risk, and recommendation, and logs an immutable audit trail.
+    """
+    from backend.core.adjudication import OfficerAdjudicationRequest
+
+    req = OfficerAdjudicationRequest(
+        target_id=payload.target_id,
+        decision=payload.decision,
+        officer_id=payload.officer_id,
+        officer_name=payload.officer_name,
+        justification=payload.justification,
+        officer_role=payload.officer_role,
+        reference_document=payload.reference_document,
+        target_type=payload.target_type,
+    )
+
+    try:
+        updated_agg, updated_dos, record = _orchestrator.adjudicate(verification_id, req)
+    except KeyError as ke:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(ke),
+        )
+    except ValueError as ve:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(ve),
+        )
+
+    open_reviews = sum(
+        1 for r in updated_agg.human_review_items
+        if (r.get("status") if isinstance(r, dict) else r.status) == "PENDING"
+    )
+
+    return AdjudicationResponse(
+        status="SUCCESS",
+        verification_id=verification_id,
+        adjudication=record.to_dict(),
+        updated_compliance_score=updated_agg.compliance_score,
+        updated_risk_level=updated_agg.risk_level,
+        updated_overall_status=updated_agg.overall_status,
+        review_required=updated_agg.review_required,
+        remaining_open_reviews=open_reviews,
+    )
+
+@app.get(
+    "/api/v1/verification/{verification_id}/audit-trail",
+    response_model=AuditTrailResponse,
+    responses={404: {"model": ErrorResponse}},
+)
+async def get_verification_audit_trail(verification_id: str):
+    """
+    Retrieves complete immutable audit trail and officer adjudication records.
+    """
+    try:
+        trail = _orchestrator.get_audit_trail(verification_id)
+        return trail
+    except KeyError as ke:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(ke),
+        )
+
+@app.post(
+    "/api/v1/verification/{verification_id}/replay",
+    response_model=ReplayVerificationResponse,
+    responses={404: {"model": ErrorResponse}},
+)
+async def replay_verification_endpoint(verification_id: str):
+    """
+    Executes independent deterministic replay verification against stored snapshot,
+    cryptographically proving zero drift and full audit reproducibility.
+    """
+    try:
+        replay_result = _orchestrator.replay_verification(verification_id)
+        return replay_result
+    except KeyError as ke:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(ke),
+        )
+

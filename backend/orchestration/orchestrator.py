@@ -16,11 +16,18 @@ from backend.extraction.provider import BaseLLMProvider
 from backend.extraction.requirement_extractor import TenderRequirementExtractor
 from backend.extraction.schema_validator import SchemaValidator
 from backend.ingestion.pipeline import DocumentIngestionPipeline
+from backend.verification.base import BaseGovernmentAdapter
 from backend.verification.mock_debarment import MockDebarmentAdapter
 from backend.verification.mock_gst import MockGSTAdapter
 from backend.verification.mock_pan import MockPANAdapter
 from backend.verification.mock_udyam import MockUdyamAdapter
-from backend.verification.models import AdapterResponse, IntegrityFinding
+from backend.verification.mock_itd import MockITDAdapter
+from backend.verification.mock_mca21 import MockMCA21Adapter
+from backend.verification.mock_nsic import MockNSICAdapter
+from backend.verification.mock_oem import MockOEMAdapter
+from backend.verification.mock_mii import MockMIIAdapter
+from backend.verification.mock_evidence_adapter import MockRegistryEvidenceAdapter
+from backend.verification.models import AdapterResponse, IntegrityFinding, VerificationStatus
 from .aggregator import VerificationAggregator
 from .models import AggregatedVerification, VerificationDossier
 
@@ -38,6 +45,12 @@ class VerificationOrchestrator:
         provider: Optional[BaseLLMProvider] = None,
         cache_dir: str = "data/cache/verifications",
         llm_cache_dir: str = "data/cache/llm",
+        gst_adapter: Optional[BaseGovernmentAdapter] = None,
+        itd_adapter: Optional[BaseGovernmentAdapter] = None,
+        mca_adapter: Optional[BaseGovernmentAdapter] = None,
+        nsic_adapter: Optional[BaseGovernmentAdapter] = None,
+        oem_adapter: Optional[BaseGovernmentAdapter] = None,
+        mii_adapter: Optional[BaseGovernmentAdapter] = None,
     ):
         if isinstance(mode, str):
             mode = LLMMode(mode.upper())
@@ -74,11 +87,17 @@ class VerificationOrchestrator:
         self.contradiction_engine = CrossDocumentContradictionEngine()
         self.aggregator = VerificationAggregator()
 
-        # Mock Government Adapters
-        self.gst_adapter = MockGSTAdapter()
+        # Government Adapters (Mock by default, pluggable)
+        self.gst_adapter = gst_adapter or MockGSTAdapter()
         self.pan_adapter = MockPANAdapter()
         self.udyam_adapter = MockUdyamAdapter()
         self.debarment_adapter = MockDebarmentAdapter()
+        self.itd_adapter = itd_adapter or MockITDAdapter()
+        self.mca_adapter = mca_adapter or MockMCA21Adapter()
+        self.nsic_adapter = nsic_adapter or MockNSICAdapter()
+        self.oem_adapter = oem_adapter or MockOEMAdapter()
+        self.mii_adapter = mii_adapter or MockMIIAdapter()
+        self.mock_evidence_adapter = MockRegistryEvidenceAdapter()
 
         # In-memory session store
         self._verifications: Dict[str, AggregatedVerification] = {}
@@ -160,6 +179,61 @@ class VerificationOrchestrator:
         if debar_val:
             gov_responses.append(self.debarment_adapter.verify(str(debar_val)))
 
+        # Mock Government Registry Verifications (MCA21, NSIC, OEM, MII, ITD)
+        cin_val = facts_by_field.get("cin") or facts_by_canonical.get("CIN") or facts_by_field.get("corporate_id")
+        nsic_val = (
+            facts_by_field.get("nsic")
+            or facts_by_field.get("nsic_certificate")
+            or facts_by_canonical.get("NSIC_REGISTRATION")
+            or facts_by_field.get("nsic_registration")
+        )
+        oem_val = (
+            facts_by_field.get("oem_authorization")
+            or facts_by_field.get("maf")
+            or facts_by_field.get("oem_auth")
+            or facts_by_canonical.get("OEM_AUTHORIZATION")
+            or facts_by_field.get("oem_authorization_number")
+        )
+        mii_val = (
+            facts_by_field.get("mii")
+            or facts_by_field.get("mii_declaration")
+            or facts_by_field.get("local_content")
+            or facts_by_canonical.get("MII_DECLARATION")
+            or facts_by_field.get("mii_certificate")
+        )
+        itr_val = (
+            facts_by_field.get("itr")
+            or facts_by_field.get("itr_ack")
+            or facts_by_field.get("income_tax_return")
+            or facts_by_canonical.get("ITR_ACKNOWLEDGEMENT")
+            or facts_by_field.get("itr_acknowledgement")
+        )
+
+        if cin_val:
+            gov_responses.append(self.mca_adapter.verify(str(cin_val), expected_name=str(legal_name) if legal_name else None))
+
+        if nsic_val:
+            gov_responses.append(self.nsic_adapter.verify(str(nsic_val), expected_name=str(legal_name) if legal_name else None))
+
+        if oem_val:
+            oem_name_hint = facts_by_field.get("oem_name") or facts_by_canonical.get("OEM_NAME")
+            gov_responses.append(self.oem_adapter.verify(str(oem_val), expected_name=str(legal_name) if legal_name else None, oem_name=str(oem_name_hint) if oem_name_hint else None))
+
+        if mii_val:
+            gov_responses.append(self.mii_adapter.verify(str(mii_val), expected_name=str(legal_name) if legal_name else None))
+
+        has_itr_req = any(
+            "ITR" in (getattr(r, "requirement_id", "") or "").upper()
+            or "ITR" in (getattr(r, "field", "") or "").upper()
+            or "ITR" in (getattr(r, "canonical_field", "") or "").upper()
+            or "INCOME TAX" in (getattr(r, "description", "") or "").upper()
+            for r in requirements
+        )
+        if itr_val:
+            gov_responses.append(self.itd_adapter.verify(str(itr_val), expected_name=str(legal_name) if legal_name else None))
+        elif has_itr_req and pan_val:
+            gov_responses.append(self.itd_adapter.verify(str(pan_val), expected_name=str(legal_name) if legal_name else None))
+
         # 7. Aggregation & Decision Logic
         total_time_ms = (time.perf_counter() - t0) * 1000.0
         extraction_meta = {
@@ -176,6 +250,8 @@ class VerificationOrchestrator:
             government_responses=gov_responses,
             grounding_warnings=grounding_warnings,
             extraction_metadata=extraction_meta,
+            requirements=requirements,
+            facts=all_facts,
         )
 
         # 8. Compile Verification Dossier
@@ -252,9 +328,21 @@ class VerificationOrchestrator:
             results=compliance_results,
             integrity_findings=integrity_findings,
             human_review_items=aggregated.human_review_items,
+            adjudications=getattr(aggregated, "adjudications", None),
             bid_id=bid_id,
             tender_id=tender_id,
         )
+
+        # Integrate verified mock government registry evidence into DAG
+        for gov_item in getattr(aggregated, "government_checks", []):
+            if isinstance(gov_item, dict):
+                source = gov_item.get("source", "")
+                status = gov_item.get("status", "")
+                if source.startswith("MOCK_") and status == "VERIFIED":
+                    mock_resp = AdapterResponse.from_dict(gov_item)
+                    mock_facts = self.mock_evidence_adapter.to_bidder_facts(mock_resp, bid_id)
+                    if mock_facts:
+                        self.mock_evidence_adapter.integrate_with_dag(dag, mock_facts, mock_resp)
 
         return VerificationDossier(
             tender={
@@ -294,6 +382,11 @@ class VerificationOrchestrator:
                 "extraction_mode": self.mode.value if hasattr(self.mode, 'value') else str(self.mode),
             },
             provenance_graph=dag.to_dict(),
+            compliance_score=aggregated.compliance_score_breakdown,
+            risk_assessment=aggregated.risk_assessment,
+            recommendation=aggregated.recommendation,
+            pending_requirements=aggregated.pending_requirements,
+            adjudications=getattr(aggregated, "adjudications", []),
         )
 
     def _save_to_disk(self, aggregated: AggregatedVerification, dossier: VerificationDossier) -> None:
@@ -321,3 +414,104 @@ class VerificationOrchestrator:
         except Exception:
             pass
         return None
+
+    def adjudicate(
+        self,
+        verification_id: str,
+        request: Any,
+    ) -> Tuple[AggregatedVerification, VerificationDossier, Any]:
+        """
+        Applies a procurement officer adjudication / override to an existing verification.
+        Deterministically recalculates compliance score, risk assessment, and recommendation,
+        updates provenance DAG, appends to immutable audit trail, and persists to cache.
+        """
+        from backend.core.adjudication import ProcurementOfficerAdjudicationEngine
+
+        aggregated = self.get_verification(verification_id)
+        if not aggregated:
+            raise KeyError(f"Verification '{verification_id}' not found.")
+
+        dossier = self.get_dossier(verification_id)
+        if not dossier:
+            raise KeyError(f"Dossier for verification '{verification_id}' not found.")
+
+        updated_agg, updated_dos, record = ProcurementOfficerAdjudicationEngine.apply_adjudication(
+            aggregated=aggregated,
+            dossier=dossier,
+            request=request,
+        )
+
+        # Update session store and disk cache
+        self._verifications[verification_id] = updated_agg
+        self._dossiers[verification_id] = updated_dos
+        self._save_to_disk(updated_agg, updated_dos)
+
+        return updated_agg, updated_dos, record
+
+    def get_audit_trail(self, verification_id: str) -> Dict[str, Any]:
+        """
+        Retrieves the complete audit trail and adjudication records for a verification.
+        """
+        aggregated = self.get_verification(verification_id)
+        if not aggregated:
+            raise KeyError(f"Verification '{verification_id}' not found.")
+        dossier = self.get_dossier(verification_id)
+
+        adjudications = getattr(aggregated, "adjudications", [])
+        return {
+            "verification_id": verification_id,
+            "deterministic_run_id": aggregated.deterministic_run_id,
+            "tender_id": aggregated.tender_id,
+            "bid_id": aggregated.bid_id,
+            "generated_at": aggregated.generated_at,
+            "adjudications_count": len(adjudications),
+            "adjudications": adjudications,
+            "human_review_items": aggregated.human_review_items,
+            "provenance_node_count": len(dossier.provenance_graph.get("nodes", [])) if (dossier and dossier.provenance_graph) else 0,
+            "provenance_edge_count": len(dossier.provenance_graph.get("edges", [])) if (dossier and dossier.provenance_graph) else 0,
+        }
+
+    def replay_verification(self, verification_id: str) -> Dict[str, Any]:
+        """
+        Performs an independent deterministic replay verification against the verification state
+        using DeterministicReplayEngine, verifying zero-drift reproducibility.
+        """
+        from backend.core.replay_engine import DeterministicReplayEngine
+        from backend.core.snapshot import SnapshotBuilder
+
+        aggregated = self.get_verification(verification_id)
+        if not aggregated:
+            raise KeyError(f"Verification '{verification_id}' not found.")
+        dossier = self.get_dossier(verification_id)
+        if not dossier:
+            raise KeyError(f"Dossier for verification '{verification_id}' not found.")
+
+        # Reconstruct requirements and facts from dossier
+        from backend.core.models import TenderRequirement, BidderFact, VerificationResult
+        reqs = [TenderRequirement.from_dict(r) if isinstance(r, dict) else r for r in dossier.tender.get("requirements", [])]
+        facts = [BidderFact.from_dict(f) if isinstance(f, dict) else f for f in dossier.bidder.get("facts", [])]
+        results = [VerificationResult.from_dict(r) if isinstance(r, dict) else r for r in dossier.verification_results]
+
+        snapshot = SnapshotBuilder.build(
+            tender_id=aggregated.tender_id,
+            bid_id=aggregated.bid_id,
+            requirements=reqs,
+            facts=facts,
+            compliance_results=results,
+            human_review_items=aggregated.human_review_items,
+            aggregated_status={
+                "compliance_status": aggregated.compliance_status,
+                "integrity_status": aggregated.integrity_status,
+                "overall_status": aggregated.overall_status,
+                "critical_failures": aggregated.critical_failures,
+                "major_failures": aggregated.major_failures,
+                "anomaly_count": aggregated.anomaly_count,
+                "review_required": aggregated.review_required,
+            },
+            provenance_graph=dossier.provenance_graph,
+        )
+
+        replay_engine = DeterministicReplayEngine()
+        replay_result = replay_engine.replay(snapshot)
+        return replay_result.to_dict(include_transient_metrics=True)
+
