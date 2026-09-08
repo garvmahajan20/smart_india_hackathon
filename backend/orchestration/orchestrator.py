@@ -16,6 +16,7 @@ from backend.extraction.provider import BaseLLMProvider
 from backend.extraction.requirement_extractor import TenderRequirementExtractor
 from backend.extraction.schema_validator import SchemaValidator
 from backend.ingestion.pipeline import DocumentIngestionPipeline
+from backend.verification.base import BaseGovernmentAdapter
 from backend.verification.mock_debarment import MockDebarmentAdapter
 from backend.verification.mock_gst import MockGSTAdapter
 from backend.verification.mock_pan import MockPANAdapter
@@ -38,6 +39,7 @@ class VerificationOrchestrator:
         provider: Optional[BaseLLMProvider] = None,
         cache_dir: str = "data/cache/verifications",
         llm_cache_dir: str = "data/cache/llm",
+        gst_adapter: Optional[BaseGovernmentAdapter] = None,
     ):
         if isinstance(mode, str):
             mode = LLMMode(mode.upper())
@@ -74,8 +76,8 @@ class VerificationOrchestrator:
         self.contradiction_engine = CrossDocumentContradictionEngine()
         self.aggregator = VerificationAggregator()
 
-        # Mock Government Adapters
-        self.gst_adapter = MockGSTAdapter()
+        # Government Adapters (Mock by default, pluggable)
+        self.gst_adapter = gst_adapter or MockGSTAdapter()
         self.pan_adapter = MockPANAdapter()
         self.udyam_adapter = MockUdyamAdapter()
         self.debarment_adapter = MockDebarmentAdapter()

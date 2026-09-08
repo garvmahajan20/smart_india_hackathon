@@ -64,6 +64,9 @@ app.include_router(dpiit_router)
 from .esic_router import router as esic_router
 app.include_router(esic_router)
 
+from .gst_router import router as gst_router
+app.include_router(gst_router)
+
 # Global Orchestrator Instances (cached/mock by default to conserve quota)
 _orchestrator = VerificationOrchestrator(mode=LLMMode.MOCK)
 
