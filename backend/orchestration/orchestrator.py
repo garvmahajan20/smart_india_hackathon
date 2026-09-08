@@ -21,7 +21,13 @@ from backend.verification.mock_debarment import MockDebarmentAdapter
 from backend.verification.mock_gst import MockGSTAdapter
 from backend.verification.mock_pan import MockPANAdapter
 from backend.verification.mock_udyam import MockUdyamAdapter
-from backend.verification.models import AdapterResponse, IntegrityFinding
+from backend.verification.mock_itd import MockITDAdapter
+from backend.verification.mock_mca21 import MockMCA21Adapter
+from backend.verification.mock_nsic import MockNSICAdapter
+from backend.verification.mock_oem import MockOEMAdapter
+from backend.verification.mock_mii import MockMIIAdapter
+from backend.verification.mock_evidence_adapter import MockRegistryEvidenceAdapter
+from backend.verification.models import AdapterResponse, IntegrityFinding, VerificationStatus
 from .aggregator import VerificationAggregator
 from .models import AggregatedVerification, VerificationDossier
 
@@ -40,6 +46,11 @@ class VerificationOrchestrator:
         cache_dir: str = "data/cache/verifications",
         llm_cache_dir: str = "data/cache/llm",
         gst_adapter: Optional[BaseGovernmentAdapter] = None,
+        itd_adapter: Optional[BaseGovernmentAdapter] = None,
+        mca_adapter: Optional[BaseGovernmentAdapter] = None,
+        nsic_adapter: Optional[BaseGovernmentAdapter] = None,
+        oem_adapter: Optional[BaseGovernmentAdapter] = None,
+        mii_adapter: Optional[BaseGovernmentAdapter] = None,
     ):
         if isinstance(mode, str):
             mode = LLMMode(mode.upper())
@@ -81,6 +92,12 @@ class VerificationOrchestrator:
         self.pan_adapter = MockPANAdapter()
         self.udyam_adapter = MockUdyamAdapter()
         self.debarment_adapter = MockDebarmentAdapter()
+        self.itd_adapter = itd_adapter or MockITDAdapter()
+        self.mca_adapter = mca_adapter or MockMCA21Adapter()
+        self.nsic_adapter = nsic_adapter or MockNSICAdapter()
+        self.oem_adapter = oem_adapter or MockOEMAdapter()
+        self.mii_adapter = mii_adapter or MockMIIAdapter()
+        self.mock_evidence_adapter = MockRegistryEvidenceAdapter()
 
         # In-memory session store
         self._verifications: Dict[str, AggregatedVerification] = {}
@@ -161,6 +178,61 @@ class VerificationOrchestrator:
         debar_val = pan_val or gstin_val or legal_name
         if debar_val:
             gov_responses.append(self.debarment_adapter.verify(str(debar_val)))
+
+        # Mock Government Registry Verifications (MCA21, NSIC, OEM, MII, ITD)
+        cin_val = facts_by_field.get("cin") or facts_by_canonical.get("CIN") or facts_by_field.get("corporate_id")
+        nsic_val = (
+            facts_by_field.get("nsic")
+            or facts_by_field.get("nsic_certificate")
+            or facts_by_canonical.get("NSIC_REGISTRATION")
+            or facts_by_field.get("nsic_registration")
+        )
+        oem_val = (
+            facts_by_field.get("oem_authorization")
+            or facts_by_field.get("maf")
+            or facts_by_field.get("oem_auth")
+            or facts_by_canonical.get("OEM_AUTHORIZATION")
+            or facts_by_field.get("oem_authorization_number")
+        )
+        mii_val = (
+            facts_by_field.get("mii")
+            or facts_by_field.get("mii_declaration")
+            or facts_by_field.get("local_content")
+            or facts_by_canonical.get("MII_DECLARATION")
+            or facts_by_field.get("mii_certificate")
+        )
+        itr_val = (
+            facts_by_field.get("itr")
+            or facts_by_field.get("itr_ack")
+            or facts_by_field.get("income_tax_return")
+            or facts_by_canonical.get("ITR_ACKNOWLEDGEMENT")
+            or facts_by_field.get("itr_acknowledgement")
+        )
+
+        if cin_val:
+            gov_responses.append(self.mca_adapter.verify(str(cin_val), expected_name=str(legal_name) if legal_name else None))
+
+        if nsic_val:
+            gov_responses.append(self.nsic_adapter.verify(str(nsic_val), expected_name=str(legal_name) if legal_name else None))
+
+        if oem_val:
+            oem_name_hint = facts_by_field.get("oem_name") or facts_by_canonical.get("OEM_NAME")
+            gov_responses.append(self.oem_adapter.verify(str(oem_val), expected_name=str(legal_name) if legal_name else None, oem_name=str(oem_name_hint) if oem_name_hint else None))
+
+        if mii_val:
+            gov_responses.append(self.mii_adapter.verify(str(mii_val), expected_name=str(legal_name) if legal_name else None))
+
+        has_itr_req = any(
+            "ITR" in (getattr(r, "requirement_id", "") or "").upper()
+            or "ITR" in (getattr(r, "field", "") or "").upper()
+            or "ITR" in (getattr(r, "canonical_field", "") or "").upper()
+            or "INCOME TAX" in (getattr(r, "description", "") or "").upper()
+            for r in requirements
+        )
+        if itr_val:
+            gov_responses.append(self.itd_adapter.verify(str(itr_val), expected_name=str(legal_name) if legal_name else None))
+        elif has_itr_req and pan_val:
+            gov_responses.append(self.itd_adapter.verify(str(pan_val), expected_name=str(legal_name) if legal_name else None))
 
         # 7. Aggregation & Decision Logic
         total_time_ms = (time.perf_counter() - t0) * 1000.0
@@ -260,6 +332,17 @@ class VerificationOrchestrator:
             bid_id=bid_id,
             tender_id=tender_id,
         )
+
+        # Integrate verified mock government registry evidence into DAG
+        for gov_item in getattr(aggregated, "government_checks", []):
+            if isinstance(gov_item, dict):
+                source = gov_item.get("source", "")
+                status = gov_item.get("status", "")
+                if source.startswith("MOCK_") and status == "VERIFIED":
+                    mock_resp = AdapterResponse.from_dict(gov_item)
+                    mock_facts = self.mock_evidence_adapter.to_bidder_facts(mock_resp, bid_id)
+                    if mock_facts:
+                        self.mock_evidence_adapter.integrate_with_dag(dag, mock_facts, mock_resp)
 
         return VerificationDossier(
             tender={

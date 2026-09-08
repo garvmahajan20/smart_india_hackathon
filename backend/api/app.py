@@ -67,6 +67,9 @@ app.include_router(esic_router)
 from .gst_router import router as gst_router
 app.include_router(gst_router)
 
+from .mock_registry_router import router as mock_registry_router
+app.include_router(mock_registry_router)
+
 # Global Orchestrator Instances (cached/mock by default to conserve quota)
 _orchestrator = VerificationOrchestrator(mode=LLMMode.MOCK)
 
