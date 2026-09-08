@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 import io
@@ -7,6 +7,8 @@ from typing import Any, Dict, List, Optional
 
 from .bbox import convert_pymupdf_to_contract_bbox
 from .models import TextBlock
+from .ocr_validator import OCRValidationStatus, validate_ocr_result
+from .preprocessing import map_ocr_bbox_to_page_coordinates
 
 @dataclass
 class OCRPageResult:
@@ -20,6 +22,25 @@ class OCRPageResult:
     confidence: float = 0.0
     error: Optional[str] = None
     engine_name: str = "Tesseract"
+    pass_number: int = 1
+    preprocessing_applied: List[str] = field(default_factory=list)
+    validation_report: Optional[Dict[str, Any]] = None
+    quality_status: str = "ACCEPTED"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "success": self.success,
+            "text": self.text,
+            "raw_text": self.raw_text,
+            "blocks": [b.to_dict() for b in self.blocks],
+            "confidence": round(self.confidence, 4),
+            "error": self.error,
+            "engine_name": self.engine_name,
+            "pass_number": self.pass_number,
+            "preprocessing_applied": self.preprocessing_applied,
+            "validation_report": self.validation_report,
+            "quality_status": self.quality_status,
+        }
 
 class BaseOCREngine(ABC):
     """
@@ -43,7 +64,9 @@ class BaseOCREngine(ABC):
         image_bytes: bytes,
         page_number: int,
         page_width: float,
-        page_height: float
+        page_height: float,
+        preprocessing_meta: Optional[Dict[str, Any]] = None,
+        **kwargs: Any,
     ) -> OCRPageResult:
         """
         Executes OCR on an image rendered from a PDF page.
@@ -87,8 +110,16 @@ class TesseractOCREngine(BaseOCREngine):
         image_bytes: bytes,
         page_number: int,
         page_width: float,
-        page_height: float
+        page_height: float,
+        preprocessing_meta: Optional[Dict[str, Any]] = None,
+        **kwargs: Any,
     ) -> OCRPageResult:
+        prep_meta = preprocessing_meta or {}
+        pass_num = prep_meta.get("pass_number", 1)
+        prep_ops = prep_meta.get("operations_applied", [])
+        skew_deg = prep_meta.get("skew_angle_deg", 0.0)
+        scale_fact = prep_meta.get("scale_factor", 1.0)
+
         if not self.is_available():
             return OCRPageResult(
                 success=False,
@@ -98,6 +129,9 @@ class TesseractOCREngine(BaseOCREngine):
                 confidence=0.0,
                 error="Tesseract is not installed or available in current environment.",
                 engine_name=self.engine_name,
+                pass_number=pass_num,
+                preprocessing_applied=prep_ops,
+                quality_status="FAILED",
             )
 
         try:
@@ -105,6 +139,8 @@ class TesseractOCREngine(BaseOCREngine):
             from PIL import Image
 
             image = Image.open(io.BytesIO(image_bytes))
+            img_w, img_h = image.size
+
             # Extract detailed block and bounding box data using image_to_data
             data = pytesseract.image_to_data(image, output_type=pytesseract.Output.DICT)
 
@@ -118,9 +154,6 @@ class TesseractOCREngine(BaseOCREngine):
             current_block_coords: Optional[List[float]] = None
 
             n_boxes = len(data["level"])
-            img_w, img_h = image.size
-            scale_x = page_width / img_w if img_w > 0 else 1.0
-            scale_y = page_height / img_h if img_h > 0 else 1.0
 
             for i in range(n_boxes):
                 text_word = data["text"][i].strip()
@@ -131,46 +164,55 @@ class TesseractOCREngine(BaseOCREngine):
                     continue
 
                 confidences.append(conf / 100.0)
-                x = data["left"][i] * scale_x
-                y = data["top"][i] * scale_y
-                w = data["width"][i] * scale_x
-                h = data["height"][i] * scale_y
+                px = float(data["left"][i])
+                py = float(data["top"][i])
+                pw = float(data["width"][i])
+                ph = float(data["height"][i])
 
                 if block_num != current_block_num and current_block_words:
                     block_text = " ".join(current_block_words)
                     full_text_lines.append(block_text)
-                    b_box = convert_pymupdf_to_contract_bbox(
-                        current_block_coords[0], current_block_coords[1],
-                        current_block_coords[2], current_block_coords[3],
-                        page_width, page_height
+
+                    # Map coordinates back to canonical PDF page space
+                    b_box = map_ocr_bbox_to_page_coordinates(
+                        current_block_coords,
+                        image.size,
+                        (page_width, page_height),
+                        skew_angle_applied=skew_deg,
+                        scale_factor=scale_fact,
                     )
+                    block_conf = sum(confidences[-len(current_block_words):]) / max(1, len(current_block_words))
+
                     blocks.append(TextBlock(
                         block_id=f"ocr-p{page_number}-b{len(blocks)}",
                         page_number=page_number,
                         text=block_text,
                         raw_text=block_text,
                         bbox=b_box,
-                        confidence=sum(confidences[-len(current_block_words):]) / len(current_block_words)
+                        confidence=block_conf,
                     ))
                     current_block_words = []
 
                 current_block_num = block_num
                 current_block_words.append(text_word)
                 if current_block_coords is None:
-                    current_block_coords = [x, y, x + w, y + h]
+                    current_block_coords = [px, py, px + pw, py + ph]
                 else:
-                    current_block_coords[0] = min(current_block_coords[0], x)
-                    current_block_coords[1] = min(current_block_coords[1], y)
-                    current_block_coords[2] = max(current_block_coords[2], x + w)
-                    current_block_coords[3] = max(current_block_coords[3], y + h)
+                    current_block_coords[0] = min(current_block_coords[0], px)
+                    current_block_coords[1] = min(current_block_coords[1], py)
+                    current_block_coords[2] = max(current_block_coords[2], px + pw)
+                    current_block_coords[3] = max(current_block_coords[3], py + ph)
 
             if current_block_words and current_block_coords:
                 block_text = " ".join(current_block_words)
                 full_text_lines.append(block_text)
-                b_box = convert_pymupdf_to_contract_bbox(
-                    current_block_coords[0], current_block_coords[1],
-                    current_block_coords[2], current_block_coords[3],
-                    page_width, page_height
+
+                b_box = map_ocr_bbox_to_page_coordinates(
+                    current_block_coords,
+                    image.size,
+                    (page_width, page_height),
+                    skew_angle_applied=skew_deg,
+                    scale_factor=scale_fact,
                 )
                 blocks.append(TextBlock(
                     block_id=f"ocr-p{page_number}-b{len(blocks)}",
@@ -178,11 +220,30 @@ class TesseractOCREngine(BaseOCREngine):
                     text=block_text,
                     raw_text=block_text,
                     bbox=b_box,
-                    confidence=0.85
+                    confidence=0.85,
                 ))
 
             avg_conf = sum(confidences) / len(confidences) if confidences else 0.85
             extracted_text = "\n".join(full_text_lines)
+
+            # Deterministic OCR Output Validation
+            val_report = validate_ocr_result(extracted_text, blocks, avg_conf)
+
+            if val_report.status == OCRValidationStatus.FAILED:
+                # Discard garbage OCR
+                return OCRPageResult(
+                    success=False,
+                    text="",
+                    raw_text="",
+                    blocks=[],
+                    confidence=val_report.confidence,
+                    error=f"OCR quality validation failed: {'; '.join(val_report.reasons)}",
+                    engine_name=self.engine_name,
+                    pass_number=pass_num,
+                    preprocessing_applied=prep_ops,
+                    validation_report=val_report.to_dict(),
+                    quality_status=val_report.status.value,
+                )
 
             return OCRPageResult(
                 success=True,
@@ -192,6 +253,10 @@ class TesseractOCREngine(BaseOCREngine):
                 confidence=avg_conf,
                 error=None,
                 engine_name=self.engine_name,
+                pass_number=pass_num,
+                preprocessing_applied=prep_ops,
+                validation_report=val_report.to_dict(),
+                quality_status=val_report.status.value,
             )
 
         except Exception as e:
@@ -203,17 +268,30 @@ class TesseractOCREngine(BaseOCREngine):
                 confidence=0.0,
                 error=f"OCR execution failed: {str(e)}",
                 engine_name=self.engine_name,
+                pass_number=pass_num,
+                preprocessing_applied=prep_ops,
+                quality_status="FAILED",
             )
 
 class MockOCREngine(BaseOCREngine):
     """
-    Mock OCR Engine for controlled unit testing of fallback and hybrid pipelines
-    without requiring external binaries or environment dependencies.
+    Mock OCR Engine for controlled unit testing of fallback, multi-pass,
+    and hybrid pipelines without external binary dependencies.
     """
 
-    def __init__(self, simulated_text: str = "Simulated OCR Extracted Text", available: bool = True):
+    def __init__(
+        self,
+        simulated_text: str = "Simulated OCR Extracted Text",
+        available: bool = True,
+        confidence: float = 0.92,
+        pass2_simulated_text: Optional[str] = None,
+        force_failed_validation: bool = False,
+    ):
         self.simulated_text = simulated_text
         self._available = available
+        self.confidence = confidence
+        self.pass2_simulated_text = pass2_simulated_text
+        self.force_failed_validation = force_failed_validation
 
     @property
     def engine_name(self) -> str:
@@ -227,8 +305,16 @@ class MockOCREngine(BaseOCREngine):
         image_bytes: bytes,
         page_number: int,
         page_width: float,
-        page_height: float
+        page_height: float,
+        preprocessing_meta: Optional[Dict[str, Any]] = None,
+        **kwargs: Any,
     ) -> OCRPageResult:
+        prep_meta = preprocessing_meta or {}
+        pass_num = prep_meta.get("pass_number", 1)
+        prep_ops = prep_meta.get("operations_applied", [])
+        skew_deg = prep_meta.get("skew_angle_deg", 0.0)
+        scale_fact = prep_meta.get("scale_factor", 1.0)
+
         if not self.is_available():
             return OCRPageResult(
                 success=False,
@@ -238,23 +324,65 @@ class MockOCREngine(BaseOCREngine):
                 confidence=0.0,
                 error="Mock OCR engine marked unavailable for test.",
                 engine_name=self.engine_name,
+                pass_number=pass_num,
+                preprocessing_applied=prep_ops,
+                quality_status="FAILED",
             )
 
-        bbox = convert_pymupdf_to_contract_bbox(50.0, 50.0, page_width - 50.0, 150.0, page_width, page_height)
+        # Multi-pass simulation: if pass 2 and specific text configured, use it
+        chosen_text = self.simulated_text
+        if pass_num == 2 and self.pass2_simulated_text is not None:
+            chosen_text = self.pass2_simulated_text
+
+        if self.force_failed_validation:
+            chosen_text = "^^^~===+++!!!???;;;..."
+
+        # Compute bounding box and transform with coordinate mapping
+        pixel_box = [50.0 * scale_fact, 50.0 * scale_fact, (page_width - 50.0) * scale_fact, 150.0 * scale_fact]
+        bbox = map_ocr_bbox_to_page_coordinates(
+            pixel_box,
+            (int(page_width * scale_fact), int(page_height * scale_fact)),
+            (page_width, page_height),
+            skew_angle_applied=skew_deg,
+            scale_factor=scale_fact,
+        )
+
         block = TextBlock(
             block_id=f"mock-ocr-p{page_number}-b0",
             page_number=page_number,
-            text=self.simulated_text,
-            raw_text=self.simulated_text,
+            text=chosen_text,
+            raw_text=chosen_text,
             bbox=bbox,
-            confidence=0.92
+            confidence=self.confidence,
         )
+
+        val_report = validate_ocr_result(chosen_text, [block], self.confidence)
+
+        if val_report.status == OCRValidationStatus.FAILED or self.force_failed_validation:
+            return OCRPageResult(
+                success=False,
+                text="",
+                raw_text="",
+                blocks=[],
+                confidence=val_report.confidence,
+                error=f"Mock OCR validation failed: {'; '.join(val_report.reasons)}",
+                engine_name=self.engine_name,
+                pass_number=pass_num,
+                preprocessing_applied=prep_ops,
+                validation_report=val_report.to_dict(),
+                quality_status="FAILED",
+            )
+
         return OCRPageResult(
             success=True,
-            text=self.simulated_text,
-            raw_text=self.simulated_text,
+            text=chosen_text,
+            raw_text=chosen_text,
             blocks=[block],
-            confidence=0.92,
+            confidence=self.confidence,
             error=None,
             engine_name=self.engine_name,
+            pass_number=pass_num,
+            preprocessing_applied=prep_ops,
+            validation_report=val_report.to_dict(),
+            quality_status=val_report.status.value,
         )
