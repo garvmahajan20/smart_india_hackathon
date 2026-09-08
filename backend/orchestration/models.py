@@ -85,6 +85,7 @@ class AggregatedVerification:
     risk_assessment: Dict[str, Any] = dc.field(default_factory=dict)
     recommendation: Dict[str, Any] = dc.field(default_factory=dict)
     pending_requirements: List[Dict[str, Any]] = dc.field(default_factory=list)
+    adjudications: List[Dict[str, Any]] = dc.field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -110,6 +111,7 @@ class VerificationDossier:
     risk_assessment: Optional[Dict[str, Any]] = None
     recommendation: Optional[Dict[str, Any]] = None
     pending_requirements: List[Dict[str, Any]] = dc.field(default_factory=list)
+    adjudications: List[Dict[str, Any]] = dc.field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

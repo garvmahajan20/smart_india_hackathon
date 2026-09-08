@@ -70,7 +70,7 @@ class VerificationAggregator:
             if r.evidence:
                 evidence_count += len(r.evidence)
 
-            if r.status == "FAIL":
+            if r.status in ("FAIL", "OVERRIDDEN_FAIL"):
                 if r.severity == "CRITICAL":
                     critical_fails += 1
                 else:
@@ -79,11 +79,12 @@ class VerificationAggregator:
                 missing_count += 1
             elif r.status in ["REVIEW", "PARTIAL"]:
                 review_count += 1
-            elif r.status == "PASS":
+            elif r.status in ("PASS", "OVERRIDDEN_PASS"):
                 pass_count += 1
 
-            # Route compliance items requiring review
-            if r.requires_human_review or r.status in ["REVIEW", "PARTIAL", "MISSING"]:
+            # Route compliance items requiring review (unless already adjudicated)
+            has_officer_override = bool(r.officer_override and r.officer_override.get("decision"))
+            if (r.requires_human_review or r.status in ["REVIEW", "PARTIAL", "MISSING"]) and not has_officer_override:
                 review_idx += 1
                 cat = ReviewCategory.MISSING_EVIDENCE.value if r.status == "MISSING" else ReviewCategory.AMBIGUOUS_COMPLIANCE.value
                 human_review_items.append(HumanReviewItem(
@@ -118,12 +119,14 @@ class VerificationAggregator:
 
         for finding in integrity_findings:
             serialized_contradictions.append(finding.to_dict())
+            if getattr(finding, "status", "") in ("DISMISSED", "DISMISSED_BY_OFFICER") or getattr(finding, "dismissed_by_officer", False):
+                continue
             if finding.status == "CONTRADICTION":
                 contradiction_count += 1
             elif finding.status == "REVIEW":
                 integrity_review_count += 1
 
-            if finding.requires_human_review or finding.status in ["CONTRADICTION", "REVIEW"]:
+            if (finding.requires_human_review or finding.status in ["CONTRADICTION", "REVIEW"]) and not getattr(finding, "dismissed_by_officer", False):
                 review_idx += 1
                 human_review_items.append(HumanReviewItem(
                     review_id=f"REV-{bid_id}-{review_idx:03d}",

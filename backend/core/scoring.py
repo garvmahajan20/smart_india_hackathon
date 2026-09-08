@@ -157,8 +157,8 @@ class ComplianceScoringEngine:
             req_weight = base_weight * multiplier
             total_possible_points += req_weight
 
-            if status == ComplianceStatus.PASS.value:
-                if app_res.status == ApplicabilityStatus.UNKNOWN_REVIEW:
+            if status in (ComplianceStatus.PASS.value, "OVERRIDDEN_PASS"):
+                if app_res.status == ApplicabilityStatus.UNKNOWN_REVIEW and status != "OVERRIDDEN_PASS":
                     review_count += 1
                     earned = req_weight * 0.50
                     total_earned_points += earned
@@ -224,7 +224,7 @@ class ComplianceScoringEngine:
                     reason=f"Required evidence missing: {v_res.reason}",
                 ))
 
-            elif status == ComplianceStatus.FAIL.value:
+            elif status in (ComplianceStatus.FAIL.value, "OVERRIDDEN_FAIL"):
                 fail_count += 1
                 if req.mandatory:
                     has_mandatory_fail = True
@@ -271,10 +271,11 @@ class ComplianceScoringEngine:
                 is_capped = True
                 cap_reason = f"MANDATORY_MISSING_CAP: Score capped at {cls.MANDATORY_MISSING_CAP:.0f} due to missing mandatory documentation."
 
-        # Check for Critical Contradictions
+        # Check for Critical Contradictions (exclude dismissed findings)
         has_critical_contra = any(
             f.status == "CONTRADICTION" and f.severity in ("HIGH", "CRITICAL")
             for f in findings
+            if getattr(f, "status", "") not in ("DISMISSED", "DISMISSED_BY_OFFICER")
         )
         if has_critical_contra and not is_debarred and not has_mandatory_fail:
             if final_score > cls.CRITICAL_CONTRADICTION_CAP:

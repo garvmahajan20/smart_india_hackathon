@@ -254,6 +254,7 @@ class VerificationOrchestrator:
             results=compliance_results,
             integrity_findings=integrity_findings,
             human_review_items=aggregated.human_review_items,
+            adjudications=getattr(aggregated, "adjudications", None),
             bid_id=bid_id,
             tender_id=tender_id,
         )
@@ -300,6 +301,7 @@ class VerificationOrchestrator:
             risk_assessment=aggregated.risk_assessment,
             recommendation=aggregated.recommendation,
             pending_requirements=aggregated.pending_requirements,
+            adjudications=getattr(aggregated, "adjudications", []),
         )
 
     def _save_to_disk(self, aggregated: AggregatedVerification, dossier: VerificationDossier) -> None:
@@ -327,3 +329,104 @@ class VerificationOrchestrator:
         except Exception:
             pass
         return None
+
+    def adjudicate(
+        self,
+        verification_id: str,
+        request: Any,
+    ) -> Tuple[AggregatedVerification, VerificationDossier, Any]:
+        """
+        Applies a procurement officer adjudication / override to an existing verification.
+        Deterministically recalculates compliance score, risk assessment, and recommendation,
+        updates provenance DAG, appends to immutable audit trail, and persists to cache.
+        """
+        from backend.core.adjudication import ProcurementOfficerAdjudicationEngine
+
+        aggregated = self.get_verification(verification_id)
+        if not aggregated:
+            raise KeyError(f"Verification '{verification_id}' not found.")
+
+        dossier = self.get_dossier(verification_id)
+        if not dossier:
+            raise KeyError(f"Dossier for verification '{verification_id}' not found.")
+
+        updated_agg, updated_dos, record = ProcurementOfficerAdjudicationEngine.apply_adjudication(
+            aggregated=aggregated,
+            dossier=dossier,
+            request=request,
+        )
+
+        # Update session store and disk cache
+        self._verifications[verification_id] = updated_agg
+        self._dossiers[verification_id] = updated_dos
+        self._save_to_disk(updated_agg, updated_dos)
+
+        return updated_agg, updated_dos, record
+
+    def get_audit_trail(self, verification_id: str) -> Dict[str, Any]:
+        """
+        Retrieves the complete audit trail and adjudication records for a verification.
+        """
+        aggregated = self.get_verification(verification_id)
+        if not aggregated:
+            raise KeyError(f"Verification '{verification_id}' not found.")
+        dossier = self.get_dossier(verification_id)
+
+        adjudications = getattr(aggregated, "adjudications", [])
+        return {
+            "verification_id": verification_id,
+            "deterministic_run_id": aggregated.deterministic_run_id,
+            "tender_id": aggregated.tender_id,
+            "bid_id": aggregated.bid_id,
+            "generated_at": aggregated.generated_at,
+            "adjudications_count": len(adjudications),
+            "adjudications": adjudications,
+            "human_review_items": aggregated.human_review_items,
+            "provenance_node_count": len(dossier.provenance_graph.get("nodes", [])) if (dossier and dossier.provenance_graph) else 0,
+            "provenance_edge_count": len(dossier.provenance_graph.get("edges", [])) if (dossier and dossier.provenance_graph) else 0,
+        }
+
+    def replay_verification(self, verification_id: str) -> Dict[str, Any]:
+        """
+        Performs an independent deterministic replay verification against the verification state
+        using DeterministicReplayEngine, verifying zero-drift reproducibility.
+        """
+        from backend.core.replay_engine import DeterministicReplayEngine
+        from backend.core.snapshot import SnapshotBuilder
+
+        aggregated = self.get_verification(verification_id)
+        if not aggregated:
+            raise KeyError(f"Verification '{verification_id}' not found.")
+        dossier = self.get_dossier(verification_id)
+        if not dossier:
+            raise KeyError(f"Dossier for verification '{verification_id}' not found.")
+
+        # Reconstruct requirements and facts from dossier
+        from backend.core.models import TenderRequirement, BidderFact, VerificationResult
+        reqs = [TenderRequirement.from_dict(r) if isinstance(r, dict) else r for r in dossier.tender.get("requirements", [])]
+        facts = [BidderFact.from_dict(f) if isinstance(f, dict) else f for f in dossier.bidder.get("facts", [])]
+        results = [VerificationResult.from_dict(r) if isinstance(r, dict) else r for r in dossier.verification_results]
+
+        snapshot = SnapshotBuilder.build(
+            tender_id=aggregated.tender_id,
+            bid_id=aggregated.bid_id,
+            requirements=reqs,
+            facts=facts,
+            compliance_results=results,
+            human_review_items=aggregated.human_review_items,
+            aggregated_status={
+                "compliance_status": aggregated.compliance_status,
+                "integrity_status": aggregated.integrity_status,
+                "overall_status": aggregated.overall_status,
+                "critical_failures": aggregated.critical_failures,
+                "major_failures": aggregated.major_failures,
+                "anomaly_count": aggregated.anomaly_count,
+                "review_required": aggregated.review_required,
+            },
+            provenance_graph=dossier.provenance_graph,
+        )
+
+        replay_engine = DeterministicReplayEngine()
+        replay_result = replay_engine.replay(snapshot)
+        return replay_result.to_dict(include_transient_metrics=True)
+

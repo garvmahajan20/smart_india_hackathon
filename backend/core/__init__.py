@@ -26,6 +26,13 @@ from .pending_requirements import PendingRequirement, PendingRequirementExtracto
 from .scoring import ComplianceScoringEngine, ComplianceScoreBreakdown, ScoreDeduction
 from .risk_engine import DeterministicRiskEngine, RiskLevel, RiskAssessment, RiskFactor
 from .recommendation_engine import AIRecommendationEngine, AIRecommendation, RecommendationVerdict
+from .adjudication import (
+    AdjudicationDecision,
+    AdjudicationTargetType,
+    OfficerAdjudicationRequest,
+    OfficerAdjudicationRecord,
+    ProcurementOfficerAdjudicationEngine,
+)
 
 __all__ = [
     "SourceType",
@@ -64,4 +71,10 @@ __all__ = [
     "AIRecommendationEngine",
     "AIRecommendation",
     "RecommendationVerdict",
+    "AdjudicationDecision",
+    "AdjudicationTargetType",
+    "OfficerAdjudicationRequest",
+    "OfficerAdjudicationRecord",
+    "ProcurementOfficerAdjudicationEngine",
 ]
+
