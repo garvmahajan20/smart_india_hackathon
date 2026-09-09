@@ -113,6 +113,7 @@ export const ReviewQueuePage: React.FC = () => {
     setSavedMessage(
       `${decisionMeta[selectedDecision].label} recorded for ${selectedReview.review_id}.`,
     );
+    setOfficerNote("");
   };
 
   const columns = useMemo<ColumnDef<ReviewRow>[]>(
@@ -362,7 +363,7 @@ export const ReviewQueuePage: React.FC = () => {
                   <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"><div className="flex items-center gap-2"><MessageSquareText className="h-4 w-4 text-slate-600" /><div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Officer note</p><p className="text-xs font-semibold text-slate-800">Optional audit trail comment</p></div></div><textarea value={officerNote} onChange={(e) => setOfficerNote(e.target.value)} rows={5} placeholder="Record the reasoning or clarification requested..." className="mt-3 w-full resize-none rounded-lg border border-slate-300 bg-slate-50 p-3 text-xs text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500" /></section>
                 </div>
               </div>
-              {savedMessage && <div className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-xs text-emerald-800"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" /><span className="font-semibold">{savedMessage}</span><span className="text-emerald-600">Demo state updated locally.</span></div>}
+              {savedMessage && <div className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-xs text-emerald-800"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" /><span className="font-semibold">{savedMessage}</span><span className="text-emerald-600">Officer decision recorded.</span></div>}
             </div>
 
             <div className="flex flex-col-reverse gap-2 border-t border-slate-200 bg-slate-50 px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
