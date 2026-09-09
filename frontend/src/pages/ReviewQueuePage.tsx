@@ -177,7 +177,7 @@ export const ReviewQueuePage: React.FC = () => {
         header: () => <span className="text-[11px] uppercase text-slate-600">Category</span>,
         cell: ({ row }) => (
           <span className="rounded border border-slate-200 bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-bold text-slate-700">
-            {row.original.category.replaceAll("_", " ")}
+            {row.original.category.replace(/_/g, " ")}
           </span>
         ),
       },
@@ -251,7 +251,6 @@ export const ReviewQueuePage: React.FC = () => {
 
   return (
     <div className="space-y-5 font-sans select-none">
-      {/* Header */}
       <div className="flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex flex-wrap items-center gap-2.5">
@@ -260,75 +259,41 @@ export const ReviewQueuePage: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold tracking-tight text-slate-900">
-                  Officer Review & Adjudication Queue
-                </h1>
-                <span className="rounded bg-amber-100 px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800">
-                  {openCount} OPEN
-                </span>
+                <h1 className="text-xl font-bold tracking-tight text-slate-900">Officer Review & Adjudication Queue</h1>
+                <span className="rounded bg-amber-100 px-2 py-0.5 font-mono text-[11px] font-bold text-amber-800">{openCount} OPEN</span>
               </div>
-              <p className="mt-1 text-xs text-slate-500">
-                Human-in-the-loop decision center for ambiguous claims, integrity discrepancies, and evidence gaps.
-              </p>
+              <p className="mt-1 text-xs text-slate-500">Human-in-the-loop decision center for ambiguous claims, integrity discrepancies, and evidence gaps.</p>
             </div>
           </div>
         </div>
-
         <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider">
-          <span className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-600 shadow-sm">
-            <span className="text-slate-400">Open </span>{openCount}
-          </span>
-          <span className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-emerald-700 shadow-sm">
-            <span className="text-emerald-500">Confirmed </span>{confirmedCount}
-          </span>
-          <span className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-blue-700 shadow-sm">
-            <span className="text-blue-500">Clarification </span>{clarificationCount}
-          </span>
+          <span className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-600 shadow-sm"><span className="text-slate-400">Open </span>{openCount}</span>
+          <span className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-emerald-700 shadow-sm"><span className="text-emerald-500">Confirmed </span>{confirmedCount}</span>
+          <span className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-blue-700 shadow-sm"><span className="text-blue-500">Clarification </span>{clarificationCount}</span>
         </div>
       </div>
 
-      {/* Decision principle */}
       <div className="flex items-start gap-3 rounded-xl border border-blue-200 bg-blue-50/70 px-4 py-3">
         <UserCheck className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
         <div>
           <p className="text-xs font-bold text-blue-950">Officer decision remains authoritative</p>
-          <p className="mt-0.5 text-[11px] leading-5 text-blue-800">
-            Automated checks surface evidence and route exceptions. The final adjudication is explicitly recorded by a human officer.
-          </p>
+          <p className="mt-0.5 text-[11px] leading-5 text-blue-800">Automated checks surface evidence and route exceptions. The final adjudication is explicitly recorded by a human officer.</p>
         </div>
       </div>
 
-      {/* Queue table */}
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 p-3">
           <div className="relative min-w-[240px] flex-1 sm:max-w-md">
             <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={globalFilter ?? ""}
-              onChange={(e) => setGlobalFilter(e.target.value)}
-              placeholder="Search review ID, bid, or escalation trigger..."
-              className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-8 pr-3 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
+            <input type="text" value={globalFilter ?? ""} onChange={(e) => setGlobalFilter(e.target.value)} placeholder="Search review ID, bid, or escalation trigger..." className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-8 pr-3 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500" />
           </div>
-
           <div className="flex flex-wrap items-center gap-1.5">
             {["ALL", "AMBIGUOUS_COMPLIANCE", "INTEGRITY_CONTRADICTION"].map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setCategoryFilter(cat)}
-                className={`rounded-lg px-3 py-2 text-[10px] font-bold uppercase tracking-wide transition-colors ${
-                  categoryFilter === cat
-                    ? "bg-slate-900 text-white shadow-sm"
-                    : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-100"
-                }`}
-              >
-                {cat === "ALL" ? "All" : cat.replaceAll("_", " ")}
+              <button key={cat} type="button" onClick={() => setCategoryFilter(cat)} className={`rounded-lg px-3 py-2 text-[10px] font-bold uppercase tracking-wide transition-colors ${categoryFilter === cat ? "bg-slate-900 text-white shadow-sm" : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-100"}`}>
+                {cat === "ALL" ? "All" : cat.replace(/_/g, " ")}
               </button>
             ))}
           </div>
-
           {selectedCount > 0 && (
             <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs text-blue-900">
               <span className="font-bold">{selectedCount} selected</span>
@@ -343,227 +308,66 @@ export const ReviewQueuePage: React.FC = () => {
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <th key={header.id} className="px-4 py-3">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
-                    </th>
+                    <th key={header.id} className="px-4 py-3">{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</th>
                   ))}
                 </tr>
               ))}
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-800">
               {table.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className={`transition-colors hover:bg-slate-50/70 ${
-                    decisions[row.original.review_id] ? "bg-slate-50/40" : ""
-                  }`}
-                >
+                <tr key={row.id} className={`transition-colors hover:bg-slate-50/70 ${decisions[row.original.review_id] ? "bg-slate-50/40" : ""}`}>
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-4 py-3.5 align-top">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
+                    <td key={cell.id} className="px-4 py-3.5 align-top">{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                   ))}
                 </tr>
               ))}
               {table.getRowModel().rows.length === 0 && (
-                <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center">
-                    <CheckCircle2 className="mx-auto h-7 w-7 text-emerald-500" />
-                    <p className="mt-2 text-sm font-bold text-slate-800">No matching escalations</p>
-                    <p className="mt-1 text-xs text-slate-500">Adjust the search or category filter.</p>
-                  </td>
-                </tr>
+                <tr><td colSpan={7} className="px-6 py-12 text-center"><CheckCircle2 className="mx-auto h-7 w-7 text-emerald-500" /><p className="mt-2 text-sm font-bold text-slate-800">No matching escalations</p><p className="mt-1 text-xs text-slate-500">Adjust the search or category filter.</p></td></tr>
               )}
             </tbody>
           </table>
         </div>
 
         <div className="flex h-11 items-center justify-between border-t border-slate-200 bg-slate-50 px-4 text-xs text-slate-500">
-          <span className="font-mono text-[10px]">
-            Showing {table.getRowModel().rows.length} of {rawItems.length} escalations
-          </span>
+          <span className="font-mono text-[10px]">Showing {table.getRowModel().rows.length} of {rawItems.length} escalations</span>
           <div className="flex items-center gap-1.5 font-mono text-xs">
-            <button
-              type="button"
-              disabled={!table.getCanPreviousPage()}
-              onClick={() => table.previousPage()}
-              className="rounded p-1 text-slate-600 hover:bg-slate-200 disabled:opacity-30"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
+            <button type="button" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()} className="rounded p-1 text-slate-600 hover:bg-slate-200 disabled:opacity-30"><ChevronLeft className="h-4 w-4" /></button>
             <span>{table.getState().pagination.pageIndex + 1} / {table.getPageCount() || 1}</span>
-            <button
-              type="button"
-              disabled={!table.getCanNextPage()}
-              onClick={() => table.nextPage()}
-              className="rounded p-1 text-slate-600 hover:bg-slate-200 disabled:opacity-30"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+            <button type="button" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()} className="rounded p-1 text-slate-600 hover:bg-slate-200 disabled:opacity-30"><ChevronRight className="h-4 w-4" /></button>
           </div>
         </div>
       </div>
 
-      {/* Adjudication drawer / modal */}
       {selectedReview && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/45 p-0 backdrop-blur-[2px] sm:items-center sm:p-6">
           <div className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-slate-200 bg-white shadow-2xl sm:rounded-2xl">
             <div className="flex items-start justify-between border-b border-slate-200 bg-slate-950 px-5 py-4 text-white">
               <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    Officer adjudication
-                  </span>
-                  <span className="rounded bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-rose-300">
-                    {selectedReview.severity}
-                  </span>
-                </div>
+                <div className="flex flex-wrap items-center gap-2"><span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-400">Officer adjudication</span><span className="rounded bg-rose-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-rose-300">{selectedReview.severity}</span></div>
                 <h2 className="mt-1 text-base font-bold">{selectedReview.review_id}</h2>
-                <p className="mt-0.5 text-[11px] text-slate-400">
-                  {selectedReview.bid_id} · {selectedReview.category.replaceAll("_", " ")}
-                </p>
+                <p className="mt-0.5 text-[11px] text-slate-400">{selectedReview.bid_id} · {selectedReview.category.replace(/_/g, " ")}</p>
               </div>
-              <button
-                type="button"
-                onClick={() => setSelectedReview(null)}
-                className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
-                aria-label="Close adjudication"
-              >
-                <XCircle className="h-5 w-5" />
-              </button>
+              <button type="button" onClick={() => setSelectedReview(null)} className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white" aria-label="Close adjudication"><XCircle className="h-5 w-5" /></button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-5">
               <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
                 <div className="space-y-4">
-                  <section className="rounded-xl border border-rose-200 bg-rose-50/70 p-4">
-                    <div className="flex items-center gap-2 text-rose-700">
-                      <ShieldAlert className="h-4 w-4" />
-                      <span className="text-[10px] font-bold uppercase tracking-[0.16em]">Escalation trigger</span>
-                    </div>
-                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-900">{selectedReview.reason}</p>
-                  </section>
-
-                  <section>
-                    <div className="mb-2 flex items-center justify-between">
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Evidence basis</p>
-                        <p className="mt-0.5 text-xs text-slate-500">Source material already surfaced by the verification engine.</p>
-                      </div>
-                      <FileText className="h-4 w-4 text-slate-400" />
-                    </div>
-                    <div className="space-y-2">
-                      {selectedReview.evidence_references.map((evidence, index) => (
-                        <div key={`${evidence.document}-${index}`} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-                          <div className="flex items-center justify-between gap-3">
-                            <span className="font-mono text-[10px] font-bold text-slate-700">Evidence {String.fromCharCode(65 + index)}</span>
-                            <span className="text-[10px] font-mono text-slate-400">
-                              {evidence.document} · Page {evidence.page}
-                            </span>
-                          </div>
-                          <p className="mt-2 font-mono text-[11px] leading-5 text-slate-700">“{evidence.snippet}”</p>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
+                  <section className="rounded-xl border border-rose-200 bg-rose-50/70 p-4"><div className="flex items-center gap-2 text-rose-700"><ShieldAlert className="h-4 w-4" /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">Escalation trigger</span></div><p className="mt-2 text-sm font-semibold leading-6 text-slate-900">{selectedReview.reason}</p></section>
+                  <section><div className="mb-2 flex items-center justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Evidence basis</p><p className="mt-0.5 text-xs text-slate-500">Source material already surfaced by the verification engine.</p></div><FileText className="h-4 w-4 text-slate-400" /></div><div className="space-y-2">{selectedReview.evidence_references.map((evidence, index) => (<div key={`${evidence.document}-${index}`} className="rounded-lg border border-slate-200 bg-slate-50 p-3"><div className="flex items-center justify-between gap-3"><span className="font-mono text-[10px] font-bold text-slate-700">Evidence {String.fromCharCode(65 + index)}</span><span className="text-[10px] font-mono text-slate-400">{evidence.document} · Page {evidence.page}</span></div><p className="mt-2 font-mono text-[11px] leading-5 text-slate-700">“{evidence.snippet}”</p></div>))}</div></section>
                 </div>
 
                 <div className="space-y-4">
-                  <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <div className="flex items-center gap-2">
-                      <Gavel className="h-4 w-4 text-slate-600" />
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Decision</p>
-                        <p className="text-xs font-semibold text-slate-800">What should happen to this escalation?</p>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 space-y-2">
-                      {(Object.keys(decisionMeta) as Decision[]).map((decision) => {
-                        const active = selectedDecision === decision;
-                        return (
-                          <button
-                            key={decision}
-                            type="button"
-                            onClick={() => setSelectedDecision(decision)}
-                            className={`w-full rounded-lg border p-3 text-left transition-all ${
-                              active
-                                ? "border-slate-900 bg-slate-950 text-white shadow-sm"
-                                : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50"
-                            }`}
-                          >
-                            <div className="flex items-start gap-3">
-                              <span className={`mt-0.5 h-3.5 w-3.5 rounded-full border-2 ${active ? "border-white bg-white ring-2 ring-slate-500" : "border-slate-300"}`} />
-                              <span>
-                                <span className="block text-xs font-bold">{decisionMeta[decision].label}</span>
-                                <span className={`mt-0.5 block text-[10px] leading-4 ${active ? "text-slate-300" : "text-slate-500"}`}>
-                                  {decisionMeta[decision].description}
-                                </span>
-                              </span>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </section>
-
-                  <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <div className="flex items-center gap-2">
-                      <MessageSquareText className="h-4 w-4 text-slate-600" />
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Officer note</p>
-                        <p className="text-xs font-semibold text-slate-800">Optional audit trail comment</p>
-                      </div>
-                    </div>
-                    <textarea
-                      value={officerNote}
-                      onChange={(e) => setOfficerNote(e.target.value)}
-                      rows={5}
-                      placeholder="Record the reasoning or clarification requested..."
-                      className="mt-3 w-full resize-none rounded-lg border border-slate-300 bg-slate-50 p-3 text-xs text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
-                  </section>
+                  <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"><div className="flex items-center gap-2"><Gavel className="h-4 w-4 text-slate-600" /><div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Decision</p><p className="text-xs font-semibold text-slate-800">What should happen to this escalation?</p></div></div><div className="mt-4 space-y-2">{(Object.keys(decisionMeta) as Decision[]).map((decision) => { const active = selectedDecision === decision; return (<button key={decision} type="button" onClick={() => setSelectedDecision(decision)} className={`w-full rounded-lg border p-3 text-left transition-all ${active ? "border-slate-900 bg-slate-950 text-white shadow-sm" : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50"}`}><div className="flex items-start gap-3"><span className={`mt-0.5 h-3.5 w-3.5 rounded-full border-2 ${active ? "border-white bg-white ring-2 ring-slate-500" : "border-slate-300"}`} /><span><span className="block text-xs font-bold">{decisionMeta[decision].label}</span><span className={`mt-0.5 block text-[10px] leading-4 ${active ? "text-slate-300" : "text-slate-500"}`}>{decisionMeta[decision].description}</span></span></div></button>); })}</div></section>
+                  <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"><div className="flex items-center gap-2"><MessageSquareText className="h-4 w-4 text-slate-600" /><div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Officer note</p><p className="text-xs font-semibold text-slate-800">Optional audit trail comment</p></div></div><textarea value={officerNote} onChange={(e) => setOfficerNote(e.target.value)} rows={5} placeholder="Record the reasoning or clarification requested..." className="mt-3 w-full resize-none rounded-lg border border-slate-300 bg-slate-50 p-3 text-xs text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500" /></section>
                 </div>
               </div>
-
-              {savedMessage && (
-                <div className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-xs text-emerald-800">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
-                  <span className="font-semibold">{savedMessage}</span>
-                  <span className="text-emerald-600">Demo state updated locally.</span>
-                </div>
-              )}
+              {savedMessage && <div className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-xs text-emerald-800"><CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" /><span className="font-semibold">{savedMessage}</span><span className="text-emerald-600">Demo state updated locally.</span></div>}
             </div>
 
             <div className="flex flex-col-reverse gap-2 border-t border-slate-200 bg-slate-50 px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
-              <Link
-                to={`/verification/${selectedReview.verification_id}`}
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100"
-              >
-                <AlertTriangle className="h-3.5 w-3.5" />
-                Re-open evidence
-              </Link>
-
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setSelectedReview(null)}
-                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  disabled={!selectedDecision}
-                  onClick={recordDecision}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-slate-950 px-4 py-2 text-xs font-bold text-white shadow-sm transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  <CheckCircle2 className="h-3.5 w-3.5" />
-                  Record Decision
-                </button>
-              </div>
+              <Link to={`/verification/${selectedReview.verification_id}`} className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100"><AlertTriangle className="h-3.5 w-3.5" />Re-open evidence</Link>
+              <div className="flex gap-2"><button type="button" onClick={() => setSelectedReview(null)} className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100">Cancel</button><button type="button" disabled={!selectedDecision} onClick={recordDecision} className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-slate-950 px-4 py-2 text-xs font-bold text-white shadow-sm transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"><CheckCircle2 className="h-3.5 w-3.5" />Record Decision</button></div>
             </div>
           </div>
         </div>
