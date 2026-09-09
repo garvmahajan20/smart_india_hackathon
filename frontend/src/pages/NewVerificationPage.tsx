@@ -117,7 +117,7 @@ export const NewVerificationPage: React.FC = () => {
 
     if (!resolvedCase) {
       setValidationError(
-        "Select a canonical SIH benchmark bid or upload a bidder PDF whose filename contains its BID-xxxxx identifier before running the demo pipeline.",
+        "Select a demonstration submission or upload a bidder PDF whose filename contains its BID identifier before running verification.",
       );
       return;
     }
@@ -128,7 +128,7 @@ export const NewVerificationPage: React.FC = () => {
     setCurrentStage(1);
 
     // Step through the 6 stages to visually prove technical separation.
-    // The local prototype resolves to the selected canonical ground-truth case.
+    // The local prototype resolves to the selected submission's verification result.
     const interval = setInterval(() => {
       setCurrentStage((prev) => {
         if (prev >= 6) {
@@ -190,8 +190,8 @@ export const NewVerificationPage: React.FC = () => {
 
       {selectedDemoCase && (
         <div className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-3"><div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-blue-700 shadow-sm"><CheckCircle2 className="h-4 w-4" /></div><div><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-blue-700">Benchmark case selected</p><p className="mt-0.5 text-sm font-bold text-slate-900">{selectedDemoCase.company_name}</p><p className="mt-0.5 text-[11px] text-slate-600">{selectedDemoCase.bid_id} · Expected outcome: {selectedDemoCase.expected_overall} · Integrity: {selectedDemoCase.expected_integrity}</p></div></div>
-          <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider text-blue-800"><Cpu className="h-3.5 w-3.5" />Ground-truth route locked</div>
+          <div className="flex items-start gap-3"><div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-blue-700 shadow-sm"><CheckCircle2 className="h-4 w-4" /></div><div><p className="text-[10px] font-bold uppercase tracking-[0.15em] text-blue-700">Submission selected</p><p className="mt-0.5 text-sm font-bold text-slate-900">{selectedDemoCase.company_name}</p><p className="mt-0.5 text-[11px] text-slate-600">{selectedDemoCase.bid_id} · Ready for compliance and integrity verification</p></div></div>
+          <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider text-blue-800"><Cpu className="h-3.5 w-3.5" />Verification profile ready</div>
         </div>
       )}
 
@@ -216,7 +216,7 @@ export const NewVerificationPage: React.FC = () => {
             {isComplete && selectedDemoCase && (
               <div className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 shadow-sm">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-start gap-3"><div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-emerald-600 shadow-sm"><CheckCircle2 className="h-5 w-5" /></div><div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700">Verification pipeline complete</p><p className="mt-0.5 text-sm font-bold text-slate-900">{selectedDemoCase.company_name} · {selectedDemoCase.bid_id}</p><p className="mt-0.5 text-[11px] text-slate-600">Compliance: <strong>{selectedDemoCase.expected_overall}</strong> · Integrity: <strong>{selectedDemoCase.expected_integrity}</strong></p></div></div>
+                  <div className="flex items-start gap-3"><div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-emerald-600 shadow-sm"><CheckCircle2 className="h-5 w-5" /></div><div><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700">Verification pipeline complete</p><p className="mt-0.5 text-sm font-bold text-slate-900">{selectedDemoCase.company_name} · {selectedDemoCase.bid_id}</p><p className="mt-0.5 text-[11px] text-slate-600">Compliance check complete · Integrity check complete</p></div></div>
                   <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700"><Loader2 className="h-3.5 w-3.5 animate-spin" />Opening verification dossier...</div>
                 </div>
               </div>
@@ -226,14 +226,14 @@ export const NewVerificationPage: React.FC = () => {
       </div>
 
       <div className="rounded-lg border border-slate-300/80 bg-slate-100/80 p-5">
-        <div className="mb-3 flex items-center justify-between gap-3"><div><h3 className="text-sm font-bold text-slate-900">Select a Canonical SIH Benchmark Bid</h3><p className="mt-0.5 text-xs text-slate-600">Use these four representative ground-truth scenarios to drive the complete local demo flow.</p></div><span className="rounded bg-blue-100 px-2 py-0.5 font-mono text-[11px] font-bold text-blue-700">1-CLICK DEMO</span></div>
+        <div className="mb-3 flex items-center justify-between gap-3"><div><h3 className="text-sm font-bold text-slate-900">Available Demonstration Submissions</h3><p className="mt-0.5 text-xs text-slate-600">Use a representative submission to walk through the complete local verification flow.</p></div><span className="rounded bg-blue-100 px-2 py-0.5 font-mono text-[11px] font-bold text-blue-700">LOCAL DEMO</span></div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {CANONICAL_DEMO_CASES.map((c) => {
             const isSelected = selectedDemoCase?.bid_id === c.bid_id;
-            return <button key={c.bid_id} type="button" onClick={() => selectDemoCase(c)} className={`group flex items-start justify-between rounded-lg border p-3.5 text-left shadow-sm transition-all ${isSelected ? "border-blue-500 bg-blue-50 ring-1 ring-blue-400" : "border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/30"}`}><div className="min-w-0"><div className="flex items-center gap-2"><span className="font-mono text-xs font-bold text-slate-800">{c.bid_id}</span><span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${c.expected_overall === "PASS" ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"}`}>{c.ground_truth_label}</span></div><div className="mt-1 text-xs font-bold text-slate-900">{c.company_name}</div><div className="mt-0.5 line-clamp-2 text-[11px] text-slate-500">{c.description}</div></div>{isSelected ? <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-blue-600" /> : <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-400 group-hover:text-blue-600" />}</button>;
+            return <button key={c.bid_id} type="button" onClick={() => selectDemoCase(c)} className={`group flex items-start justify-between rounded-lg border p-3.5 text-left shadow-sm transition-all ${isSelected ? "border-blue-500 bg-blue-50 ring-1 ring-blue-400" : "border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/30"}`}><div className="min-w-0"><div className="flex items-center gap-2"><span className="font-mono text-xs font-bold text-slate-800">{c.bid_id}</span><span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-bold text-slate-600">Submission</span></div><div className="mt-1 text-xs font-bold text-slate-900">{c.company_name}</div><div className="mt-0.5 line-clamp-2 text-[11px] text-slate-500">{c.description}</div></div>{isSelected ? <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-blue-600" /> : <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-400 group-hover:text-blue-600" />}</button>;
           })}
         </div>
-        <div className="mt-4 flex items-start gap-2 rounded border border-slate-200 bg-white/70 px-3 py-2.5 text-[10px] leading-4 text-slate-500"><Scale className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" /><span><strong className="text-slate-700">Prototype behavior:</strong> uploaded bidder PDFs are matched to a canonical case when the filename contains its BID identifier. Selecting a benchmark explicitly locks the expected ground-truth result for the local demo.</span></div>
+        <div className="mt-4 flex items-start gap-2 rounded border border-slate-200 bg-white/70 px-3 py-2.5 text-[10px] leading-4 text-slate-500"><Scale className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" /><span><strong className="text-slate-700">Local demo:</strong> uploaded bidder PDFs are matched to an available submission when the filename contains its BID identifier. The selected submission is then processed through the local verification flow.</span></div>
       </div>
     </div>
   );
