@@ -1,5 +1,5 @@
-﻿import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   UploadCloud,
   FileText,
@@ -13,7 +13,7 @@ import {
   Scale,
   Loader2,
 } from "lucide-react";
-import { CANONICAL_DEMO_CASES } from "../data/demoCases";
+import { CANONICAL_DEMO_CASES, PhysicalTextBlock } from "../data/demoCases";
 
 const PIPELINE_STAGES = [
   { step: 1, label: "PDF Ingestion & Page Segmentation", layer: "Step 6 Physical Pipeline", type: "system" },
@@ -28,9 +28,18 @@ export const NewVerificationPage: React.FC = () => {
   const navigate = useNavigate();
   const [tenderFile, setTenderFile] = useState<File | null>(null);
   const [bidFiles, setBidFiles] = useState<File[]>([]);
+  const [selectedDemoCase, setSelectedDemoCase] = useState<(typeof CANONICAL_DEMO_CASES)[number] | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [currentStage, setCurrentStage] = useState<number>(0);
+
+  const matchCanonicalCase = (files: File[]) => {
+    const matched = CANONICAL_DEMO_CASES.find((demoCase) =>
+      files.some((file) => file.name.toUpperCase().includes(demoCase.bid_id)),
+    );
+    if (matched) setSelectedDemoCase(matched);
+    return matched || null;
+  };
 
   const handleTenderDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -59,6 +68,10 @@ export const NewVerificationPage: React.FC = () => {
         validFiles.push(f);
       }
       setBidFiles((prev) => [...prev, ...validFiles]);
+      const matched = matchCanonicalCase(validFiles);
+      if (matched) {
+        setValidationError(null);
+      }
     }
   };
 
@@ -87,6 +100,7 @@ export const NewVerificationPage: React.FC = () => {
         validFiles.push(f);
       }
       setBidFiles((prev) => [...prev, ...validFiles]);
+      matchCanonicalCase(validFiles);
     }
   };
 
@@ -94,17 +108,33 @@ export const NewVerificationPage: React.FC = () => {
     setBidFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const selectDemoCase = (demoCase: (typeof CANONICAL_DEMO_CASES)[number]) => {
+    setSelectedDemoCase(demoCase);
+    setValidationError(null);
+  };
+
   const executePipeline = () => {
+    const resolvedCase = selectedDemoCase || matchCanonicalCase(bidFiles);
+
+    if (!resolvedCase) {
+      setValidationError(
+        "Select a canonical SIH benchmark bid or upload a bidder PDF whose filename contains its BID-xxxxx identifier before running the demo pipeline.",
+      );
+      return;
+    }
+
+    setValidationError(null);
     setIsProcessing(true);
     setCurrentStage(1);
 
-    // Step through the 6 stages to visually prove technical separation
+    // Step through the 6 stages to visually prove technical separation.
+    // The local prototype resolves to the selected canonical ground-truth case.
     const interval = setInterval(() => {
       setCurrentStage((prev) => {
         if (prev >= 6) {
           clearInterval(interval);
           setTimeout(() => {
-            navigate("/verification/VERIF-TENDER-0069-BID-00031");
+            navigate(`/verification/VERIF-${resolvedCase.tender_id}-${resolvedCase.bid_id}`);
           }, 400);
           return 6;
         }
@@ -114,105 +144,97 @@ export const NewVerificationPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto font-sans select-none">
-      {/* 1. Header */}
-      <div className="pb-3 border-b border-slate-200">
-        <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-          New Bid Verification & Ingestion
-        </h1>
-        <p className="text-xs text-slate-500 mt-1">
-          Upload tender requirements and bidder submission documents. The platform physically grounds evidence before evaluating deterministic compliance rules.
-        </p>
+    <div className="mx-auto max-w-5xl space-y-6 font-sans select-none">
+      <div className="border-b border-slate-200 pb-3">
+        <div className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-950 text-white">
+            <Shield className="h-4 w-4" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold tracking-tight text-slate-900">New Bid Verification & Ingestion</h1>
+            <p className="mt-1 text-xs text-slate-500">
+              Select or upload a bidder submission, run the verification pipeline, and inspect the resulting evidence-grounded decision.
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Validation Error Banner */}
       {validationError && (
-        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-md flex items-center gap-2.5 text-xs text-rose-800">
-          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+        <div className="flex items-center gap-2.5 rounded-md border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-800">
+          <AlertCircle className="h-4 w-4 shrink-0 text-rose-600" />
           <span>{validationError}</span>
         </div>
       )}
 
-      {/* 2. Upload Dropzones Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Tender Specification Document */}
-        <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm space-y-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="space-y-3 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-slate-900">Tender Specification PDF</h3>
-            <span className="text-[11px] font-mono text-slate-400">Single File</span>
+            <span className="font-mono text-[11px] text-slate-400">Single File</span>
           </div>
-          <p className="text-xs text-slate-500">
-            Official GeM Bid document defining all GTC, STC, and ATC eligibility requirements.
-          </p>
+          <p className="text-xs text-slate-500">Official GeM Bid document defining all GTC, STC, and ATC eligibility requirements.</p>
 
           {!tenderFile ? (
             <div
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleTenderDrop}
-              className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-blue-500 hover:bg-blue-50/20 transition-all cursor-pointer"
+              className="cursor-pointer rounded-lg border-2 border-dashed border-slate-300 p-6 text-center transition-all hover:border-blue-500 hover:bg-blue-50/20"
             >
-              <UploadCloud className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+              <UploadCloud className="mx-auto mb-2 h-8 w-8 text-slate-400" />
               <p className="text-xs font-semibold text-slate-700">Drag & drop Tender PDF</p>
-              <p className="text-[11px] text-slate-400 mt-1">or browse locally</p>
-              <label className="mt-3 inline-block px-3 py-1.5 bg-white border border-slate-300 rounded text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer shadow-2xs">
+              <p className="mt-1 text-[11px] text-slate-400">or browse locally</p>
+              <label className="mt-3 inline-block cursor-pointer rounded border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
                 Browse PDF
                 <input type="file" accept=".pdf" className="hidden" onChange={handleTenderSelect} />
               </label>
             </div>
           ) : (
-            <div className="p-3 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-between">
-              <div className="flex items-center gap-2.5 truncate">
-                <FileText className="w-5 h-5 text-blue-600 shrink-0" />
-                <div className="truncate">
-                  <span className="block text-xs font-semibold text-slate-800 truncate">{tenderFile.name}</span>
-                  <span className="block text-[10px] text-slate-400 font-mono">{(tenderFile.size / 1024).toFixed(1)} KB</span>
+            <div className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 p-3">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <FileText className="h-5 w-5 shrink-0 text-blue-600" />
+                <div className="min-w-0">
+                  <span className="block truncate text-xs font-semibold text-slate-800">{tenderFile.name}</span>
+                  <span className="block font-mono text-[10px] text-slate-400">{(tenderFile.size / 1024).toFixed(1)} KB</span>
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={() => setTenderFile(null)}
-                className="p-1 hover:bg-slate-200 rounded text-slate-500"
-              >
-                <X className="w-4 h-4" />
+              <button type="button" onClick={() => setTenderFile(null)} className="rounded p-1 text-slate-500 hover:bg-slate-200">
+                <X className="h-4 w-4" />
               </button>
             </div>
           )}
         </div>
 
-        {/* Bidder Submissions Documents */}
-        <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm space-y-3">
+        <div className="space-y-3 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-slate-900">Bidder Submissions & Annexures</h3>
-            <span className="text-[11px] font-mono text-slate-400">Multi-File Supported</span>
+            <span className="font-mono text-[11px] text-slate-400">Multi-File Supported</span>
           </div>
-          <p className="text-xs text-slate-500">
-            Technical proposal, CA turnover certificates, OEM authorization, and EMD receipts.
-          </p>
+          <p className="text-xs text-slate-500">Technical proposal, CA turnover certificates, OEM authorization, and EMD receipts.</p>
 
           <div
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleBidFilesDrop}
-            className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-blue-500 hover:bg-blue-50/20 transition-all cursor-pointer"
+            className="cursor-pointer rounded-lg border-2 border-dashed border-slate-300 p-6 text-center transition-all hover:border-blue-500 hover:bg-blue-50/20"
           >
-            <UploadCloud className="w-8 h-8 text-slate-400 mx-auto mb-2" />
+            <UploadCloud className="mx-auto mb-2 h-8 w-8 text-slate-400" />
             <p className="text-xs font-semibold text-slate-700">Drag & drop Bidder PDFs</p>
-            <p className="text-[11px] text-slate-400 mt-1">Multi-file upload (max 25MB each)</p>
-            <label className="mt-3 inline-block px-3 py-1.5 bg-white border border-slate-300 rounded text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer shadow-2xs">
+            <p className="mt-1 text-[11px] text-slate-400">Multi-file upload (max 25MB each)</p>
+            <label className="mt-3 inline-block cursor-pointer rounded border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50">
               Browse Files
               <input type="file" accept=".pdf" multiple className="hidden" onChange={handleBidSelect} />
             </label>
           </div>
 
           {bidFiles.length > 0 && (
-            <div className="space-y-1.5 max-h-36 overflow-y-auto pt-2 border-t border-slate-200">
+            <div className="max-h-36 space-y-1.5 overflow-y-auto border-t border-slate-200 pt-2">
               {bidFiles.map((bf, idx) => (
-                <div key={idx} className="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2 truncate">
-                    <FileText className="w-4 h-4 text-slate-600 shrink-0" />
+                <div key={`${bf.name}-${idx}`} className="flex items-center justify-between rounded border border-slate-200 bg-slate-50 p-2 text-xs">
+                  <div className="flex min-w-0 items-center gap-2">
+                    <FileText className="h-4 w-4 shrink-0 text-slate-600" />
                     <span className="truncate font-medium text-slate-800">{bf.name}</span>
                   </div>
-                  <button type="button" onClick={() => removeBidFile(idx)} className="p-1 hover:bg-slate-200 rounded text-slate-500">
-                    <X className="w-3.5 h-3.5" />
+                  <button type="button" onClick={() => removeBidFile(idx)} className="rounded p-1 text-slate-500 hover:bg-slate-200">
+                    <X className="h-3.5 w-3.5" />
                   </button>
                 </div>
               ))}
@@ -221,70 +243,65 @@ export const NewVerificationPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Execution Action Bar & Multi-Stage Stepper */}
-      <div className="p-5 bg-white border border-slate-200 rounded-lg shadow-sm space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="text-xs font-bold text-slate-900 block">
-              Architectural Engine Pipeline
-            </span>
-            <span className="text-[11px] text-slate-500 font-mono">
-              Deterministic Step 4 & Step 5 Rule Execution (Zero LLM Decision Authority)
-            </span>
+      {selectedDemoCase && (
+        <div className="flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-blue-700 shadow-sm">
+              <CheckCircle2 className="h-4 w-4" />
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-blue-700">Benchmark case selected</p>
+              <p className="mt-0.5 text-sm font-bold text-slate-900">{selectedDemoCase.company_name}</p>
+              <p className="mt-0.5 text-[11px] text-slate-600">{selectedDemoCase.bid_id} · Expected outcome: {selectedDemoCase.expected_overall} · Integrity: {selectedDemoCase.expected_integrity}</p>
+            </div>
           </div>
+          <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider text-blue-800">
+            <Cpu className="h-3.5 w-3.5" />
+            Ground-truth route locked
+          </div>
+        </div>
+      )}
 
+      <div className="space-y-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="block text-xs font-bold text-slate-900">Architectural Engine Pipeline</span>
+            <span className="font-mono text-[11px] text-slate-500">Deterministic Step 4 & Step 5 Rule Execution (Zero LLM Decision Authority)</span>
+          </div>
           <button
             type="button"
             disabled={isProcessing}
             onClick={executePipeline}
-            className={`px-5 py-2.5 rounded-md text-xs font-semibold flex items-center gap-2 transition-all ${
-              isProcessing
-                ? "bg-slate-900 text-white cursor-wait"
-                : "bg-blue-600 hover:bg-blue-700 text-white shadow-sm cursor-pointer"
-            }`}
+            className={`flex items-center gap-2 rounded-md px-5 py-2.5 text-xs font-semibold transition-all ${isProcessing ? "cursor-wait bg-slate-900 text-white" : "cursor-pointer bg-blue-600 text-white shadow-sm hover:bg-blue-700"}`}
           >
             {isProcessing ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
-                <span>Executing Pipeline ({currentStage}/6)...</span>
+                <Loader2 className="h-4 w-4 animate-spin text-blue-400" />
+                <span>Executing {selectedDemoCase?.bid_id || "Verification"} ({currentStage}/6)...</span>
               </>
             ) : (
               <>
-                <Play className="w-4 h-4" />
+                <Play className="h-4 w-4" />
                 <span>Run Verification Pipeline</span>
               </>
             )}
           </button>
         </div>
 
-        {/* 6-Stage Progress Stepper */}
         {isProcessing && (
-          <div className="pt-3 border-t border-slate-100 space-y-2">
-            <div className="grid grid-cols-6 gap-2">
+          <div className="space-y-2 border-t border-slate-100 pt-3">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
               {PIPELINE_STAGES.map((st) => {
                 const isDone = currentStage > st.step;
                 const isCurrent = currentStage === st.step;
                 return (
-                  <div
-                    key={st.step}
-                    className={`p-2 rounded border text-[10px] font-mono transition-all ${
-                      isDone
-                        ? "bg-emerald-50 border-emerald-300 text-emerald-900"
-                        : isCurrent
-                        ? "bg-blue-50 border-blue-500 text-blue-900 ring-1 ring-blue-400 font-bold"
-                        : "bg-slate-50 border-slate-200 text-slate-400"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
+                  <div key={st.step} className={`rounded border p-2 text-[10px] font-mono transition-all ${isDone ? "border-emerald-300 bg-emerald-50 text-emerald-900" : isCurrent ? "border-blue-500 bg-blue-50 font-bold text-blue-900 ring-1 ring-blue-400" : "border-slate-200 bg-slate-50 text-slate-400"}`}>
+                    <div className="mb-1 flex items-center justify-between">
                       <span>Step {st.step}</span>
-                      {isDone ? (
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                      ) : isCurrent ? (
-                        <Loader2 className="w-3 h-3 animate-spin text-blue-600" />
-                      ) : null}
+                      {isDone ? <CheckCircle2 className="h-3 w-3 text-emerald-600" /> : isCurrent ? <Loader2 className="h-3 w-3 animate-spin text-blue-600" /> : null}
                     </div>
                     <div className="truncate font-sans font-medium">{st.label}</div>
-                    <div className="text-[9px] text-slate-500 truncate mt-0.5">{st.layer}</div>
+                    <div className="mt-0.5 truncate text-[9px] text-slate-500">{st.layer}</div>
                   </div>
                 );
               })}
@@ -293,51 +310,42 @@ export const NewVerificationPage: React.FC = () => {
         )}
       </div>
 
-      {/* 4. Instant Demo Presets Section */}
-      <div className="bg-slate-100/80 border border-slate-300/80 rounded-lg p-5">
-        <div className="flex items-center justify-between mb-3">
+      <div className="rounded-lg border border-slate-300/80 bg-slate-100/80 p-5">
+        <div className="mb-3 flex items-center justify-between gap-3">
           <div>
-            <h3 className="text-sm font-bold text-slate-900">
-              Or Load a Canonical SIH Benchmark Bid
-            </h3>
-            <p className="text-xs text-slate-600 mt-0.5">
-              Instantly test the four representative procurement ground-truth scenarios with pre-extracted physical evidence:
-            </p>
+            <h3 className="text-sm font-bold text-slate-900">Select a Canonical SIH Benchmark Bid</h3>
+            <p className="mt-0.5 text-xs text-slate-600">Use these four representative ground-truth scenarios to drive the complete local demo flow.</p>
           </div>
-          <span className="text-[11px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded font-mono">
-            1-CLICK DEMO
-          </span>
+          <span className="rounded bg-blue-100 px-2 py-0.5 font-mono text-[11px] font-bold text-blue-700">1-CLICK DEMO</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {CANONICAL_DEMO_CASES.map((c) => {
-            const verifId = `VERIF-${c.tender_id}-${c.bid_id}`;
+            const isSelected = selectedDemoCase?.bid_id === c.bid_id;
             return (
-              <Link
+              <button
                 key={c.bid_id}
-                to={`/verification/${verifId}`}
-                className="p-3.5 bg-white border border-slate-200 hover:border-blue-400 rounded-lg shadow-2xs transition-all flex items-start justify-between group"
+                type="button"
+                onClick={() => selectDemoCase(c)}
+                className={`group flex items-start justify-between rounded-lg border p-3.5 text-left shadow-sm transition-all ${isSelected ? "border-blue-500 bg-blue-50 ring-1 ring-blue-400" : "border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/30"}`}
               >
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-bold text-slate-800">{c.bid_id}</span>
-                    <span
-                      className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
-                        c.expected_overall === "PASS"
-                          ? "bg-emerald-100 text-emerald-800"
-                          : "bg-rose-100 text-rose-800"
-                      }`}
-                    >
-                      {c.ground_truth_label}
-                    </span>
+                    <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${c.expected_overall === "PASS" ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"}`}>{c.ground_truth_label}</span>
                   </div>
-                  <div className="text-xs font-bold text-slate-900 mt-1">{c.company_name}</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">{c.description}</div>
+                  <div className="mt-1 text-xs font-bold text-slate-900">{c.company_name}</div>
+                  <div className="mt-0.5 line-clamp-2 text-[11px] text-slate-500">{c.description}</div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 mt-1 shrink-0" />
-              </Link>
+                {isSelected ? <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-blue-600" /> : <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-400 group-hover:text-blue-600" />}
+              </button>
             );
           })}
+        </div>
+
+        <div className="mt-4 flex items-start gap-2 rounded border border-slate-200 bg-white/70 px-3 py-2.5 text-[10px] leading-4 text-slate-500">
+          <Scale className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" />
+          <span><strong className="text-slate-700">Prototype behavior:</strong> uploaded bidder PDFs are matched to a canonical case when the filename contains its BID identifier. Selecting a benchmark explicitly locks the expected ground-truth result for the local demo.</span>
         </div>
       </div>
     </div>
