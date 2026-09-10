@@ -1,13 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Linkedin, Github, Dribbble, Figma } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useMotionValue } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import {
+  ClipboardCheck,
+  FilePlus2,
+  LayoutDashboard,
+  Menu,
+  ShieldCheck,
+  X,
+} from "lucide-react";
 
 export interface iNavItem {
   heading: string;
   href: string;
   subheading?: string;
-  imgSrc?: string;
 }
 
 interface iNavLinkProps extends iNavItem {
@@ -15,24 +21,18 @@ interface iNavLinkProps extends iNavItem {
   index: number;
 }
 
-interface iCurvedNavbarProps {
-  setIsActive: (isActive: boolean) => void;
-  navItems: iNavItem[];
-}
-
 interface iHeaderProps {
   navItems?: iNavItem[];
-  footer?: React.ReactNode;
 }
 
 const MENU_EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
 const MENU_SLIDE_ANIMATION = {
   initial: { x: "calc(-100% - 100px)" },
-  enter: { x: "0", transition: { duration: 0.8, ease: MENU_EASE } },
+  enter: { x: "0", transition: { duration: 0.65, ease: MENU_EASE } },
   exit: {
     x: "calc(-100% - 100px)",
-    transition: { duration: 0.8, ease: MENU_EASE },
+    transition: { duration: 0.5, ease: MENU_EASE },
   },
 };
 
@@ -40,116 +40,103 @@ export const defaultNavItems: iNavItem[] = [
   {
     heading: "Dashboard",
     href: "/dashboard",
-    subheading: "Procurement Verification Overview",
+    subheading: "Procurement verification overview",
   },
   {
     heading: "New Verification",
     href: "/verify/new",
-    subheading: "Upload tender and bid dossier",
+    subheading: "Ingest tender and bidder submissions",
   },
   {
     heading: "Review Queue",
     href: "/review",
-    subheading: "Officer Review Queue & Flags",
+    subheading: "Officer adjudication and escalations",
   },
 ];
 
-export const CustomFooter: React.FC = () => {
-  return (
-    <div className="flex w-full text-sm justify-between text-black px-10 md:px-24 py-5">
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-        <Linkedin size={24} />
-      </a>
-      <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-        <Github size={24} />
-      </a>
-      <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">
-        <Dribbble size={24} />
-      </a>
-      <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer">
-        <Figma size={24} />
-      </a>
-      <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer">
-        <Figma size={24} />
-      </a>
-    </div>
-  );
-};
+const navIcons = [LayoutDashboard, FilePlus2, ClipboardCheck];
 
 export const NavLink: React.FC<iNavLinkProps> = ({
   heading,
   href,
+  subheading,
   setIsActive,
   index,
 }) => {
+  const location = useLocation();
   const ref = useRef<HTMLAnchorElement | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const Icon = navIcons[index - 1] || ClipboardCheck;
+  const isActive = location.pathname === href;
 
   const handleMouseMove = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    x.set(mouseX / rect.width - 0.5);
-    y.set(mouseY / rect.height - 0.5);
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
-
-  const handleClick = () => {
-    return setIsActive(false);
-  };
-
-  const isExternalLink = href.startsWith("http");
-  const linkProps = isExternalLink
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
 
   return (
     <motion.div
-      onClick={handleClick}
       initial="initial"
       whileHover="whileHover"
-      className="group relative flex items-center justify-between border-b border-black/30 py-4 transition-colors duration-500 md:py-8 uppercase"
-      {...linkProps}
+      className={`group relative border-b py-4 transition-colors duration-300 md:py-5 ${
+        isActive ? "border-blue-500/50" : "border-slate-200"
+      }`}
     >
-      <Link ref={ref} onMouseMove={handleMouseMove} to={href}>
-        <div className="relative flex items-start">
-          <span className="text-black transition-colors duration-500 text-2xl font-thin mr-2">
-            {index}.
-          </span>
-          <div className="flex flex-row gap-2">
-            <motion.span
-              variants={{
-                initial: { x: 0 },
-                whileHover: { x: -16 },
-              }}
-              transition={{
-                type: "spring",
-                staggerChildren: 0.075,
-                delayChildren: 0.25,
-              }}
-              className="relative z-10 block text-2xl font-extralight text-black transition-colors duration-500 md:text-2xl"
+      <Link
+        ref={ref}
+        to={href}
+        onMouseMove={handleMouseMove}
+        onClick={() => setIsActive(false)}
+        className="flex items-center gap-4"
+      >
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
+            isActive
+              ? "border-blue-200 bg-blue-50 text-blue-700 shadow-sm"
+              : "border-slate-200 bg-slate-50 text-slate-500 group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-700"
+          }`}
+        >
+          <Icon className="h-4 w-4" />
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <span
+              className={`font-mono text-[10px] font-bold ${
+                isActive ? "text-blue-600" : "text-slate-400"
+              }`}
             >
-              {heading.split("").map((letter, i) => {
-                return (
-                  <motion.span
-                    key={i}
-                    variants={{
-                      initial: { x: 0 },
-                      whileHover: { x: 16 },
-                    }}
-                    transition={{ type: "spring" }}
-                    className="inline-block"
-                  >
-                    {letter === " " ? "\u00A0" : letter}
-                  </motion.span>
-                );
-              })}
+              0{index}
+            </span>
+            <motion.span
+              variants={{ initial: { x: 0 }, whileHover: { x: 3 } }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
+              className={`text-sm font-bold tracking-tight ${
+                isActive ? "text-slate-950" : "text-slate-800"
+              }`}
+            >
+              {heading}
             </motion.span>
           </div>
+          {subheading && (
+            <span className="mt-0.5 block text-[10px] leading-4 text-slate-500">
+              {subheading}
+            </span>
+          )}
         </div>
+
+        <span
+          className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
+            isActive
+              ? "bg-blue-600 shadow-[0_0_0_4px_rgba(37,99,235,0.10)]"
+              : "bg-slate-300 group-hover:bg-blue-400"
+          }`}
+        />
       </Link>
     </motion.div>
   );
@@ -157,13 +144,11 @@ export const NavLink: React.FC<iNavLinkProps> = ({
 
 export const Curve: React.FC = () => {
   const [height, setHeight] = useState(
-    typeof window !== "undefined" ? window.innerHeight : 1000
+    typeof window !== "undefined" ? window.innerHeight : 1000,
   );
 
   useEffect(() => {
-    const handleResize = () => {
-      setHeight(window.innerHeight);
-    };
+    const handleResize = () => setHeight(window.innerHeight);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -173,121 +158,115 @@ export const Curve: React.FC = () => {
 
   const curve = {
     initial: { d: initialPath },
-    enter: {
-      d: targetPath,
-      transition: { duration: 1, ease: MENU_EASE },
-    },
-    exit: {
-      d: initialPath,
-      transition: { duration: 0.8, ease: MENU_EASE },
-    },
+    enter: { d: targetPath, transition: { duration: 0.8, ease: MENU_EASE } },
+    exit: { d: initialPath, transition: { duration: 0.55, ease: MENU_EASE } },
   };
 
   return (
     <svg
-      className="absolute top-0 -right-[99px] w-[100px] stroke-none h-full pointer-events-none"
-      style={{ fill: "#ffffff" }}
+      className="pointer-events-none absolute -right-[79px] top-0 h-full w-[80px]"
+      aria-hidden="true"
     >
-      <motion.path
-        variants={curve}
-        initial="initial"
-        animate="enter"
-        exit="exit"
-      />
+      <motion.path variants={curve} initial="initial" animate="enter" exit="exit" fill="#ffffff" />
     </svg>
   );
 };
 
 export const CurvedNavbar: React.FC<
-  iCurvedNavbarProps & { footer?: React.ReactNode }
-> = ({ setIsActive, navItems, footer }) => {
+  iHeaderProps & { setIsActive: (isActive: boolean) => void }
+> = ({ setIsActive, navItems = defaultNavItems }) => {
   return (
-    <motion.div
+    <motion.aside
       variants={MENU_SLIDE_ANIMATION}
       initial="initial"
       animate="enter"
       exit="exit"
-      className="h-[100dvh] w-screen max-w-screen-sm fixed left-0 top-0 z-40 bg-white shadow-2xl"
+      className="fixed left-0 top-0 z-40 h-[100dvh] w-[min(88vw,390px)] bg-white shadow-[12px_0_40px_rgba(15,23,42,0.10)]"
+      aria-label="Primary navigation"
     >
-      <div className="h-full pt-11 flex flex-col justify-between">
-        <div className="flex flex-col text-5xl gap-3 mt-0 px-10 md:px-24">
-          <div className="text-black border-b border-black/30 uppercase text-sm mb-0">
-            <p>Navigation</p>
-          </div>
-          <section className="bg-transparent mt-0">
-            <div className="mx-auto max-w-7xl">
-              {navItems.map((item, index) => {
-                return (
-                  <NavLink
-                    key={item.href}
-                    {...item}
-                    setIsActive={setIsActive}
-                    index={index + 1}
-                  />
-                );
-              })}
+      <div className="flex h-full flex-col px-6 pb-6 pt-6 sm:px-8">
+        <div className="flex items-start justify-between border-b border-slate-200 pb-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm">
+              <ShieldCheck className="h-5 w-5" />
             </div>
-          </section>
+            <div>
+              <p className="text-sm font-black tracking-tight text-slate-950">ProcureSure</p>
+              <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                Procurement Integrity
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsActive(false)}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
+            aria-label="Close navigation menu"
+          >
+            <X className="h-4 w-4" />
+          </button>
         </div>
-        {footer}
+
+        <div className="mt-7">
+          <div className="mb-2 flex items-center justify-between">
+            <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-slate-400">
+              Workspace
+            </span>
+            <span className="font-mono text-[9px] text-slate-300">NAV-01</span>
+          </div>
+          <nav>
+            {navItems.map((item, index) => (
+              <NavLink
+                key={item.href}
+                {...item}
+                setIsActive={setIsActive}
+                index={index + 1}
+              />
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-auto space-y-3 border-t border-slate-200 pt-5">
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3.5">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.10)]" />
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-700">
+                Verification services ready
+              </span>
+            </div>
+            <p className="mt-1.5 text-[10px] leading-4 text-slate-500">
+              Evidence-grounded checks and officer adjudication workspace.
+            </p>
+          </div>
+          <div className="flex items-center justify-between text-[9px] font-mono uppercase tracking-wider text-slate-400">
+            <span>GeM verification desk</span>
+            <span>v1.0</span>
+          </div>
+        </div>
       </div>
       <Curve />
-    </motion.div>
+    </motion.aside>
   );
 };
 
-export const Header: React.FC<iHeaderProps> = ({
-  navItems = defaultNavItems,
-  footer = <CustomFooter />,
-}) => {
+export const Header: React.FC<iHeaderProps> = ({ navItems = defaultNavItems }) => {
   const [isActive, setIsActive] = useState(false);
-  const openAudioRef = useRef<HTMLAudioElement | null>(null);
-  const closeAudioRef = useRef<HTMLAudioElement | null>(null);
-
-  const handleClick = () => {
-    if (isActive) {
-      closeAudioRef.current?.play();
-    } else {
-      openAudioRef.current?.play();
-    }
-    setIsActive(!isActive);
-  };
 
   return (
     <>
-      <div className="relative">
-        <div
-          onClick={handleClick}
-          aria-label={isActive ? "Close Navigation Menu" : "Open Navigation Menu"}
-          className="fixed left-0 top-0 m-2 sm:m-3 z-50 w-12 h-12 rounded-none flex items-center justify-center cursor-pointer bg-white shadow-md border border-slate-200"
-        >
-          <div className="relative w-8 h-6 flex flex-col justify-between items-center">
-            <span
-              className={`block h-1 w-7 bg-black transition-transform duration-300 ${
-                isActive ? "rotate-45 translate-y-2" : ""
-              }`}
-            ></span>
-            <span
-              className={`block h-1 w-7 bg-black transition-opacity duration-300 ${
-                isActive ? "opacity-0" : ""
-              }`}
-            ></span>
-            <span
-              className={`block h-1 w-7 bg-black transition-transform duration-300 ${
-                isActive ? "-rotate-45 -translate-y-3" : ""
-              }`}
-            ></span>
-          </div>
-        </div>
-      </div>
+      <button
+        type="button"
+        onClick={() => setIsActive((value) => !value)}
+        aria-label={isActive ? "Close Navigation Menu" : "Open Navigation Menu"}
+        aria-expanded={isActive}
+        className="fixed left-3 top-3 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/95 text-slate-800 shadow-md backdrop-blur transition-all hover:border-blue-200 hover:text-blue-700 sm:left-4 sm:top-4"
+      >
+        {isActive ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+      </button>
 
       <AnimatePresence mode="wait">
         {isActive && (
-          <CurvedNavbar
-            setIsActive={setIsActive}
-            navItems={navItems}
-            footer={footer}
-          />
+          <CurvedNavbar setIsActive={setIsActive} navItems={navItems} />
         )}
       </AnimatePresence>
     </>
