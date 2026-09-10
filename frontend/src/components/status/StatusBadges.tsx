@@ -16,6 +16,8 @@ interface BadgeProps {
   size?: "sm" | "md" | "lg";
 }
 
+const badgeBase = "inline-flex items-center rounded-full border font-semibold shadow-xs";
+
 export const ComplianceBadge: React.FC<BadgeProps & { status: ComplianceStatus | string }> = ({
   status,
   size = "md",
@@ -23,16 +25,16 @@ export const ComplianceBadge: React.FC<BadgeProps & { status: ComplianceStatus |
 }) => {
   const s = (status || "N/A").toUpperCase();
   const sizeClasses = {
-    sm: "px-2 py-0.5 text-xs font-semibold gap-1",
-    md: "px-2.5 py-1 text-xs font-semibold gap-1.5",
-    lg: "px-3.5 py-1.5 text-sm font-semibold gap-2",
+    sm: "px-2 py-0.5 text-xs gap-1",
+    md: "px-2.5 py-1 text-xs gap-1.5",
+    lg: "px-3.5 py-1.5 text-sm gap-2",
   }[size];
 
   switch (s) {
     case "PASS":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-emerald-50 text-emerald-800 border border-emerald-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-emerald-50 text-emerald-800 border-emerald-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Compliance Status: PASS"
         >
@@ -43,7 +45,7 @@ export const ComplianceBadge: React.FC<BadgeProps & { status: ComplianceStatus |
     case "FAIL":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-rose-50 text-rose-800 border border-rose-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-rose-50 text-rose-800 border-rose-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Compliance Status: FAIL"
         >
@@ -55,7 +57,7 @@ export const ComplianceBadge: React.FC<BadgeProps & { status: ComplianceStatus |
     case "PARTIAL":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-amber-50 text-amber-800 border border-amber-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-amber-50 text-amber-800 border-amber-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Compliance Status: REVIEW REQUIRED"
         >
@@ -66,7 +68,7 @@ export const ComplianceBadge: React.FC<BadgeProps & { status: ComplianceStatus |
     case "MISSING":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-slate-100 text-slate-700 border border-slate-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-slate-100 text-slate-700 border-slate-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Compliance Status: MISSING"
         >
@@ -77,11 +79,11 @@ export const ComplianceBadge: React.FC<BadgeProps & { status: ComplianceStatus |
     default:
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-gray-100 text-gray-600 border border-gray-200 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-slate-100 text-slate-600 border-slate-200 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Compliance Status: N/A"
         >
-          <MinusCircle className="w-3.5 h-3.5 text-gray-400 shrink-0" aria-hidden="true" />
+          <MinusCircle className="w-3.5 h-3.5 text-slate-400 shrink-0" aria-hidden="true" />
           N/A
         </span>
       );
@@ -95,16 +97,16 @@ export const IntegrityBadge: React.FC<BadgeProps & { status: IntegrityStatus | s
 }) => {
   const s = (status || "CONSISTENT").toUpperCase();
   const sizeClasses = {
-    sm: "px-2 py-0.5 text-xs font-semibold gap-1",
-    md: "px-2.5 py-1 text-xs font-semibold gap-1.5",
-    lg: "px-3.5 py-1.5 text-sm font-semibold gap-2",
+    sm: "px-2 py-0.5 text-xs gap-1",
+    md: "px-2.5 py-1 text-xs gap-1.5",
+    lg: "px-3.5 py-1.5 text-sm gap-2",
   }[size];
 
   switch (s) {
     case "CONSISTENT":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-slate-100 text-slate-800 border border-slate-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-slate-100 text-slate-800 border-slate-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Integrity Status: CONSISTENT"
         >
@@ -115,7 +117,7 @@ export const IntegrityBadge: React.FC<BadgeProps & { status: IntegrityStatus | s
     case "CONTRADICTION":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-rose-50 text-rose-900 border border-rose-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-rose-50 text-rose-900 border-rose-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Integrity Status: CONTRADICTION DETECTED"
         >
@@ -126,7 +128,7 @@ export const IntegrityBadge: React.FC<BadgeProps & { status: IntegrityStatus | s
     case "REVIEW":
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-amber-50 text-amber-900 border border-amber-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-amber-50 text-amber-900 border-amber-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Integrity Status: REVIEW REQUIRED"
         >
@@ -137,11 +139,11 @@ export const IntegrityBadge: React.FC<BadgeProps & { status: IntegrityStatus | s
     default:
       return (
         <span
-          className={`inline-flex items-center rounded-md bg-gray-100 text-gray-700 border border-gray-300 font-medium ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-slate-100 text-slate-700 border-slate-300 ${sizeClasses} ${className}`}
           role="status"
           aria-label="Integrity Status: INCOMPLETE"
         >
-          <ShieldQuestion className="w-3.5 h-3.5 text-gray-500 shrink-0" aria-hidden="true" />
+          <ShieldQuestion className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
           INCOMPLETE
         </span>
       );
@@ -164,7 +166,7 @@ export const OverallBadge: React.FC<BadgeProps & { status: OverallStatus | strin
     case "PASS":
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-emerald-100 text-emerald-900 border-emerald-300 ${sizeClasses} ${className}`}
         >
           <CheckCircle2 className="w-4 h-4 text-emerald-700" aria-hidden="true" />
           PASS
@@ -173,7 +175,7 @@ export const OverallBadge: React.FC<BadgeProps & { status: OverallStatus | strin
     case "FAIL":
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-rose-100 text-rose-900 border border-rose-300 ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-rose-100 text-rose-900 border-rose-300 ${sizeClasses} ${className}`}
         >
           <XCircle className="w-4 h-4 text-rose-700" aria-hidden="true" />
           FAIL
@@ -182,7 +184,7 @@ export const OverallBadge: React.FC<BadgeProps & { status: OverallStatus | strin
     default:
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-amber-100 text-amber-900 border border-amber-300 ${sizeClasses} ${className}`}
+          className={`${badgeBase} bg-amber-100 text-amber-900 border-amber-300 ${sizeClasses} ${className}`}
         >
           <AlertTriangle className="w-4 h-4 text-amber-700" aria-hidden="true" />
           REVIEW REQUIRED
@@ -203,7 +205,7 @@ export const SeverityBadge: React.FC<{ severity: Severity | string }> = ({ sever
 
   return (
     <span
-      className={`inline-block px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider rounded border ${styles[sev] || styles.INFO}`}
+      className={`${badgeBase} px-2 py-0.5 text-[11px] uppercase tracking-wider ${styles[sev] || styles.INFO}`}
     >
       {sev}
     </span>

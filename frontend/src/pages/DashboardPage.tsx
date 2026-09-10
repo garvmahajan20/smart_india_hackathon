@@ -144,7 +144,7 @@ export const DashboardPage: React.FC = () => {
             </h2>
           </div>
           <span className="hidden font-mono text-[10px] text-slate-400 sm:block">
-            CANONICAL DATASET · 4 BIDS
+            4 SUBMISSIONS IN REVIEW
           </span>
         </div>
 
