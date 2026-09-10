@@ -3,7 +3,60 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply antialiased;
+    font-synthesis: none;
+  }
+
   body {
     @apply bg-slate-50 text-slate-900;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    @apply bg-blue-100 text-slate-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-blue-500/50 ring-offset-2 ring-offset-slate-50;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  .app-surface {
+    @apply border border-slate-200/90 bg-white shadow-sm;
+  }
+
+  .app-eyebrow {
+    @apply text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500;
+  }
+
+  .app-mono-label {
+    @apply font-mono text-[10px] uppercase tracking-wider text-slate-500;
   }
 }
