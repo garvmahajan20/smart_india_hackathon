@@ -170,7 +170,7 @@ export const VerificationWorkbenchPage: React.FC = () => {
 
   const passCount = verification.verification_results.filter((r) => r.status === "PASS").length;
   const failCount = verification.verification_results.filter((r) => r.status === "FAIL").length;
-  const reviewCount = verification.verification_results.filter((r) => r.status === "REVIEW" || r.requires_human_review).length;
+  const reviewCount = verification.human_review_items.length;
   const missingCount = verification.verification_results.filter((r) => r.status === "MISSING").length;
 
   return (
@@ -223,27 +223,33 @@ export const VerificationWorkbenchPage: React.FC = () => {
       {/* 2. ANALYTICAL SUMMARY RAIL */}
       <div className="bg-white border border-slate-200 rounded-lg px-4 py-1.5 flex items-center justify-between text-xs shrink-0 shadow-2xs">
         <div className="flex items-center gap-5 font-mono text-[11px]">
-          <div>
-            <span className="text-slate-400 mr-1">TOTAL:</span>
-            <span className="font-bold text-slate-800">{verification.verification_results.length}</span>
-          </div>
-          <div>
-            <span className="text-emerald-600 mr-1 font-bold">● PASS:</span>
-            <span className="font-bold text-emerald-800">{passCount}</span>
-          </div>
-          <div>
-            <span className="text-rose-600 mr-1 font-bold">▲ FAIL:</span>
-            <span className="font-bold text-rose-800">{failCount}</span>
-          </div>
-          <div>
-            <span className="text-amber-600 mr-1 font-bold">◆ REVIEW:</span>
-            <span className="font-bold text-amber-800">{reviewCount}</span>
-          </div>
-          <div>
-            <span className="text-slate-500 mr-1">○ MISSING:</span>
-            <span className="font-bold text-slate-600">{missingCount}</span>
-          </div>
-        </div>
+  <div>
+    <span className="text-slate-400 mr-1">EVALUATED:</span>
+    <span className="font-bold text-slate-800">
+      {verification.verification_results.length}
+    </span>
+  </div>
+
+  <div>
+    <span className="text-emerald-600 mr-1 font-bold">● PASS:</span>
+    <span className="font-bold text-emerald-800">{passCount}</span>
+  </div>
+
+  <div>
+    <span className="text-rose-600 mr-1 font-bold">▲ FAILED:</span>
+    <span className="font-bold text-rose-800">{failCount}</span>
+  </div>
+
+  <div>
+    <span className="text-slate-500 mr-1">○ MISSING:</span>
+    <span className="font-bold text-slate-600">{missingCount}</span>
+  </div>
+
+  <div className="border-l border-slate-200 pl-5">
+    <span className="text-amber-600 mr-1 font-bold">◆ OFFICER REVIEW:</span>
+    <span className="font-bold text-amber-800">{reviewCount}</span>
+  </div>
+</div>
 
         <div className="flex items-center gap-1">
           <button
