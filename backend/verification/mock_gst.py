@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import re
 from typing import Any, Dict, Optional
 
@@ -43,6 +43,7 @@ class MockGSTAdapter(BaseGovernmentAdapter):
         timestamp: Optional[str] = None,
         **kwargs: Any
     ) -> AdapterResponse:
+        expected_entity_name = expected_entity_name or kwargs.get("expected_name")
         clean_gst = _clean_key(identifier)
         record = self.registry.gst_records.get(clean_gst)
 

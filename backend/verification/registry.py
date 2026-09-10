@@ -109,6 +109,34 @@ class MockGovernmentRegistry:
 
         All data is strictly synthetic under MOCK_REGISTRY_DATASET_V1.
         """
+        # Controlled Synthetic PAN & GSTIN records for MOCK_REGISTRY_DATASET_V1
+        synthetic_pan_gst = [
+            {
+                "pan": "SYNPA0001A",
+                "gstin": "07SYNPA0001A1Z5",
+                "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+                "status": "VALID",
+                "registration_status": "ACTIVE",
+            },
+            {
+                "pan": "SYNPA0008H",
+                "gstin": "27SYNPA0008H1Z8",
+                "company_name": "SYNTHETIC CONTRADICTION MFG LTD",
+                "status": "VALID",
+                "registration_status": "ACTIVE",
+            },
+            {
+                "pan": "SYNPA0003C",
+                "gstin": "29SYNPA0003C1Z3",
+                "company_name": "SYNTHETIC DIVERGENT HOLDINGS PRIVATE LIMITED",
+                "status": "VALID",
+                "registration_status": "ACTIVE",
+            },
+        ]
+        for item in synthetic_pan_gst:
+            self.pan_records[_clean_key(item["pan"])] = item
+            self.gst_records[_clean_key(item["gstin"])] = item
+
         # ==============================================================
         # 1. MOCK_ITD (Income Tax Department / ITR Verification)
         # ==============================================================

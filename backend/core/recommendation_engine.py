@@ -117,10 +117,10 @@ class AIRecommendationEngine:
         # Government unverified / unavailable checks
         for g in gov_resps:
             g_status = g.status.value if hasattr(g.status, "value") else str(g.status)
-            if g_status in ("IDENTITY_MISMATCH", "INACTIVE"):
+            if g_status in ("IDENTITY_MISMATCH", "INACTIVE", "UNAUTHORIZED", "REVOKED", "REVIEW"):
                 critical_issues.append(f"{g.adapter_name} registry discrepancy: {getattr(g, 'reason', '')}")
-            elif g_status in ("UNAVAILABLE", "ERROR"):
-                key_reasons.append(f"{g.adapter_name} service was temporarily unreachable; registry cross-check pending.")
+            elif g_status in ("UNAVAILABLE", "ERROR", "UNVERIFIED"):
+                critical_issues.append(f"{g.adapter_name} service was temporarily unreachable; registry cross-check pending.")
 
         # 2. Enforce Strict Decision Boundaries (Phase 9 Invariants)
         # INVARIANT 1: Debarment or Critical Mandatory Failure -> FAIL
@@ -135,10 +135,11 @@ class AIRecommendationEngine:
                 "Disqualification is recommended under GeM tender terms."
             )
 
-        # INVARIANT 2: Missing Mandatory Evidence, Contradictions, or Unresolved Review -> REVIEW
+        # INVARIANT 2: Missing Mandatory Evidence, Contradictions, Critical Issues, or Unresolved Review -> REVIEW
         elif (
             len(missing_mandatory) > 0
             or len(critical_contra) > 0
+            or len(critical_issues) > 0
             or risk_assessment.level in (RiskLevel.HIGH, RiskLevel.CRITICAL)
             or compliance_score.under_review > 0
             or compliance_score.final_score < 75.0

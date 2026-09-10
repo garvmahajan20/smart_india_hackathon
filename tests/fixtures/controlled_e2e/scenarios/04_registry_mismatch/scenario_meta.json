@@ -1,0 +1,20 @@
+{
+  "scenario_id": "SCENARIO_04_REGISTRY_MISMATCH",
+  "description": "Bidder claims OEM Authorization which mock OEM registry confirms is UNAUTHORIZED / REVOKED",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "bid.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-004",
+  "bid_id": "BID-CTRL-004",
+  "company_name": "SYNTHETIC CONTRADICTION MFG LTD",
+  "expected_oem_status": "UNAUTHORIZED",
+  "expected_overall_status": [
+    "FAIL",
+    "REVIEW"
+  ],
+  "expected_recommendation_verdict": [
+    "FAIL",
+    "REVIEW"
+  ]
+}

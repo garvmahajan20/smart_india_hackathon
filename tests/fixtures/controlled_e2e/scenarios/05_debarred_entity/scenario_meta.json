@@ -1,0 +1,16 @@
+{
+  "scenario_id": "SCENARIO_05_DEBARRED_ENTITY",
+  "description": "Bidder is actively blacklisted on government debarment registry; fail-closed hard stop",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "bid.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-005",
+  "bid_id": "BID-CTRL-005",
+  "company_name": "Fraudulent Tech Supplies Pvt Ltd",
+  "expected_debarment_status": "DEBARRED",
+  "expected_overall_status": "FAIL",
+  "expected_score_max": 0.0,
+  "expected_risk_level": "CRITICAL",
+  "expected_recommendation_verdict": "FAIL"
+}

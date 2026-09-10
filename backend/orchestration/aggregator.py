@@ -161,7 +161,7 @@ class VerificationAggregator:
             resp_reason = getattr(gov_resp, "reason", getattr(gov_resp, "message", ""))
             resp_data = getattr(gov_resp, "matched_entity", getattr(gov_resp, "data", {})) or {}
 
-            if gov_resp.adapter_name == "DebarmentAdapter":
+            if gov_resp.adapter_name in ("DebarmentAdapter", "MockDebarmentAdapter") or resp_status == "DEBARRED":
                 if resp_status == "DEBARRED" or resp_data.get("status") == "DEBARRED":
                     is_debarred = True
                     debarment_reason = resp_reason
@@ -179,8 +179,8 @@ class VerificationAggregator:
                         related_verification_id=gov_resp.adapter_name,
                     ))
 
-            # Check for government identity/status mismatch
-            elif resp_status in ["IDENTITY_MISMATCH", "INACTIVE", "SUSPENDED", "REVIEW"]:
+            # Check for government identity/status mismatch or service unavailability
+            elif resp_status in ["IDENTITY_MISMATCH", "INACTIVE", "SUSPENDED", "REVIEW", "UNVERIFIED", "UNAVAILABLE"]:
                 review_idx += 1
                 human_review_items.append(HumanReviewItem(
                     review_id=f"REV-{bid_id}-{review_idx:03d}",

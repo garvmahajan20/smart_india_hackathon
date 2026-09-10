@@ -1,0 +1,17 @@
+{
+  "scenario_id": "SCENARIO_03_CROSS_DOCUMENT_CONTRADICTION",
+  "description": "Turnover declared as 15.0 Cr in technical bid but 4.5 Cr in financial annexure",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "technical_bid.pdf",
+    "financial_annexure.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-003",
+  "bid_id": "BID-CTRL-003",
+  "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+  "expected_integrity_status": "CONTRADICTION",
+  "expected_contradiction_finding": "TURNOVER_CONTRADICTION",
+  "expected_overall_status": "REVIEW",
+  "expected_score_max": 65.0,
+  "expected_recommendation_verdict": "REVIEW"
+}

@@ -1,0 +1,14 @@
+{
+  "scenario_id": "SCENARIO_07_EXTERNAL_UNAVAILABLE",
+  "description": "External GSTIN API unavailable (503/timeout); system abstains with zero positive fabrication and no false pass",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "bid.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-007",
+  "bid_id": "BID-CTRL-007",
+  "company_name": "SYNTHETIC BHARAT SYSTEMS PRIVATE LIMITED",
+  "expected_registry_status": "UNAVAILABLE",
+  "expected_overall_status": "REVIEW",
+  "expected_recommendation_verdict": "REVIEW"
+}

@@ -105,7 +105,7 @@ class DeterministicRuleEngine:
                 continue
 
             # 3B. Check Conditional Exemptions
-            exemption_result = self._evaluate_conditional_exemption(req, is_mse, is_startup, bid_id, verif_id)
+            exemption_result = self._evaluate_conditional_exemption(req, is_mse, is_startup, bid_id, verif_id, facts_by_field)
             if exemption_result is not None:
                 results.append(exemption_result)
                 continue
@@ -250,6 +250,7 @@ class DeterministicRuleEngine:
         is_startup: Optional[bool],
         bid_id: str,
         verif_id: str,
+        facts_by_field: Optional[Dict[str, List[BidderFact]]] = None,
     ) -> Optional[VerificationResult]:
         applicability = req.applicability or {}
 
@@ -287,7 +288,8 @@ class DeterministicRuleEngine:
 
         # 2. Startup Exemption
         if applicability.get("startup_exemption_allowed"):
-            if is_startup is True:
+            has_dpiit = bool(facts_by_field and (facts_by_field.get("dpiit_number") or facts_by_field.get("dpiit_certificate")))
+            if is_startup is True and has_dpiit:
                 return VerificationResult(
                     verification_id=verif_id,
                     requirement_id=req.requirement_id,
@@ -300,6 +302,20 @@ class DeterministicRuleEngine:
                     reason=f"Requirement not applicable (N/A): Statutory exemption applied under Startup India / GeM policy for '{req.description}'. Exemptions must NEVER return PASS.",
                     requires_human_review=False,
                     precedence_chain={"status": "EXEMPTION_APPLIED", "exemption_type": "STARTUP"}
+                )
+            elif is_startup is True or (is_startup is None and applicability.get("require_explicit_claim")):
+                return VerificationResult(
+                    verification_id=verif_id,
+                    requirement_id=req.requirement_id,
+                    bid_id=bid_id,
+                    status=ComplianceStatus.REVIEW.value,
+                    severity=Severity.MAJOR.value,
+                    expected=f"{req.operator} {req.expected_value} (Valid DPIIT Certificate)",
+                    actual="Exemption Claimed / Unverified DPIIT",
+                    operator_used=req.operator,
+                    reason="Startup India exemption claimed, but verifiable DPIIT registration certificate is absent or ambiguous; marked UNKNOWN_REVIEW.",
+                    requires_human_review=True,
+                    precedence_chain={"status": "EXEMPTION_REVIEW", "exemption_type": "STARTUP"}
                 )
 
         return None

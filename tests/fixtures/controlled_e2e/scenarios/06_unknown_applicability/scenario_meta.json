@@ -1,0 +1,14 @@
+{
+  "scenario_id": "SCENARIO_06_UNKNOWN_APPLICABILITY",
+  "description": "Bidder claims Startup waiver without verifiable DPIIT certificate; pipeline abstains to UNKNOWN_REVIEW",
+  "tender_file": "tender.pdf",
+  "bid_files": [
+    "bid.pdf"
+  ],
+  "tender_id": "TENDER-CTRL-006",
+  "bid_id": "BID-CTRL-006",
+  "company_name": "SYNTHETIC AMBIGUOUS STARTUP PVT LTD",
+  "expected_compliance_status": "REVIEW",
+  "expected_overall_status": "REVIEW",
+  "expected_recommendation_verdict": "REVIEW"
+}
