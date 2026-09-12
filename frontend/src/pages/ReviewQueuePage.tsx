@@ -155,13 +155,8 @@ export const ReviewQueuePage: React.FC = () => {
     <div className="space-y-5 font-sans">
       <div className="flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <div className="flex flex-wrap items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm"><Gavel className="h-4 w-4" /></div>
-            <div>
-              <div className="flex flex-wrap items-center gap-2"><h1 className="text-xl font-bold tracking-tight text-slate-900">Officer Review & Adjudication Queue</h1><span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-800">{openCount} OPEN</span></div>
-              <p className="mt-1 text-xs text-slate-500">Human-in-the-loop decision center for ambiguous claims, integrity discrepancies, and evidence gaps.</p>
-            </div>
-          </div>
+          <div className="flex flex-wrap items-center gap-2"><h1 className="text-xl font-bold tracking-tight text-slate-900">Officer Review & Adjudication Queue</h1><span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-800">{openCount} OPEN</span></div>
+          <p className="mt-1 text-xs text-slate-500">Human-in-the-loop decision center for ambiguous claims, integrity discrepancies, and evidence gaps.</p>
         </div>
         <div className="grid grid-cols-3 gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider">
           <div className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-center shadow-sm"><span className="block text-slate-400">Open</span><span className="text-sm text-slate-900">{openCount}</span></div>

@@ -7,7 +7,6 @@ import {
   AlertCircle,
   Play,
   ArrowRight,
-  Shield,
   CheckCircle2,
   Cpu,
   Scale,
@@ -15,7 +14,6 @@ import {
   AlertTriangle,
   UserRound,
   FileCheck2,
-  LockKeyhole,
   Sparkles,
   Layers,
 } from "lucide-react";
@@ -206,21 +204,19 @@ export const NewVerificationPage: React.FC = () => {
   return (
     <div className="mx-auto max-w-6xl space-y-5 font-sans">
       <header className="flex flex-col gap-4 border-b border-slate-200 pb-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm">
-            <Shield className="h-5 w-5" />
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="app-eyebrow">Verification intake</p>
+            <span className="rounded-full border border-slate-200 bg-white px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-slate-500">
+              Local prototype
+            </span>
           </div>
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="app-eyebrow">Verification intake</p>
-            </div>
-            <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-950">
-              New Bid Verification & Ingestion
-            </h1>
-            <p className="mt-1 max-w-2xl text-xs leading-5 text-slate-500">
-              Upload real tender specifications and bidder submission evidence for evidence-grounded deterministic verification.
-            </p>
-          </div>
+          <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-950">
+            New Bid Verification & Ingestion
+          </h1>
+          <p className="mt-1 max-w-2xl text-xs leading-5 text-slate-500">
+            Upload real tender specifications and bidder submission evidence for evidence-grounded deterministic verification.
+          </p>
         </div>
 
         <div className="flex items-center gap-3">

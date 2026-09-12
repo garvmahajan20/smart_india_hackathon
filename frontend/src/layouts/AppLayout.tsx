@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { User, ChevronRight, Shield } from "lucide-react";
+import { User, ChevronRight } from "lucide-react";
 import { apiClient } from "../api/client";
 import Header from "../components/common/CurvedMenu";
 import { GradientBackground } from "../components/common/GradientBackground";
@@ -35,13 +35,6 @@ export const AppLayout: React.FC = () => {
     return "Procurement Verification Dashboard";
   };
 
-  const statusLabel =
-    backendStatus === "connected"
-      ? "Backend Connected"
-      : backendStatus === "checking"
-        ? "Connecting..."
-        : "Backend Offline";
-
   return (
     <div className="relative flex h-screen w-full overflow-hidden font-sans">
       <div className="pointer-events-none fixed inset-0 z-0">
@@ -53,11 +46,8 @@ export const AppLayout: React.FC = () => {
       <div className="relative z-10 flex min-w-0 flex-1 flex-col overflow-hidden">
         <header className="z-20 flex h-16 shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/95 px-5 pl-20 shadow-sm backdrop-blur sm:pl-24 lg:px-6 lg:pl-24">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-white shadow-sm sm:flex">
-              <Shield className="h-4 w-4" />
-            </div>
             <span className="hidden text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400 md:inline">
-              GeM Platform
+              J.A.R.V.I.S
             </span>
             <ChevronRight className="hidden h-3.5 w-3.5 text-slate-300 md:inline" />
             <h2 className="truncate text-sm font-bold tracking-tight text-slate-900 sm:text-base">
@@ -66,24 +56,6 @@ export const AppLayout: React.FC = () => {
           </div>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <div className="hidden items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-[10px] sm:flex">
-              <span
-                className={`h-2 w-2 rounded-full ${
-                  backendStatus === "connected"
-                    ? "bg-emerald-500 ring-2 ring-emerald-500/15"
-                    : backendStatus === "checking"
-                      ? "animate-pulse bg-amber-500"
-                      : "bg-rose-500 ring-2 ring-rose-500/15"
-                }`}
-              />
-              <span className="font-semibold text-slate-600">{statusLabel}</span>
-              <span className="font-mono text-[9px] text-slate-400">v{backendVersion}</span>
-            </div>
-
-            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.12em] text-amber-800 sm:text-[10px]">
-              Local Demo
-            </span>
-
             <div className="hidden items-center gap-2.5 border-l border-slate-200 pl-3 sm:flex">
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500">
                 <User className="h-4 w-4" />
