@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ZoomIn,
   ZoomOut,
@@ -45,9 +45,10 @@ export const DocumentCanvas: React.FC<DocumentCanvasProps> = ({
       const match = selectedBlockId
         ? textBlocks.find((b) => b.id === selectedBlockId)
         : selectedClauseId
-        ? textBlocks.find(
-            (b) => b.clause_id === selectedClauseId || (b.clause_id && selectedClauseId.includes(b.clause_id))
-          )
+        ? textBlocks.find((b) => {
+            const cid = b.clause_id || (b as any).matched_clause_id;
+            return cid === selectedClauseId || (cid && selectedClauseId.includes(cid));
+          })
         : undefined;
 
       if (match?.page) {
@@ -166,14 +167,15 @@ export const DocumentCanvas: React.FC<DocumentCanvasProps> = ({
               </div>
             ) : (
               pageBlocks.map((block) => {
-                const isSelected = selectedBlockId === block.id || (!selectedBlockId && selectedClauseId && block.clause_id === selectedClauseId);
+                const blockClauseId = block.clause_id || (block as any).matched_clause_id;
+                const isSelected = selectedBlockId === block.id || (!selectedBlockId && selectedClauseId && blockClauseId === selectedClauseId);
 
                 return (
                   <div
                     key={block.id}
                     onClick={() => {
-                      if (block.clause_id) {
-                        onSelectClause(block.clause_id);
+                      if (blockClauseId) {
+                        onSelectClause(blockClauseId);
                       } else if (onSelectBlock) {
                         onSelectBlock(block.id);
                       }

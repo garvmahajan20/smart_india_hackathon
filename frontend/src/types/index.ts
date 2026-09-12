@@ -22,6 +22,7 @@ export type ReviewItemStatus = "OPEN" | "RESOLVED" | "DISMISSED";
 export interface EvidencePointer {
   document: string;
   page: number;
+  block_id?: string;
   bbox?: [number, number, number, number]; // [ymin, xmin, ymax, xmax]
   snippet?: string;
   source_type?: string;

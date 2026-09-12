@@ -94,17 +94,24 @@ class MockLLMProvider(BaseLLMProvider):
                 latency_ms=1.0,
             )
 
+    def _find_block_for_keyword(self, blocks: List[tuple], keywords: List[str]) -> Optional[str]:
+        for b_id, b_text in blocks:
+            text_lower = b_text.lower()
+            if any(k in text_lower for k in keywords):
+                return b_id
+        return None
+
     def _generate_mock_tender_requirements(self, prompt: str) -> List[Dict[str, Any]]:
         reqs = []
-        # Find block ids in prompt
-        block_matches = re.findall(r"\[(DOC-[^\]]+)\]", prompt)
+        # Find all blocks in prompt formatted as [block_id] text
+        blocks = re.findall(r"\[([^\]\n]+)\]\s*([^\n]*)", prompt)
+        block_matches = [b[0] for b in blocks] if blocks else re.findall(r"\[([^\]\n]+)\]", prompt)
 
         # Look for turnover patterns in text
         if "turnover" in prompt.lower():
             m = re.search(r"(\d+(?:\.\d+)?)\s*(?:crore|cr|lakh)", prompt, re.IGNORECASE)
             val = m.group(0) if m else "10 Crore"
-            bid_id_m = re.search(r"(TENDER-\d+)", prompt)
-            tender_id = bid_id_m.group(1) if bid_id_m else "TENDER-0001"
+            b_id = self._find_block_for_keyword(blocks, ["turnover", "crore", "cr", "lakh"]) or (block_matches[0] if block_matches else None)
             reqs.append({
                 "description": f"Minimum average annual turnover of {val}",
                 "category": "FINANCIAL_CAPACITY",
@@ -112,7 +119,7 @@ class MockLLMProvider(BaseLLMProvider):
                 "operator": ">=",
                 "expected_value": val,
                 "mandatory": True,
-                "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                "evidence_block_ids": [b_id] if b_id else [],
                 "source_clause": "Clause 4.1",
             })
 
@@ -120,6 +127,7 @@ class MockLLMProvider(BaseLLMProvider):
         if "warranty" in prompt.lower():
             m = re.search(r"(\d+)\s*(?:years?|months?)", prompt, re.IGNORECASE)
             val = m.group(0) if m else "3 years"
+            b_id = self._find_block_for_keyword(blocks, ["warranty", "guarantee", "maintenance"]) or (block_matches[-1] if block_matches else None)
             reqs.append({
                 "description": f"Comprehensive on-site warranty of {val}",
                 "category": "TECHNICAL_SPECIFICATION",
@@ -127,7 +135,7 @@ class MockLLMProvider(BaseLLMProvider):
                 "operator": ">=",
                 "expected_value": val,
                 "mandatory": True,
-                "evidence_block_ids": [block_matches[-1]] if block_matches else [],
+                "evidence_block_ids": [b_id] if b_id else [],
                 "source_clause": "Clause 8.2",
             })
 
@@ -135,6 +143,7 @@ class MockLLMProvider(BaseLLMProvider):
         if "delivery" in prompt.lower():
             m = re.search(r"(\d+)\s*days", prompt, re.IGNORECASE)
             val = m.group(0) if m else "60 days"
+            b_id = self._find_block_for_keyword(blocks, ["delivery", "days", "schedule"]) or (block_matches[0] if block_matches else None)
             reqs.append({
                 "description": f"Delivery within {val}",
                 "category": "DELIVERY_LOGISTICS",
@@ -142,66 +151,184 @@ class MockLLMProvider(BaseLLMProvider):
                 "operator": "<=",
                 "expected_value": val,
                 "mandatory": True,
-                "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                "evidence_block_ids": [b_id] if b_id else [],
             })
+
+        # Look for GST / Statutory
+        if "gst" in prompt.lower() or "gstin" in prompt.lower():
+            b_id = self._find_block_for_keyword(blocks, ["gst", "gstin", "tax", "registration"]) or (block_matches[0] if block_matches else None)
+            reqs.append({
+                "description": "Bidder must possess valid GSTIN registration",
+                "category": "STATUTORY_ELIGIBILITY",
+                "field": "gstin",
+                "operator": "EXISTS",
+                "expected_value": "Valid GSTIN",
+                "mandatory": True,
+                "evidence_block_ids": [b_id] if b_id else [],
+                "source_clause": "Clause 2.1",
+            })
+
+        # Look for PAN
+        if "pan" in prompt.lower():
+            b_id = self._find_block_for_keyword(blocks, ["pan", "income tax"]) or (block_matches[0] if block_matches else None)
+            reqs.append({
+                "description": "Bidder must furnish Permanent Account Number (PAN)",
+                "category": "STATUTORY_ELIGIBILITY",
+                "field": "pan",
+                "operator": "EXISTS",
+                "expected_value": "Valid PAN",
+                "mandatory": True,
+                "evidence_block_ids": [b_id] if b_id else [],
+                "source_clause": "Clause 2.2",
+            })
+
+        # Look for ISO
+        if "iso" in prompt.lower():
+            b_id = self._find_block_for_keyword(blocks, ["iso", "quality", "certification"]) or (block_matches[-1] if block_matches else None)
+            reqs.append({
+                "description": "Bidder must have valid ISO certification",
+                "category": "CERTIFICATION",
+                "field": "iso_cert",
+                "operator": "EXISTS",
+                "expected_value": "ISO 9001",
+                "mandatory": True,
+                "evidence_block_ids": [b_id] if b_id else [],
+                "source_clause": "Clause 5.1",
+            })
+
+        # Fallback if no specific keyword matched but document has text blocks
+        if not reqs and block_matches:
+            b0 = block_matches[0]
+            reqs.append({
+                "description": "Bidder must submit valid GST registration certificate",
+                "category": "STATUTORY_ELIGIBILITY",
+                "field": "gstin",
+                "operator": "EXISTS",
+                "expected_value": "Valid GSTIN",
+                "mandatory": True,
+                "evidence_block_ids": [b0],
+                "source_clause": "Clause 1.1",
+            })
+            if len(block_matches) > 1:
+                b1 = block_matches[1]
+                reqs.append({
+                    "description": "Bidder must furnish Permanent Account Number (PAN)",
+                    "category": "STATUTORY_ELIGIBILITY",
+                    "field": "pan",
+                    "operator": "EXISTS",
+                    "expected_value": "Valid PAN",
+                    "mandatory": True,
+                    "evidence_block_ids": [b1],
+                    "source_clause": "Clause 1.2",
+                })
+            if len(block_matches) > 2:
+                b2 = block_matches[2]
+                reqs.append({
+                    "description": "Minimum financial turnover requirement of 1.0 Crore",
+                    "category": "FINANCIAL_CAPACITY",
+                    "field": "turnover_cr",
+                    "operator": ">=",
+                    "expected_value": "1.0 Crore",
+                    "mandatory": True,
+                    "evidence_block_ids": [b2],
+                    "source_clause": "Clause 2.1",
+                })
 
         return reqs
 
     def _generate_mock_bidder_facts(self, prompt: str) -> List[Dict[str, Any]]:
         facts = []
-        block_matches = re.findall(r"\[(DOC-[^\]]+)\]", prompt)
+        blocks = re.findall(r"\[([^\]\n]+)\]\s*([^\n]*)", prompt)
+        block_matches = [b[0] for b in blocks] if blocks else re.findall(r"\[([^\]\n]+)\]", prompt)
 
-        # Look for GSTIN in prompt
+        # 1. Look for GSTIN in prompt & find exact block
         gst_match = re.search(r"\b(\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1})\b", prompt)
         if gst_match:
+            raw_gst = gst_match.group(1)
+            b_id = self._find_block_for_keyword(blocks, [raw_gst]) or (block_matches[0] if block_matches else None)
             facts.append({
                 "field": "gstin",
-                "raw_value": gst_match.group(1),
-                "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                "raw_value": raw_gst,
+                "evidence_block_ids": [b_id] if b_id else [],
                 "extraction_confidence": "HIGH",
             })
 
-        # Look for PAN in prompt
+        # 2. Look for PAN in prompt & find exact block
         pan_match = re.search(r"\b([A-Z]{5}\d{4}[A-Z]{1})\b", prompt)
         if pan_match:
+            raw_pan = pan_match.group(1)
+            b_id = self._find_block_for_keyword(blocks, [raw_pan]) or (block_matches[0] if block_matches else None)
             facts.append({
                 "field": "pan",
-                "raw_value": pan_match.group(1),
-                "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                "raw_value": raw_pan,
+                "evidence_block_ids": [b_id] if b_id else [],
                 "extraction_confidence": "HIGH",
             })
 
-        # Look for turnover
+        # 3. Look for turnover
         if "turnover" in prompt.lower() or "crore" in prompt.lower() or "lakh" in prompt.lower():
             m = re.search(r"(?:rs\.?|inr|₹)?\s*(\d+(?:\.\d+)?)\s*(?:crore|cr|lakh)", prompt, re.IGNORECASE)
             if m:
+                raw_to = m.group(0).strip()
+                b_id = self._find_block_for_keyword(blocks, [raw_to, "turnover", "crore", "cr", "lakh"]) or (block_matches[0] if block_matches else None)
                 facts.append({
                     "field": "turnover_cr",
-                    "raw_value": m.group(0).strip(),
-                    "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                    "raw_value": raw_to,
+                    "evidence_block_ids": [b_id] if b_id else [],
                     "extraction_confidence": "HIGH",
                 })
 
-        # Look for warranty
+        # 4. Look for warranty
         if "warranty" in prompt.lower():
             m = re.search(r"(\d+)\s*(?:years?|months?)", prompt, re.IGNORECASE)
             if m:
+                raw_war = m.group(0).strip()
+                b_id = self._find_block_for_keyword(blocks, [raw_war, "warranty"]) or (block_matches[0] if block_matches else None)
                 facts.append({
                     "field": "warranty_years",
-                    "raw_value": m.group(0).strip(),
-                    "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                    "raw_value": raw_war,
+                    "evidence_block_ids": [b_id] if b_id else [],
                     "extraction_confidence": "HIGH",
                 })
 
-        # Look for delivery
+        # 5. Look for delivery
         if "delivery" in prompt.lower():
             m = re.search(r"(\d+)\s*days", prompt, re.IGNORECASE)
             if m:
+                raw_del = m.group(0).strip()
+                b_id = self._find_block_for_keyword(blocks, [raw_del, "delivery"]) or (block_matches[0] if block_matches else None)
                 facts.append({
                     "field": "delivery_days",
-                    "raw_value": m.group(0).strip(),
-                    "evidence_block_ids": [block_matches[0]] if block_matches else [],
+                    "raw_value": raw_del,
+                    "evidence_block_ids": [b_id] if b_id else [],
                     "extraction_confidence": "HIGH",
                 })
+
+        # 6. Look for ISO
+        if "iso" in prompt.lower():
+            m = re.search(r"iso\s*[-–]?\s*\d+(?::\d+)?", prompt, re.IGNORECASE)
+            raw_iso = m.group(0).strip() if m else "ISO 9001"
+            b_id = self._find_block_for_keyword(blocks, ["iso"]) or (block_matches[-1] if block_matches else None)
+            facts.append({
+                "field": "iso_cert",
+                "raw_value": raw_iso,
+                "evidence_block_ids": [b_id] if b_id else [],
+                "extraction_confidence": "HIGH",
+            })
+
+        # Fallback if no specific facts matched but blocks exist: ground from first block text
+        if not facts and blocks:
+            for b_id, b_text in blocks[:2]:
+                text_clean = b_text.strip()
+                if len(text_clean) >= 3:
+                    # Use a snippet that strictly exists in the block text
+                    snippet = text_clean[:50].strip()
+                    facts.append({
+                        "field": "company_name",
+                        "raw_value": snippet,
+                        "evidence_block_ids": [b_id],
+                        "extraction_confidence": "HIGH",
+                    })
+                    break
 
         return facts

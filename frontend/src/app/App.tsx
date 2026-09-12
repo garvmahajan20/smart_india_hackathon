@@ -14,6 +14,7 @@ export const App: React.FC = () => {
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="verify/new" element={<NewVerificationPage />} />
+          <Route path="verification/new" element={<NewVerificationPage />} />
           <Route path="verification/:id" element={<VerificationWorkbenchPage />} />
           <Route path="review" element={<ReviewQueuePage />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />

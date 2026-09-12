@@ -163,14 +163,8 @@ export const NewVerificationPage: React.FC = () => {
 
       setCurrentStage(6);
       setIsComplete(true);
+      setIsProcessing(false);
       setCompletedResult(result);
-
-      // Transition to Forensic Workbench using the real verification ID
-      timeoutRef.current = window.setTimeout(() => {
-        navigate(`/verification/${encodeURIComponent(result.verification_id)}`, {
-          state: { verification: result },
-        });
-      }, 2000);
     } catch (err: any) {
       if (intervalRef.current) {
         window.clearInterval(intervalRef.current);
@@ -564,7 +558,7 @@ export const NewVerificationPage: React.FC = () => {
               </div>
             </div>
 
-            {isProcessing && (
+            {(isProcessing || isComplete) && (
               <div className="p-4">
                 <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
                   {PIPELINE_STAGES.map((stage) => {
@@ -601,66 +595,140 @@ export const NewVerificationPage: React.FC = () => {
                 </div>
 
                 {isComplete && completedResult && (
-                  <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
-                    <div className="flex items-start gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-emerald-600 shadow-sm">
-                        <CheckCircle2 className="h-5 w-5" />
-                      </span>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700">
-                          Verification complete
-                        </p>
-                        <p className="mt-0.5 text-sm font-bold text-slate-900">
-                          {completedResult.bid_id} · {completedResult.verification_id}
-                        </p>
-                        <p className="mt-0.5 text-[11px] text-slate-600">
-                          Evidence-grounded result compiled from live backend. Opening the forensic workbench next.
-                        </p>
+                  <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/70 p-5 shadow-sm">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-emerald-200/80">
+                      <div className="flex items-start gap-3">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white shadow-sm">
+                          <CheckCircle2 className="h-6 w-6" />
+                        </span>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-800">
+                              Verification Complete
+                            </span>
+                            <span className="font-mono text-xs font-semibold text-slate-500">
+                              ID: {completedResult.verification_id}
+                            </span>
+                          </div>
+                          <h3 className="mt-1 text-base font-bold text-slate-900">
+                            {completedResult.bid_id} · Tender {completedResult.tender_id}
+                          </h3>
+                          <p className="mt-0.5 text-xs text-slate-600">
+                            Deterministic 6-stage pipeline evaluated. Click below to inspect physical evidence grounding, clause matrix, and audit dossier.
+                          </p>
+                        </div>
                       </div>
+
+                      <button
+                        type="button"
+                        data-testid="open-workbench-button"
+                        onClick={() =>
+                          navigate(`/verification/${encodeURIComponent(completedResult.verification_id)}`, {
+                            state: { verification: completedResult },
+                          })
+                        }
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 px-5 py-2.5 font-mono text-xs font-bold text-white shadow-md transition shrink-0"
+                      >
+                        <span>Open Verification Workbench</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
                     </div>
 
-                    <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
-                      <div className="rounded-lg border border-emerald-200 bg-white p-3 shadow-2xs">
-                        <p className="text-[9px] font-bold uppercase text-slate-400">
+                    <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6">
+                      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                          Overall Verdict
+                        </p>
+                        <p className={`mt-1 text-sm font-black ${
+                          completedResult.overall_status === "PASS"
+                            ? "text-emerald-700"
+                            : completedResult.overall_status === "FAIL"
+                            ? "text-rose-700"
+                            : "text-amber-700"
+                        }`}>
+                          {completedResult.overall_status}
+                        </p>
+                      </div>
+
+                      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
                           Compliance
                         </p>
-                        <p className="mt-1 text-sm font-black text-emerald-700">
+                        <p className={`mt-1 text-sm font-black ${
+                          completedResult.compliance_status === "PASS"
+                            ? "text-emerald-700"
+                            : completedResult.compliance_status === "FAIL"
+                            ? "text-rose-700"
+                            : "text-amber-700"
+                        }`}>
                           {completedResult.compliance_status}
                         </p>
                       </div>
-                      <div
-                        className={`rounded-lg border p-3 shadow-2xs ${
-                          completedResult.integrity_status === "CONSISTENT"
-                            ? "border-emerald-200 bg-white text-emerald-700"
-                            : "border-rose-200 bg-white text-rose-700"
-                        }`}
-                      >
-                        <p className="text-[9px] font-bold uppercase text-slate-400">
+
+                      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
                           Integrity
                         </p>
-                        <p className="mt-1 text-sm font-black">
+                        <p className={`mt-1 text-sm font-black ${
+                          completedResult.integrity_status === "CONSISTENT"
+                            ? "text-emerald-700"
+                            : "text-rose-700"
+                        }`}>
                           {completedResult.integrity_status}
                         </p>
                       </div>
+
                       <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
-                        <p className="text-[9px] font-bold uppercase text-slate-400">
-                          Requirements
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                          Compliance Score
+                        </p>
+                        <p className="mt-1 text-sm font-black text-slate-900">
+                          {typeof completedResult.compliance_score === "number"
+                            ? `${Math.round(completedResult.compliance_score)}%`
+                            : "N/A"}
+                        </p>
+                      </div>
+
+                      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                          Risk Level
+                        </p>
+                        <p className={`mt-1 text-sm font-black ${
+                          completedResult.risk_level === "LOW"
+                            ? "text-emerald-700"
+                            : completedResult.risk_level === "CRITICAL"
+                            ? "text-rose-700"
+                            : "text-amber-700"
+                        }`}>
+                          {completedResult.risk_level || "LOW"}
+                        </p>
+                      </div>
+
+                      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                          Evaluated Clauses
                         </p>
                         <p className="mt-1 text-sm font-black text-slate-900">
                           {totalRequirements}
                         </p>
                       </div>
-                      <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-2xs">
-                        <p className="text-[9px] font-bold uppercase text-slate-400">
-                          Failures
-                        </p>
-                        <p className="mt-1 text-sm font-black text-slate-900">
-                          {failedRequirements}
-                        </p>
-                      </div>
                     </div>
 
-                    <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-semibold">
+                    {completedResult.recommendation?.headline && (
+                      <div className="mt-3 flex items-center gap-2 rounded-lg bg-white border border-emerald-200/80 px-3.5 py-2 text-xs text-slate-700">
+                        <span className="font-bold text-emerald-800 uppercase tracking-wide text-[10px]">
+                          Recommendation:
+                        </span>
+                        <span className="font-semibold text-slate-900">
+                          {completedResult.recommendation.headline}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px] font-semibold">
+                      <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-600">
+                        Evaluated clauses: {totalRequirements} · Failures: {failedRequirements}
+                      </span>
                       <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-600">
                         Integrity findings: {integrityFindings}
                       </span>
@@ -680,26 +748,6 @@ export const NewVerificationPage: React.FC = () => {
                           "No officer review required"
                         )}
                       </span>
-                      {completedResult.overall_status === "FAIL" && (
-                        <span className="rounded-full border border-rose-200 bg-rose-50 px-2.5 py-1 text-rose-800">
-                          <AlertTriangle className="mr-1 inline h-3 w-3" />
-                          Overall result: FAIL
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="mt-4 flex items-center justify-end border-t border-emerald-200 pt-3">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          navigate(`/verification/${encodeURIComponent(completedResult.verification_id)}`, {
-                            state: { verification: completedResult },
-                          })
-                        }
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-4 py-2 font-mono text-xs font-bold text-white shadow-sm hover:bg-emerald-800 transition"
-                      >
-                        Open verification workbench <ArrowRight className="h-3.5 w-3.5" />
-                      </button>
                     </div>
                   </div>
                 )}

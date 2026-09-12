@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import {
   ArrowLeft,
@@ -21,6 +21,7 @@ import {
   CANONICAL_DEMO_CASES,
   SEEDED_DEMO_VERIFICATIONS,
   DEMO_PHYSICAL_TEXT_BLOCKS,
+  PhysicalTextBlock,
 } from "../data/demoCases";
 import {
   ComplianceBadge,
@@ -53,15 +54,12 @@ export const VerificationWorkbenchPage: React.FC = () => {
     return null;
   });
 
+  const [loadedDossier, setLoadedDossier] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(!loadedVerification && !!id);
   const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) return;
-
-    if (loadedVerification && loadedVerification.verification_id === id) {
-      return;
-    }
 
     const seeded = SEEDED_DEMO_VERIFICATIONS.find((v) => v.verification_id === id);
     if (seeded) {
@@ -70,12 +68,19 @@ export const VerificationWorkbenchPage: React.FC = () => {
       return;
     }
 
-    setIsLoading(true);
+    setIsLoading(!loadedVerification);
     setLoadError(null);
-    apiClient
-      .getVerification(id)
-      .then((data) => {
-        setLoadedVerification(data);
+
+    Promise.all([
+      apiClient.getVerification(id).catch((err) => {
+        if (loadedVerification) return loadedVerification;
+        throw err;
+      }),
+      apiClient.getDossier(id).catch(() => null),
+    ])
+      .then(([verifData, dossierData]) => {
+        setLoadedVerification(verifData);
+        if (dossierData) setLoadedDossier(dossierData);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -103,19 +108,72 @@ export const VerificationWorkbenchPage: React.FC = () => {
       highlights: [],
     };
 
-  const physicalBlocks =
-    DEMO_PHYSICAL_TEXT_BLOCKS[verification.bid_id] ||
-    verification.verification_results.flatMap((vr, idx) =>
-      (vr.evidence || []).map((ev, evIdx) => ({
-        id: `BLK-${vr.requirement_id}-${evIdx}`,
-        page: ev.page || 1,
-        bbox: (ev.bbox as [number, number, number, number]) || [100 + idx * 40, 50, 130 + idx * 40, 500],
-        text: ev.snippet || `Requirement ${vr.requirement_id}: ${vr.actual || vr.status}`,
-        grounding_state: "VERIFIED" as const,
-        confidence_heuristic: "HIGH" as const,
-        matched_clause_id: vr.requirement_id,
-      }))
-    );
+  const physicalBlocks: (PhysicalTextBlock & { matched_clause_id?: string })[] = useMemo(() => {
+    if (DEMO_PHYSICAL_TEXT_BLOCKS[verification.bid_id]) {
+      return DEMO_PHYSICAL_TEXT_BLOCKS[verification.bid_id];
+    }
+
+    const blocks: (PhysicalTextBlock & { matched_clause_id?: string })[] = [];
+    const seenBlockIds = new Set<string>();
+
+    // 1. Gather all evidence directly from verification results
+    verification.verification_results.forEach((vr, idx) => {
+      (vr.evidence || []).forEach((ev, evIdx) => {
+        const blkId = ev.block_id || `BLK-${vr.requirement_id}-${evIdx}`;
+        if (!seenBlockIds.has(blkId)) {
+          seenBlockIds.add(blkId);
+          blocks.push({
+            id: blkId,
+            page: ev.page || 1,
+            bbox: (ev.bbox as [number, number, number, number]) || [100 + idx * 40, 50, 130 + idx * 40, 500],
+            text: ev.snippet || `Requirement ${vr.requirement_id}: ${vr.actual || vr.status}`,
+            grounding_state: "VERIFIED",
+            confidence_heuristic: "HIGH",
+            clause_id: vr.requirement_id,
+            matched_clause_id: vr.requirement_id,
+          });
+        }
+      });
+    });
+
+    // 2. Also check if dossier contains additional evidence
+    if (loadedDossier?.evidence && Array.isArray(loadedDossier.evidence)) {
+      loadedDossier.evidence.forEach((ev: any, evIdx: number) => {
+        const blkId = ev.block_id || `DOSSIER-BLK-${evIdx}`;
+        if (!seenBlockIds.has(blkId)) {
+          seenBlockIds.add(blkId);
+          blocks.push({
+            id: blkId,
+            page: ev.page || 1,
+            bbox: (ev.bbox as [number, number, number, number]) || [100 + evIdx * 40, 50, 130 + evIdx * 40, 500],
+            text: ev.snippet || `Evidence snippet ${evIdx + 1}`,
+            grounding_state: "VERIFIED",
+            confidence_heuristic: "HIGH",
+            clause_id: ev.requirement_id || undefined,
+            matched_clause_id: ev.requirement_id || undefined,
+          });
+        }
+      });
+    }
+
+    // 3. Fallback: if no blocks from evidence, synthesize requirement reference blocks
+    if (blocks.length === 0 && verification.verification_results.length > 0) {
+      verification.verification_results.forEach((vr, idx) => {
+        blocks.push({
+          id: `CLAUSE-BLK-${vr.requirement_id}`,
+          page: 1,
+          bbox: [100 + idx * 45, 50, 135 + idx * 45, 500],
+          text: `[${vr.requirement_id}] ${vr.reason || vr.expected || vr.status} — (Status: ${vr.status})`,
+          grounding_state: "VERIFIED",
+          confidence_heuristic: "HIGH",
+          clause_id: vr.requirement_id,
+          matched_clause_id: vr.requirement_id,
+        });
+      });
+    }
+
+    return blocks;
+  }, [verification, loadedDossier]);
 
   // Active state
   const [selectedClauseId, setSelectedClauseId] = useState<string | null>(
@@ -756,12 +814,14 @@ export const VerificationWorkbenchPage: React.FC = () => {
           <div className="flex items-center justify-between pb-3 border-b border-slate-200 shrink-0">
             <div>
               <h3 className="text-sm font-bold text-slate-900">Machine-Readable Audit Dossier</h3>
-              <p className="text-xs text-slate-500 font-mono">Run ID: {verification.deterministic_run_id}</p>
+              <p className="text-xs text-slate-500 font-mono">
+                Run ID: {verification.deterministic_run_id || (loadedDossier as any)?.audit_metadata?.deterministic_run_id || "RUN-LIVE"}
+              </p>
             </div>
             <button
               type="button"
               onClick={() => {
-                const blob = new Blob([JSON.stringify(verification, null, 2)], { type: "application/json" });
+                const blob = new Blob([JSON.stringify(loadedDossier || verification, null, 2)], { type: "application/json" });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
@@ -775,7 +835,7 @@ export const VerificationWorkbenchPage: React.FC = () => {
             </button>
           </div>
           <pre className="flex-1 p-4 bg-slate-950 text-slate-200 rounded-lg font-mono text-[11px] overflow-auto mt-3">
-            {JSON.stringify(verification, null, 2)}
+            {JSON.stringify(loadedDossier || verification, null, 2)}
           </pre>
         </div>
       )}
