@@ -117,6 +117,13 @@ export interface AggregatedVerification {
   generated_at: string;
   deterministic_run_id: string; // Run ID identifier (not cryptographic seal)
   processing_metadata: ProcessingMetadata;
+  compliance_score?: number;
+  compliance_score_breakdown?: Record<string, any>;
+  risk_level?: string;
+  risk_assessment?: Record<string, any>;
+  recommendation?: Record<string, any>;
+  pending_requirements?: Record<string, any>[];
+  adjudications?: Record<string, any>[];
 }
 
 export interface VerificationDossier {
