@@ -6,9 +6,9 @@ import {
   FilePlus2,
   LayoutDashboard,
   Menu,
-  ShieldCheck,
   X,
 } from "lucide-react";
+import { apiClient } from "../../api/client";
 
 export interface iNavItem {
   heading: string;
@@ -175,6 +175,27 @@ export const Curve: React.FC = () => {
 export const CurvedNavbar: React.FC<
   iHeaderProps & { setIsActive: (isActive: boolean) => void }
 > = ({ setIsActive, navItems = defaultNavItems }) => {
+  const [healthStatus, setHealthStatus] = useState<"connected" | "offline" | "checking">("checking");
+  const [healthVersion, setHealthVersion] = useState<string>("1.0.0");
+
+  useEffect(() => {
+    let mounted = true;
+    apiClient
+      .getHealth()
+      .then((res) => {
+        if (mounted) {
+          setHealthStatus("connected");
+          setHealthVersion(res.version || "1.0.0");
+        }
+      })
+      .catch(() => {
+        if (mounted) setHealthStatus("offline");
+      });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <motion.aside
       variants={MENU_SLIDE_ANIMATION}
@@ -185,26 +206,10 @@ export const CurvedNavbar: React.FC<
       aria-label="Primary navigation"
     >
       <div className="flex h-full flex-col px-6 pb-6 pt-6 sm:px-8">
-        <div className="flex items-start justify-between border-b border-slate-200 pb-5">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm font-black tracking-tight text-slate-950">ProcureSure</p>
-              <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                Procurement Integrity
-              </p>
-            </div>
+        <div className="flex min-h-[44px] items-center border-b border-slate-200 pb-5">
+          <div className="pl-12">
+            <p className="text-sm font-black tracking-tight text-slate-950">J.A.R.V.I.S</p>
           </div>
-          <button
-            type="button"
-            onClick={() => setIsActive(false)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
-            aria-label="Close navigation menu"
-          >
-            <X className="h-4 w-4" />
-          </button>
         </div>
 
         <div className="mt-7">
@@ -229,18 +234,34 @@ export const CurvedNavbar: React.FC<
         <div className="mt-auto space-y-3 border-t border-slate-200 pt-5">
           <div className="rounded-xl border border-slate-200 bg-slate-50 p-3.5">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.10)]" />
+              <span
+                className={`h-2 w-2 rounded-full ${
+                  healthStatus === "connected"
+                    ? "bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)]"
+                    : healthStatus === "offline"
+                    ? "bg-rose-500 shadow-[0_0_0_4px_rgba(244,63,94,0.15)]"
+                    : "bg-amber-500 animate-pulse shadow-[0_0_0_4px_rgba(245,158,11,0.15)]"
+                }`}
+              />
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-700">
-                Verification services ready
+                {healthStatus === "connected"
+                  ? "Verification services ready"
+                  : healthStatus === "offline"
+                  ? "Verification services offline"
+                  : "Connecting to services..."}
               </span>
             </div>
             <p className="mt-1.5 text-[10px] leading-4 text-slate-500">
-              Evidence-grounded checks and officer adjudication workspace.
+              {healthStatus === "connected"
+                ? `Evidence-grounded checks online · FastAPI v${healthVersion}`
+                : healthStatus === "offline"
+                ? "Backend engine unreachable at http://localhost:8000"
+                : "Probing verification engine status..."}
             </p>
           </div>
           <div className="flex items-center justify-between text-[9px] font-mono uppercase tracking-wider text-slate-400">
             <span>GeM verification desk</span>
-            <span>v1.0</span>
+            <span>v{healthVersion}</span>
           </div>
         </div>
       </div>

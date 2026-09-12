@@ -179,12 +179,41 @@ export const NewVerificationPage: React.FC = () => {
       setIsProcessing(false);
       setIsComplete(false);
       setCurrentStage(0);
-      setValidationError(
-        err.detail ||
+
+      const isOffline =
+        err.status === 0 ||
+        err.message === "Failed to fetch" ||
+        (typeof err.message === "string" && err.message.toLowerCase().includes("networkerror"));
+
+      const errorMessage = isOffline
+        ? "Backend verification service is currently offline or unreachable. Ensure backend is running at http://localhost:8000."
+        : err.detail ||
           err.message ||
-          "Failed to communicate with verification backend. Ensure backend is running at http://localhost:8000."
-      );
+          "Failed to communicate with verification backend. Ensure backend is running at http://localhost:8000.";
+
+      setValidationError(errorMessage);
     }
+  };
+
+  const handleRunPipelineClick = async () => {
+    if (isProcessing) return;
+
+    if (!tenderFile && bidFiles.length === 0) {
+      setValidationError(
+        "Please upload both a Tender Specification PDF and at least one Bidder Submission PDF before running verification."
+      );
+      return;
+    }
+    if (!tenderFile) {
+      setValidationError("Please upload a Tender Specification PDF before running verification.");
+      return;
+    }
+    if (bidFiles.length === 0) {
+      setValidationError("Please upload at least one Bidder Submission PDF before running verification.");
+      return;
+    }
+
+    await executeLivePipeline();
   };
 
   // Demo showcase navigation
@@ -207,9 +236,6 @@ export const NewVerificationPage: React.FC = () => {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <p className="app-eyebrow">Verification intake</p>
-            <span className="rounded-full border border-slate-200 bg-white px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-slate-500">
-              Local prototype
-            </span>
           </div>
           <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-950">
             New Bid Verification & Ingestion
@@ -492,25 +518,50 @@ export const NewVerificationPage: React.FC = () => {
                   Candidate extraction is upstream; deterministic rules retain decision authority.
                 </p>
               </div>
-              <button
-                type="button"
-                disabled={!readyToRunLive}
-                onClick={executeLivePipeline}
-                className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-xs font-bold transition ${
-                  readyToRunLive
-                    ? "bg-white text-slate-950 hover:bg-slate-100 shadow-sm"
-                    : "cursor-not-allowed bg-slate-800 text-slate-500"
-                }`}
-              >
-                {isProcessing ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
-                ) : (
-                  <Play className="h-4 w-4" />
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                {!readyToRunLive && !isProcessing && (
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-amber-400/90">
+                    <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                    <span>
+                      {!tenderFile && bidFiles.length === 0
+                        ? "Awaiting tender & bidder PDFs"
+                        : !tenderFile
+                        ? "Awaiting tender PDF"
+                        : "Awaiting bidder PDF(s)"}
+                    </span>
+                  </div>
                 )}
-                {isProcessing
-                  ? `Verifying Submission · Step ${currentStage}/6`
-                  : "Run verification pipeline"}
-              </button>
+                <button
+                  type="button"
+                  disabled={isProcessing}
+                  onClick={handleRunPipelineClick}
+                  title={
+                    !readyToRunLive
+                      ? (!tenderFile && bidFiles.length === 0
+                          ? "Upload tender and bidder PDFs to run verification"
+                          : !tenderFile
+                          ? "Upload a tender specification PDF to run verification"
+                          : "Upload at least one bidder PDF to run verification")
+                      : "Execute end-to-end verification pipeline"
+                  }
+                  className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-xs font-bold transition ${
+                    isProcessing
+                      ? "cursor-not-allowed bg-slate-800 text-slate-500"
+                      : readyToRunLive
+                      ? "bg-white text-slate-950 hover:bg-slate-100 shadow-sm cursor-pointer"
+                      : "border border-slate-700/60 bg-slate-800/80 text-slate-400 hover:bg-slate-800 hover:text-slate-200 cursor-pointer"
+                  }`}
+                >
+                  {isProcessing ? (
+                    <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
+                  ) : (
+                    <Play className="h-4 w-4" />
+                  )}
+                  {isProcessing
+                    ? `Verifying Submission · Step ${currentStage}/6`
+                    : "Run verification pipeline"}
+                </button>
+              </div>
             </div>
 
             {isProcessing && (

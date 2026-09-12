@@ -163,6 +163,12 @@ export interface VerificationDossier {
     active_model?: string;
     extraction_mode?: string;
   };
+  provenance_graph?: Record<string, any>;
+  compliance_score?: Record<string, any>;
+  risk_assessment?: Record<string, any>;
+  recommendation?: Record<string, any>;
+  pending_requirements?: Record<string, any>[];
+  adjudications?: Record<string, any>[];
 }
 
 export interface HealthResponse {
