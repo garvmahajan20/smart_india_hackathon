@@ -1,5 +1,5 @@
-﻿import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate  } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import {
   ArrowLeft,
   ShieldCheck,
@@ -15,6 +15,7 @@ import {
   CornerDownRight,
   Hash,
   Eye,
+  Loader2,
 } from "lucide-react";
 import {
   CANONICAL_DEMO_CASES,
@@ -33,21 +34,88 @@ import {
   EvidenceData,
 } from "../components/evidence/EvidenceInspector";
 import { RequirementMatrixTable } from "../components/matrix/RequirementMatrixTable";
-import { VerificationResult } from "../types";
+import { AggregatedVerification, VerificationResult } from "../types";
+import { apiClient } from "../api/client";
 
 export const VerificationWorkbenchPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Resolve active verification from URL or fallback to first
-  const verification =
-    SEEDED_DEMO_VERIFICATIONS.find((v) => v.verification_id === id) ||
-    SEEDED_DEMO_VERIFICATIONS[0];
+  const stateVerification = (location.state as any)?.verification as AggregatedVerification | undefined;
+
+  const [loadedVerification, setLoadedVerification] = useState<AggregatedVerification | null>(() => {
+    if (stateVerification && (!id || stateVerification.verification_id === id)) {
+      return stateVerification;
+    }
+    const foundSeeded = SEEDED_DEMO_VERIFICATIONS.find((v) => v.verification_id === id);
+    if (foundSeeded) return foundSeeded;
+    return null;
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(!loadedVerification && !!id);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+
+    if (loadedVerification && loadedVerification.verification_id === id) {
+      return;
+    }
+
+    const seeded = SEEDED_DEMO_VERIFICATIONS.find((v) => v.verification_id === id);
+    if (seeded) {
+      setLoadedVerification(seeded);
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(true);
+    setLoadError(null);
+    apiClient
+      .getVerification(id)
+      .then((data) => {
+        setLoadedVerification(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load verification from backend:", err);
+        setLoadError(err.detail || err.message || `Verification '${id}' not found on backend.`);
+        setIsLoading(false);
+      });
+  }, [id]);
+
+  const verification = loadedVerification || SEEDED_DEMO_VERIFICATIONS[0];
 
   const demoCase =
-    CANONICAL_DEMO_CASES.find((c) => c.bid_id === verification.bid_id) ||
-    CANONICAL_DEMO_CASES[0];
+    CANONICAL_DEMO_CASES.find((c) => c.bid_id === verification.bid_id) || {
+      bid_id: verification.bid_id,
+      tender_id: verification.tender_id,
+      company_name:
+        (verification.processing_metadata as any)?.legal_name ||
+        (verification.processing_metadata as any)?.company_name ||
+        verification.bid_id,
+      ground_truth_label: "CLEAN" as const,
+      description: `Verification dossier for bid ${verification.bid_id}`,
+      expected_overall: verification.overall_status,
+      expected_compliance: verification.compliance_status,
+      expected_integrity: verification.integrity_status,
+      highlights: [],
+    };
 
-  const physicalBlocks = DEMO_PHYSICAL_TEXT_BLOCKS[verification.bid_id] || [];
+  const physicalBlocks =
+    DEMO_PHYSICAL_TEXT_BLOCKS[verification.bid_id] ||
+    verification.verification_results.flatMap((vr, idx) =>
+      (vr.evidence || []).map((ev, evIdx) => ({
+        id: `BLK-${vr.requirement_id}-${evIdx}`,
+        page: ev.page || 1,
+        bbox: (ev.bbox as [number, number, number, number]) || [100 + idx * 40, 50, 130 + idx * 40, 500],
+        text: ev.snippet || `Requirement ${vr.requirement_id}: ${vr.actual || vr.status}`,
+        grounding_state: "VERIFIED" as const,
+        confidence_heuristic: "HIGH" as const,
+        matched_clause_id: vr.requirement_id,
+      }))
+    );
 
   // Active state
   const [selectedClauseId, setSelectedClauseId] = useState<string | null>(
@@ -62,7 +130,6 @@ export const VerificationWorkbenchPage: React.FC = () => {
       ? "registries"
       : "forensics"
   );
-  const navigate = useNavigate();
 
   // Sync initial evidence on mount
   useEffect(() => {
@@ -167,6 +234,35 @@ export const VerificationWorkbenchPage: React.FC = () => {
       setInspectorPos(pos);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[calc(100vh-6rem)] items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-sm font-semibold text-slate-700">Loading verification dossier...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadError && !loadedVerification) {
+    return (
+      <div className="flex h-[calc(100vh-6rem)] items-center justify-center">
+        <div className="max-w-md rounded-xl border border-rose-200 bg-white p-6 text-center shadow-sm">
+          <AlertTriangle className="mx-auto h-8 w-8 text-rose-600" />
+          <h2 className="mt-3 text-base font-bold text-slate-900">Verification Dossier Unavailable</h2>
+          <p className="mt-1 text-xs text-slate-500">{loadError}</p>
+          <Link
+            to="/verify/new"
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-xs font-bold text-white hover:bg-slate-800"
+          >
+            <ArrowLeft className="h-4 w-4" /> Return to Intake
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const passCount = verification.verification_results.filter((r) => r.status === "PASS").length;
   const failCount = verification.verification_results.filter((r) => r.status === "FAIL").length;
